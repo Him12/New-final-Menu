@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>The Leela — Menu</title>
+  <meta name="description" content="The Leela — Elegant multi-language menu with image previews and AR modal (demo)" />
+  <meta name="theme-color" content="#b8894f" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- model-viewer (for AR modal) -->
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.3.0/model-viewer.min.js"></script>
+</head>
+<body>
+  <div class="veil"></div>
+
+  <header class="topbar">
+    <div class="wrap">
+      <div class="brand">
+        <div class="logo">✶</div>
+        <div>
+          <h1 id="brandTitle">The Leela</h1>
+          <p id="brandSub">Hotel Menu · Touch friendly</p>
+        </div>
+      </div>
+
+      <div class="controls">
+        <label class="sr-only" for="lang">Language</label>
+        <select id="lang" aria-label="Language selector">
+          <option value="en">English</option>
+          <option value="fr">Français</option>
+          <option value="es">Español</option>
+          <option value="it">Italiano</option>
+          <option value="jp">日本語</option>
+        </select>
+      </div>
+    </div>
+  </header>
+
+  <nav class="category-bar wrap" id="categoryBar" aria-label="Menu categories">
+    <!-- categories injected by JS -->
+  </nav>
+
+  <main class="wrap">
+    <section id="menuArea" class="menu-area">
+      <!-- categories/cards injected by JS -->
+    </section>
+  </main>
+
+  <!-- IMAGE MODAL -->
+  <div id="imageModal" class="modal" aria-hidden="true">
+    <div class="modal-card" role="dialog" aria-modal="true">
+      <button class="modal-close" id="closeImageModal" aria-label="Close">×</button>
+      <img id="modalImg" class="modal-img" src="" alt="">
+      <div class="modal-meta">
+        <h2 id="modalName"></h2>
+        <p id="modalDesc"></p>
+        <p id="modalPrice" class="price"></p>
+        <div class="modal-actions">
+          <button id="modalAR" class="btn primary" style="display:none">View in AR</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODEL (AR) MODAL -->
+  <div id="modelModal" class="modal" aria-hidden="true">
+    <div class="modal-card" role="dialog" aria-modal="true">
+      <button class="modal-close" id="closeModelModal" aria-label="Close">×</button>
+      <model-viewer id="mv" src="" alt="3D view" camera-controls auto-rotate ar ar-modes="webxr scene-viewer quick-look" style="width:100%;height:60vh;border-radius:8px;"></model-viewer>
+      <div class="modal-meta">
+        <h2 id="modelName"></h2>
+        <p id="modelIngredients"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- toast for small messages -->
+  <div id="toast" class="toast" aria-hidden="true"></div>
+
+  <footer>
+    <div class="visuplate">Visuplate by G&amp;H</div>
+  </footer>
+
+  <script src="main.js" defer></script>
+</body>
+</html>
