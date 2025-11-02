@@ -1,0 +1,164 @@
+{
+  "bestsellers": {
+    "label": {"en": "Signature Dishes", "fr": "Plats Signature", "es": "Platos de Autor", "it": "Piatti d'Autore", "jp": "シグネチャー"},
+    "items": [
+      {
+        "id": "tandoori-burger",
+        "image": "https://images.unsplash.com/photo-1541691538877-1d6b6c9cdd88?auto=format&fit=crop&w=900&q=80",
+        "model": "assets/models/burger_realistic_free.glb",
+        "translations": {
+          "en": {"name": "Tandoori Burger", "desc": "Smoky spice **chicken** burger with mint yogurt aioli.", "price": "₹480", "ingredients": "Bun, chicken patty, tandoori masala, yogurt"},
+          "fr": {"name": "Burger Tandoori", "desc": "Burger épicé fumé avec **yaourt** à la menthe.", "price": "₹480", "ingredients": "Pain, poulet, masala, yaourt"},
+          "es": {"name": "Hamburguesa Tandoori", "desc": "Hamburguesa especiada con yogur de menta.", "price": "₹480", "ingredients": "Pan, pollo, masala, yogur"},
+          "it": {"name": "Burger Tandoori", "desc": "Burger speziato con yogurt alla menta.", "price": "₹480", "ingredients": "Panino, pollo, masala, yogurt"},
+          "jp": {"name": "タンドリーバーガー", "desc": "ヨーグルトミントの**スパイシーチキン**バーガー。", "price": "₹480", "ingredients": "バンズ、チキン、マサラ、ヨーグルト"}
+        }
+      },
+      {
+        "id": "pan-seared-salmon",
+        "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=900&q=80",
+        "model": "",
+        "translations": {
+          "en": {"name": "Pan-Seared Salmon", "desc": "Crisp-skinned **Atlantic Salmon** with lemon-butter sauce and asparagus.", "price": "₹1250", "ingredients": "Salmon, butter, lemon, asparagus, mash"},
+          "fr": {"name": "Saumon Poêlé", "desc": "Saumon de l'Atlantique, sauce citron-beurre et asperges.", "price": "₹1250", "ingredients": "Saumon, beurre, citron, asperges"},
+          "es": {"name": "Salmón a la Plancha", "desc": "Salmón Atlántico con salsa de limón y mantequilla.", "price": "₹1250", "ingredients": "Salmón, mantequilla, limón, espárragos"},
+          "it": {"name": "Salmone in Padella", "desc": "Salmone atlantico con salsa burro e limone.", "price": "₹1250", "ingredients": "Salmone, burro, limone, asparagi"},
+          "jp": {"name": "サーモンソテー", "desc": "レモンバターソースと**アスパラガス**添え。", "price": "₹1250", "ingredients": "サーモン、バター、レモン、アスパラガス"}
+        }
+      }
+    ]
+  },
+  "soups-salads": {
+    "label": {"en": "Soups & Salads", "fr": "Soupes et Salades", "es": "Sopas y Ensaladas", "it": "Zuppe e Insalate", "jp": "スープとサラダ"},
+    "items": [
+      {
+        "id": "creamy-mushroom-soup",
+        "image": "https://images.unsplash.com/photo-1596759247385-d60f5807921a?auto=format&fit=crop&w=900&q=80",
+        "model": "",
+        "translations": {
+          "en": {"name": "Cream of Wild Mushroom", "desc": "Classic European style, finished with **truffle oil** and croutons.", "price": "₹350", "ingredients": "Wild mushrooms, cream, truffle oil, herbs"},
+          "fr": {"name": "Crème de Champignons Sauvages", "desc": "Style européen, fini à **l'huile de truffe** et croûtons.", "price": "₹350", "ingredients": "Champignons, crème, huile de truffe"},
+          "es": {"name": "Crema de Champiñones", "desc": "Estilo clásico europeo, terminado con aceite de trufa.", "price": "₹350", "ingredients": "Champiñones, crema, aceite de trufa"},
+          "it": {"name": "Crema di Funghi Selvatici", "desc": "Classico europeo, finito con olio al tartufo.", "price": "₹350", "ingredients": "Funghi, panna, olio al tartufo"},
+          "jp": {"name": "キノコのクリームスープ", "desc": "**トリュフオイル**で仕上げたクラシックなスープ。", "price": "₹350", "ingredients": "キノコ、クリーム、トリュフオイル"}
+        }
+      },
+      {
+        "id": "burrata-heirloom-salad",
+        "image": "https://images.unsplash.com/photo-1621516086772-c518d6e3f282?auto=format&fit=crop&w=900&q=80",
+        "model": "",
+        "translations": {
+          "en": {"name": "Burrata & Heirloom Salad", "desc": "Creamy **Burrata cheese**, basil, balsamic glaze, and heirloom tomatoes.", "price": "₹650", "ingredients": "Burrata, heirloom tomatoes, basil, balsamic"},
+          "fr": {"name": "Salade Burrata & Tomates", "desc": "Crème de Burrata, basilic, glaçage balsamique, tomates anciennes.", "price": "₹650", "ingredients": "Burrata, tomates, basilic, balsamique"},
+          "es": {"name": "Ensalada Burrata", "desc": "Queso Burrata cremoso, albahaca, vinagre balsámico.", "price": "₹650", "ingredients": "Burrata, tomates, albahaca"},
+          "it": {"name": "Insalata Burrata", "desc": "Burrata cremosa, pomodori antichi, glassa balsamica.", "price": "₹650", "ingredients": "Burrata, pomodori, basilico"},
+          "jp": {"name": "ブッラータサラダ", "desc": "クリーミーな**ブッラータチーズ**とトマト、バルサミコ。", "price": "₹650", "ingredients": "ブッラータ、トマト、バジル"}
+        }
+      }
+    ]
+  },
+  "dimsums-asian": {
+    "label": {"en": "Dim Sums & Asian", "fr": "Dim Sums et Asiatique", "es": "Dim Sums y Asiático", "it": "Dim Sums e Asiatico", "jp": "点心とアジア料理"},
+    "items": [
+      {
+        "id": "prawn-har-gow",
+        "image": "https://images.unsplash.com/photo-1549419137-33f7d188b439?auto=format&fit=crop&w=900&q=80",
+        "model": "",
+        "translations": {
+          "en": {"name": "Prawn Har Gow", "desc": "Steamed translucent dumplings with savory **shrimp** filling.", "price": "₹420", "ingredients": "Shrimp, tapioca starch, bamboo shoots"},
+          "fr": {"name": "Har Gow aux Crevettes", "desc": "Raviolis translucides farcis aux crevettes.", "price": "₹420", "ingredients": "Crevettes, amidon de tapioca"},
+          "es": {"name": "Har Gow de Camarones", "desc": "Dumplings translucidos rellenos de camarones.", "price": "₹420", "ingredients": "Camarones, almidón"},
+          "it": {"name": "Har Gow di Gamberi", "desc": "Gnocchi trasparenti ripieni di gamberi.", "price": "₹420", "ingredients": "Gamberi, amido"},
+          "jp": {"name": "エビ蒸し餃子（ハーガオ）", "desc": "エビがたっぷり入った透明な蒸し餃子。", "price": "₹420", "ingredients": "エビ、タピオカ澱粉"}
+        }
+      },
+      {
+        "id": "veg-manchurian",
+        "image": "https://images.unsplash.com/photo-1594246665798-251c881c6204?auto=format&fit=crop&w=900&q=80",
+        "model": "",
+        "translations": {
+          "en": {"name": "Vegetable Manchurian", "desc": "Fried vegetable balls in a thick, savory **soy-ginger** gravy.", "price": "₹450", "ingredients": "Vegetable balls, soy sauce, ginger, garlic"},
+          "fr": {"name": "Manchurian de Légumes", "desc": "Boules de légumes frites dans une sauce **soja-gingembre**.", "price": "₹450", "ingredients": "Boules de légumes, sauce soja, gingembre"},
+          "es": {"name": "Manchurian de Verduras", "desc": "Bolas de verduras fritas en salsa de soja y jengibre.", "price": "₹450", "ingredients": "Verduras, salsa de soja, jengibre"},
+          "it": {"name": "Manchurian Vegetariano", "desc": "Polpette di verdure fritte in salsa di soia e zenzero.", "price": "₹450", "ingredients": "Verdure, salsa di soia, zenzero"},
+          "jp": {"name": "野菜満州", "desc": "濃厚な**醤油と生姜の**ソースの野菜団子。", "price": "₹450", "ingredients": "野菜団子、醤油、生姜"}
+        }
+      }
+    ]
+  },
+  "indian-mains": {
+    "label": {"en": "Indian Mains", "fr": "Plats Indiens", "es": "Platos Principales Indios", "it": "Piatti Indiani", "jp": "インド料理の主菜"},
+    "items": [
+      {
+        "id": "butter-chicken",
+        "image": "https://images.unsplash.com/photo-1604908176836-2266d94c69b1?auto=format&fit=crop&w=900&q=80",
+        "model": "",
+        "translations": {
+          "en": {"name": "Butter Chicken", "desc": "Creamy tomato gravy with tandoori chicken, a **classic**.", "price": "₹550", "ingredients": "Chicken, tomato, cream, butter, spices"},
+          "fr": {"name": "Poulet au Beurre", "desc": "Poulet dans sauce crémeuse à la tomate, un classique.", "price": "₹550", "ingredients": "Poulet, tomate, crème, beurre"},
+          "es": {"name": "Pollo con Mantequilla", "desc": "Pollo en salsa cremosa de tomate, un clásico.", "price": "₹550", "ingredients": "Pollo, tomate, crema, mantequilla"},
+          "it": {"name": "Pollo al Burro", "desc": "Pollo in salsa cremosa di pomodoro, un classico.", "price": "₹550", "ingredients": "Pollo, pomodoro, panna, burro"},
+          "jp": {"name": "バターチキン", "desc": "トマトクリームのチキン、**定番**。", "price": "₹550", "ingredients": "チキン、トマト、クリーム、バター"}
+        }
+      },
+      {
+        "id": "dal-makhani",
+        "image": "https://images.unsplash.com/photo-1627328715728-7bcc1b5db87d?auto=format&fit=crop&w=900&q=80",
+        "model": "",
+        "translations": {
+          "en": {"name": "Dal Makhani", "desc": "Slow-cooked black lentils, richness from **cream and butter**.", "price": "₹380", "ingredients": "Black lentils, butter, cream, spices"},
+          "fr": {"name": "Dal Makhani", "desc": "Lentilles noires mijotées, richesse grâce à la crème et au beurre.", "price": "₹380", "ingredients": "Lentilles, beurre, crème"},
+          "es": {"name": "Dal Makhani", "desc": "Lentejas negras cocinadas lentamente, con crema y mantequilla.", "price": "₹380", "ingredients": "Lentejas, mantequilla, crema"},
+          "it": {"name": "Dal Makhani", "desc": "Lenticchie nere cotte lentamente, con panna e burro.", "price": "₹380", "ingredients": "Lenticchie, burro, panna"},
+          "jp": {"name": "ダールマカニ", "desc": "じっくり煮込んだ黒レンズ豆、クリームとバターで濃厚。", "price": "₹380", "ingredients": "黒レンズ豆、バター、クリーム"}
+        }
+      }
+    ]
+  },
+  "european-pasta": {
+    "label": {"en": "European & Pasta", "fr": "Européen et Pâtes", "es": "Europeo y Pasta", "it": "Europeo e Pasta", "jp": "ヨーロッパとパスタ"},
+    "items": [
+      {
+        "id": "penne-pink-sauce",
+        "image": "https://images.unsplash.com/photo-1574974775878-1a520e5c9b4f?auto=format&fit=crop&w=900&q=80",
+        "model": "",
+        "translations": {
+          "en": {"name": "Penne in Pink Sauce", "desc": "Penne pasta in a creamy tomato-based sauce with **fresh basil**.", "price": "₹580", "ingredients": "Penne, tomato, cream, basil, parmesan"},
+          "fr": {"name": "Penne Sauce Rose", "desc": "Pâtes Penne dans une sauce crémeuse à la tomate et basilic.", "price": "₹580", "ingredients": "Penne, tomate, crème, basilic"},
+          "es": {"name": "Penne Salsa Rosa", "desc": "Pasta Penne en una salsa cremosa de tomate y albahaca.", "price": "₹580", "ingredients": "Penne, tomate, crema, albahaca"},
+          "it": {"name": "Penne Salsa Rosa", "desc": "Penne in salsa cremosa di pomodoro e basilico.", "price": "₹580", "ingredients": "Penne, pomodoro, panna, basilico"},
+          "jp": {"name": "ペンネピンクソース", "desc": "トマトベースのクリームソースのペンネ、**新鮮なバジル**。", "price": "₹580", "ingredients": "ペンネ、トマト、クリーム、バジル"}
+        }
+      },
+      {
+        "id": "chicken-scaloppine",
+        "image": "https://images.unsplash.com/photo-1619895092037-256674360e25?auto=format&fit=crop&w=900&q=80",
+        "model": "",
+        "translations": {
+          "en": {"name": "Chicken Scaloppine", "desc": "Thinly sliced chicken breast with capers in a **white wine** reduction.", "price": "₹750", "ingredients": "Chicken breast, capers, white wine, flour, butter"},
+          "fr": {"name": "Scaloppine de Poulet", "desc": "Fines tranches de poulet aux câpres dans une réduction de vin blanc.", "price": "₹750", "ingredients": "Poulet, câpres, vin blanc"},
+          "es": {"name": "Escalopines de Pollo", "desc": "Pollo en rodajas finas con alcaparras en reducción de vino blanco.", "price": "₹750", "ingredients": "Pollo, alcaparras, vino blanco"},
+          "it": {"name": "Scaloppine di Pollo", "desc": "Fettine di pollo con capperi in riduzione di vino bianco.", "price": "₹750", "ingredients": "Pollo, capperi, vino bianco"},
+          "jp": {"name": "チキン・スカロッピーニ", "desc": "ケッパーと**白ワイン**ソースの薄切りチキンブレスト。", "price": "₹750", "ingredients": "鶏むね肉、ケッパー、白ワイン"}
+        }
+      }
+    ]
+  },
+  "dessert-platter": {
+    "label": {"en": "Dessert Platters", "fr": "Plateaux de Desserts", "es": "Fuentes de Postres", "it": "Piatti di Dolci", "jp": "デザートの盛り合わせ"},
+    "items": [
+      {
+        "id": "artisan-petite-fours",
+        "image": "https://images.unsplash.com/photo-1598270550013-057d5440d9d0?auto=format&fit=crop&w=900&q=80",
+        "model": "",
+        "translations": {
+          "en": {"name": "Artisan Petite Fours Platter", "desc": "A selection of 5 miniature desserts: Macaron, Tiramisu, Lemon Tart, **Chocolate Truffle**, and Éclair.", "price": "₹950", "ingredients": "Assorted pastries, chocolate, cream, fruit"},
+          "fr": {"name": "Assortiment de Petits Fours", "desc": "Sélection de 5 miniatures : Macaron, Tiramisu, Tarte au Citron, Truffe, et Éclair.", "price": "₹950", "ingredients": "Pâtisseries assorties, chocolat, fruits"},
+          "es": {"name": "Plato de Petits Fours", "desc": "Selección de 5 postres en miniatura: Macaron, Tiramisú, Tarta de Limón.", "price": "₹950", "ingredients": "Pasteles variados, chocolate, fruta"},
+          "it": {"name": "Piatto di Pasticceria Mignon", "desc": "Selezione di 5 dolci in miniatura: Macaron, Tiramisù, Crostata di Limone.", "price": "₹950", "ingredients": "Pasticceria assortita, cioccolato"},
+          "jp": {"name": "プティフール盛り合わせ", "desc": "マカロン、ティラミス、タルト、**チョコレート**など5種類のミニデザート。", "price": "₹950", "ingredients": "各種ペストリー、チョコレート、フルーツ"}
+        }
+      }
+    ]
+  }
+}

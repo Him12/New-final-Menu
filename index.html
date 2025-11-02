@@ -3,23 +3,22 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>The Leela — Menu</title>
+  <title>The Leela — Premium Menu</title>
   <meta name="description" content="The Leela — Elegant multi-language menu with image previews and AR modal (demo)" />
   <meta name="theme-color" content="#b8894f" />
 
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 
-  <!-- model-viewer (for AR modal) -->
   <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.3.0/model-viewer.min.js"></script>
 </head>
 <body>
   <div class="veil"></div>
 
-  <header class="topbar">
+  <header class="topbar dynamic-header">
     <div class="wrap">
       <div class="brand">
-        <div class="logo">✶</div>
+        <div class="logo logo-fallback">✶</div>
         <div>
           <h1 id="brandTitle">The Leela</h1>
           <p id="brandSub">Hotel Menu · Touch friendly</p>
@@ -40,20 +39,19 @@
   </header>
 
   <nav class="category-bar wrap" id="categoryBar" aria-label="Menu categories">
-    <!-- categories injected by JS -->
-  </nav>
+    </nav>
 
   <main class="wrap">
     <section id="menuArea" class="menu-area">
-      <!-- categories/cards injected by JS -->
-    </section>
+      </section>
   </main>
 
-  <!-- IMAGE MODAL -->
   <div id="imageModal" class="modal" aria-hidden="true">
     <div class="modal-card" role="dialog" aria-modal="true">
       <button class="modal-close" id="closeImageModal" aria-label="Close">×</button>
-      <img id="modalImg" class="modal-img" src="" alt="">
+      <div class="modal-media-container">
+        <img id="modalImg" class="modal-img" src="" alt="">
+      </div>
       <div class="modal-meta">
         <h2 id="modalName"></h2>
         <p id="modalDesc"></p>
@@ -65,11 +63,10 @@
     </div>
   </div>
 
-  <!-- MODEL (AR) MODAL -->
   <div id="modelModal" class="modal" aria-hidden="true">
     <div class="modal-card" role="dialog" aria-modal="true">
       <button class="modal-close" id="closeModelModal" aria-label="Close">×</button>
-      <model-viewer id="mv" src="" alt="3D view" camera-controls auto-rotate ar ar-modes="webxr scene-viewer quick-look" style="width:100%;height:60vh;border-radius:8px;"></model-viewer>
+      <model-viewer id="mv" src="" alt="3D view" camera-controls auto-rotate ar ar-modes="webxr scene-viewer quick-look" style="width:100%;height:60vh;border-radius:12px;background:#f5f5f5;"></model-viewer>
       <div class="modal-meta">
         <h2 id="modelName"></h2>
         <p id="modelIngredients"></p>
@@ -77,7 +74,6 @@
     </div>
   </div>
 
-  <!-- toast for small messages -->
   <div id="toast" class="toast" aria-hidden="true"></div>
 
   <footer>

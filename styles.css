@@ -1,77 +1,464 @@
-:root{
-  --gold: #b8894f;
-  --deep: #3b2b26;
-  --cream: #fbf6ef;
-  --muted:#7f675f;
-  --card-bg: #fffaf5;
-  --maxw:1100px;
-  --shadow: 0 18px 40px rgba(25,12,8,0.12);
-  --radius:12px;
+/* Custom Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600;700&display=swap');
+
+/* --- 1. Global Reset & Variables --- */
+:root {
+    --color-primary: #b8894f; /* Elegant Gold/Bronze */
+    --color-secondary: #5a4b3f; /* Deep Brown/Coffee */
+    --color-text: #333333;
+    --color-background: #ffffff;
+    --color-light-bg: #f5f5f5;
+    --color-shadow: rgba(0, 0, 0, 0.1);
+    --font-serif: 'Playfair Display', serif;
+    --font-sans: 'Inter', sans-serif;
+    --max-width: 1200px;
 }
 
-/* reset */
-*{box-sizing:border-box}
-html,body{height:100%;margin:0;font-family:'Poppins',system-ui,Segoe UI,Roboto,Arial,sans-serif;background:linear-gradient(180deg,var(--cream),#f3e9d9);color:var(--deep);-webkit-font-smoothing:antialiased}
-.wrap{max-width:var(--maxw);margin:0 auto;padding:0 18px}
-.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-/* header */
-.topbar{position:sticky;top:0;background:rgba(255,255,255,0.85);backdrop-filter:blur(6px);z-index:80;border-bottom:1px solid rgba(0,0,0,0.04)}
-.topbar .wrap{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
-.brand{display:flex;gap:12px;align-items:center}
-.logo{width:56px;height:56px;border-radius:10px;background:linear-gradient(135deg,var(--gold),#f5dcb3);display:flex;align-items:center;justify-content:center;color:var(--deep);font-weight:700;box-shadow:var(--shadow)}
-.brand h1{margin:0;font-family:'Playfair Display',serif;font-size:1.25rem}
-.brand p{margin:0;color:var(--muted);font-size:.88rem}
-.controls select{padding:8px 10px;border-radius:8px;border:1px solid rgba(0,0,0,0.06);background:#fff;color:var(--deep)}
+body {
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    color: var(--color-text);
+    background-color: var(--color-light-bg);
+}
 
-/* categories bar */
-.category-bar{display:flex;gap:10px;padding:14px 18px;flex-wrap:wrap;align-items:center;justify-content:flex-start;background:transparent}
-.cat-btn{padding:8px 14px;border-radius:999px;border:1px solid rgba(0,0,0,0.06);background:transparent;cursor:pointer;font-weight:600}
-.cat-btn.active{background:var(--gold);color:#fff;border:none;box-shadow:0 10px 30px rgba(184,130,70,0.12)}
+.wrap {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 16px;
+}
 
-/* menu area (accordion-like) */
-.menu-area{display:flex;flex-direction:column;gap:18px;padding:18px 0}
+/* --- 2. Typography and Components --- */
 
-/* category block */
-.cat-block{background:linear-gradient(180deg,var(--card-bg),#fffaf5);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;border:1px solid rgba(0,0,0,0.04)}
-.cat-header{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;cursor:pointer}
-.cat-header h2{margin:0;font-family:'Playfair Display',serif}
-.cat-header p{margin:0;color:var(--muted)}
-.cat-body{padding:16px;border-top:1px solid rgba(0,0,0,0.03)}
+h1, h2, h3 {
+    font-family: var(--font-serif);
+    color: var(--color-secondary);
+    font-weight: 700;
+}
 
-/* grid of cards (square thumbnails) */
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
-.card{background:#fff;border-radius:10px;overflow:hidden;border:1px solid rgba(0,0,0,0.04);transition:transform .22s,box-shadow .22s;display:flex;flex-direction:column;min-height:320px}
-.card:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(20,12,8,0.12)}
-.card-media{width:100%;height:220px;background-size:cover;background-position:center;flex:0 0 220px}
-.card-body{padding:12px;display:flex;flex-direction:column;flex:1}
-.card-title{font-weight:700;margin:0 0 6px}
-.card-desc{color:var(--muted);font-size:.95rem;margin:0 0 12px;flex:1}
-.card-footer{display:flex;justify-content:space-between;align-items:center;gap:8px}
-.price{font-weight:800;color:var(--deep)}
-.actions{display:flex;gap:8px;align-items:center}
+h1 { font-size: 1.8rem; }
+h2 { font-size: 1.6rem; margin-bottom: 8px; }
+h3 { font-size: 1.2rem; }
 
-/* buttons */
-.btn{padding:8px 12px;border-radius:10px;border:1px solid rgba(0,0,0,0.06);background:transparent;cursor:pointer;font-weight:700}
-.btn.primary{background:linear-gradient(90deg,var(--deep),#7b2927);color:#fff;border:none;box-shadow:0 12px 30px rgba(123,41,39,0.12)}
+.price {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    color: var(--color-primary);
+    font-size: 1.1rem;
+}
 
-/* modal */
-.modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:linear-gradient(180deg, rgba(0,0,0,0.48), rgba(0,0,0,0.6));z-index:140;padding:18px}
-.modal[aria-hidden="false"]{display:flex}
-.modal-card{width:min(920px,96%);max-height:92vh;background:linear-gradient(180deg,#fff,#fffaf5);border-radius:12px;padding:18px;box-shadow:0 30px 90px rgba(0,0,0,0.45);overflow:auto;position:relative}
-.modal-img{width:100%;height:48vh;object-fit:cover;border-radius:8px}
-.modal-close{position:absolute;top:12px;right:14px;border:0;background:transparent;font-size:28px;cursor:pointer;color:var(--deep)}
-.modal-meta{padding:12px}
-.price{font-weight:800;color:var(--deep)}
+.btn {
+    background: none;
+    border: 1px solid var(--color-primary);
+    color: var(--color-primary);
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+    font-weight: 600;
+    white-space: nowrap;
+}
 
-/* toast */
-.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:24px;background:#222;color:#fff;padding:10px 16px;border-radius:8px;opacity:0;pointer-events:none;transition:opacity .25s}
+.btn:hover, .btn:focus {
+    background-color: var(--color-primary);
+    color: var(--color-background);
+}
 
-/* footer visuplate */
-footer .visuplate{position:fixed;right:18px;bottom:12px;z-index:200;background:linear-gradient(90deg,var(--gold),#e6c899);padding:8px 12px;border-radius:8px;color:var(--deep);font-weight:700;box-shadow:0 8px 30px rgba(0,0,0,0.12)}
+.btn.primary {
+    background-color: var(--color-primary);
+    color: var(--color-background);
+    border-color: var(--color-primary);
+}
 
-/* responsive */
-@media (max-width:900px){
-  .card-media{height:180px}
-  .modal-img{height:36vh}
+.btn.primary:hover, .btn.primary:focus {
+    background-color: var(--color-secondary);
+    border-color: var(--color-secondary);
+}
+
+/* --- 3. Header and Navigation --- */
+
+.topbar {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--color-background);
+    padding: 15px 0;
+    z-index: 1000;
+    transition: transform 0.3s ease-out, box-shadow 0.3s;
+}
+
+.topbar.is-hidden {
+    transform: translateY(-100%);
+}
+
+.topbar.has-shadow {
+    box-shadow: 0 2px 8px var(--color-shadow);
+}
+
+.topbar .wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo {
+    font-size: 2.5rem;
+    color: var(--color-primary);
+    line-height: 1;
+}
+
+.brand h1 {
+    font-size: 1.5rem;
+    margin-bottom: 0;
+}
+
+.brand p {
+    font-size: 0.75rem;
+    color: var(--color-text);
+    opacity: 0.7;
+    margin-top: -3px;
+    font-weight: 300;
+}
+
+.controls select {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: inherit;
+    background-color: var(--color-light-bg);
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+/* Category Bar */
+.category-bar {
+    position: sticky;
+    top: 67px; /* Adjust based on topbar height */
+    background-color: var(--color-background);
+    padding: 10px 0;
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    white-space: nowrap;
+    z-index: 999;
+    box-shadow: 0 1px 4px var(--color-shadow);
+    /* Improve mobile scrolling */
+    -webkit-overflow-scrolling: touch; 
+}
+
+.category-bar::-webkit-scrollbar {
+    display: none;
+}
+
+.cat-btn {
+    border: 1px solid #ddd;
+    background-color: var(--color-light-bg);
+    color: var(--color-text);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    transition: all 0.2s;
+    cursor: pointer;
+    flex-shrink: 0; /* Important for horizontal scrolling */
+}
+
+.cat-btn:hover {
+    background-color: #e8e8e8;
+}
+
+.cat-btn.active {
+    background-color: var(--color-secondary);
+    border-color: var(--color-secondary);
+    color: var(--color-background);
+    font-weight: 600;
+}
+
+/* --- 4. Menu Area and Cards --- */
+
+.menu-area {
+    padding-top: 30px;
+}
+
+.cat-block {
+    margin-bottom: 50px;
+    border-bottom: 1px solid #eee;
+}
+
+.cat-header {
+    cursor: pointer;
+    padding: 15px 0;
+    border-bottom: 2px solid var(--color-primary);
+    margin-bottom: 20px;
+}
+
+.cat-header h2 {
+    font-size: 1.8rem;
+    margin-bottom: 0;
+}
+
+.cat-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out;
+}
+
+.cat-block.is-open .cat-body {
+    max-height: 2000px; /* Large value to allow smooth transition */
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+    padding-bottom: 30px;
+}
+
+.card {
+    background-color: var(--color-background);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px var(--color-shadow);
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    min-height: 350px;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.card.is-pressed {
+    transform: scale(0.98);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.card-media {
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+}
+
+.card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.5s ease-in;
+    opacity: 0; /* Start invisible for lazy loading effect */
+}
+
+.card-body {
+    padding: 15px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-title {
+    margin-bottom: 5px;
+}
+
+.card-desc {
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 15px;
+}
+.card-desc strong {
+    color: var(--color-primary); /* Highlight bold text */
+}
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-footer .actions {
+    display: flex;
+    gap: 8px;
+}
+
+/* --- 5. Modal Styling --- */
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+.modal[aria-hidden="false"] {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-card {
+    background-color: var(--color-background);
+    border-radius: 12px;
+    max-width: 90%;
+    width: 700px;
+    padding: 20px;
+    position: relative;
+    transform: scale(0.9);
+    transition: transform 0.3s;
+}
+
+.modal[aria-hidden="false"] .modal-card {
+    transform: scale(1);
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: var(--color-secondary);
+    line-height: 1;
+}
+
+.modal-media-container {
+    width: 100%;
+    height: 300px;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.modal-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.modal-meta p {
+    margin-bottom: 10px;
+    color: #666;
+}
+
+.modal-meta .price {
+    font-size: 1.5rem;
+    margin: 15px 0;
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+/* AR Modal (3D Viewer) Specifics */
+#modelModal .modal-card {
+    max-width: 95%;
+    width: 800px;
+    text-align: center;
+}
+
+#mv {
+    border: 1px solid #ddd;
+}
+
+#modelIngredients {
+    font-style: italic;
+    font-size: 0.9rem;
+    margin-top: 10px;
+    color: #888;
+}
+
+/* --- 6. Toast/Footer --- */
+
+.toast {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--color-secondary);
+    color: var(--color-background);
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 3000;
+}
+
+footer {
+    padding: 20px 0;
+    text-align: center;
+    font-size: 0.75rem;
+    color: #999;
+}
+.visuplate {
+    font-weight: 300;
+}
+
+/* --- 7. Media Queries (Responsiveness) --- */
+
+@media (max-width: 768px) {
+    .topbar {
+        padding: 10px 0;
+    }
+    .topbar .wrap {
+        padding: 0 10px;
+    }
+    .category-bar {
+        top: 57px; /* Adjusted sticky position */
+        padding: 10px 10px;
+    }
+    .brand h1 { font-size: 1.3rem; }
+    .brand p { display: none; }
+    .logo { font-size: 2rem; }
+    
+    .grid {
+        grid-template-columns: 1fr; /* Single column on mobile */
+    }
+    
+    .modal-card {
+        max-width: 95%;
+        margin: 10px;
+        padding: 15px;
+    }
+    .modal-media-container {
+        height: 200px;
+    }
+    .modal-meta .price {
+        font-size: 1.3rem;
+    }
 }
