@@ -3,83 +3,344 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>The Leela — Premium Menu</title>
-  <meta name="description" content="The Leela — Elegant multi-language menu with image previews and AR modal (demo)" />
-  <meta name="theme-color" content="#b8894f" />
-
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <title>The Leela — Premium Dining Experience</title>
+  <meta name="description" content="The Leela — Luxury multi-language menu with AR previews, advanced filtering, and premium features" />
+  <meta name="theme-color" content="#b76e79" />
+  
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="styles.css">
 
+  <!-- Model Viewer -->
   <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.3.0/model-viewer.min.js"></script>
 </head>
 <body>
-  <div class="veil"></div>
+  <!-- Theme Toggle -->
+  <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
+    <i class="fas fa-moon"></i>
+  </button>
 
-  <header class="topbar dynamic-header">
-    <div class="wrap">
-      <div class="brand">
-        <div class="logo logo-fallback">✶</div>
-        <div>
-          <h1 id="brandTitle">The Leela</h1>
-          <p id="brandSub">Hotel Menu · Touch friendly</p>
+  <!-- Loading Screen -->
+  <div id="loadingScreen" class="loading-screen">
+    <div class="loading-content">
+      <div class="logo-loader">
+        <div class="loader-ring"></div>
+        <span>L</span>
+      </div>
+      <p>Preparing your dining experience</p>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="header" id="mainHeader">
+    <div class="container">
+      <div class="header-content">
+        <!-- Mobile Menu Button -->
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <!-- Brand -->
+        <div class="brand">
+          <div class="logo">L</div>
+          <div class="brand-text">
+            <h1>The Leela</h1>
+            <p>Premium Dining</p>
+          </div>
+        </div>
+
+        <!-- Desktop Navigation -->
+        <nav class="desktop-nav" id="desktopNav">
+          <div class="nav-group">
+            <button class="nav-btn active" data-section="menu">Menu</button>
+            <button class="nav-btn" data-section="specials">Specials</button>
+            <button class="nav-btn" data-section="ambience">Ambience</button>
+            <button class="nav-btn" data-section="story">Our Story</button>
+          </div>
+        </nav>
+
+        <!-- Header Actions -->
+        <div class="header-actions">
+          <!-- Search -->
+          <div class="search-container">
+            <button class="search-btn" id="searchToggle" aria-label="Toggle search">
+              <i class="fas fa-search"></i>
+            </button>
+            <div class="search-expandable" id="searchExpandable">
+              <input type="text" id="searchInput" placeholder="Search dishes, ingredients..." aria-label="Search menu">
+              <button class="search-close" id="searchClose" aria-label="Close search">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Language -->
+          <select id="lang" class="lang-select" aria-label="Select language">
+            <option value="en">EN</option>
+            <option value="fr">FR</option>
+            <option value="es">ES</option>
+            <option value="it">IT</option>
+            <option value="jp">JP</option>
+          </select>
+
+          <!-- Favorites -->
+          <button class="favorites-btn" id="favoritesToggle" aria-label="View favorites">
+            <i class="far fa-heart"></i>
+            <span class="favorites-count">0</span>
+          </button>
         </div>
       </div>
 
-      <div class="controls">
-        <label class="sr-only" for="lang">Language</label>
-        <select id="lang" aria-label="Language selector">
-          <option value="en">English</option>
-          <option value="fr">Français</option>
-          <option value="es">Español</option>
-          <option value="it">Italiano</option>
-          <option value="jp">日本語</option>
-        </select>
+      <!-- Advanced Filters -->
+      <div class="advanced-filters" id="advancedFilters">
+        <div class="filter-group">
+          <h4>Dietary</h4>
+          <div class="filter-tags">
+            <button class="filter-tag" data-filter="VEG">
+              <i class="fas fa-leaf"></i>Vegetarian
+            </button>
+            <button class="filter-tag" data-filter="NON_VEG">
+              <i class="fas fa-drumstick-bite"></i>Non-Veg
+            </button>
+            <button class="filter-tag" data-filter="GLUTEN_FREE">
+              <i class="fas fa-wheat"></i>Gluten-Free
+            </button>
+            <button class="filter-tag" data-filter="NUTS_FREE">
+              <i class="fas fa-peanut"></i>Nut-Free
+            </button>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <h4>Spice Level</h4>
+          <div class="spice-filters">
+            <button class="spice-btn" data-spice="0">Mild</button>
+            <button class="spice-btn" data-spice="1">Medium</button>
+            <button class="spice-btn" data-spice="2">Spicy</button>
+            <button class="spice-btn" data-spice="3">Hot</button>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <h4>Price Range</h4>
+          <div class="price-filter">
+            <input type="range" id="priceRange" min="0" max="2000" step="100" value="2000">
+            <span id="priceDisplay">Up to ₹2000</span>
+          </div>
+        </div>
+
+        <button class="clear-filters" id="clearFilters">
+          <i class="fas fa-times"></i>Clear All
+        </button>
       </div>
     </div>
   </header>
 
-  <nav class="category-bar wrap" id="categoryBar" aria-label="Menu categories">
-    </nav>
+  <!-- Mobile Navigation -->
+  <nav class="mobile-nav" id="mobileNav">
+    <div class="mobile-nav-content">
+      <button class="nav-item active" data-section="menu">
+        <i class="fas fa-utensils"></i>
+        <span>Menu</span>
+      </button>
+      <button class="nav-item" data-section="specials">
+        <i class="fas fa-star"></i>
+        <span>Specials</span>
+      </button>
+      <button class="nav-item" data-section="ambience">
+        <i class="fas fa-camera"></i>
+        <span>Ambience</span>
+      </button>
+      <button class="nav-item" data-section="story">
+        <i class="fas fa-book"></i>
+        <span>Our Story</span>
+      </button>
+      <button class="nav-item" data-section="reviews">
+        <i class="fas fa-comment"></i>
+        <span>Reviews</span>
+      </button>
+    </div>
+  </nav>
 
-  <main class="wrap">
-    <section id="menuArea" class="menu-area">
-      </section>
+  <!-- Main Content -->
+  <main>
+    <!-- Menu Section -->
+    <section id="menuSection" class="section active">
+      <div class="container">
+        <!-- Category Navigation -->
+        <nav class="category-nav" id="categoryNav">
+          <div class="category-scroll">
+            <!-- Categories will be injected here -->
+          </div>
+        </nav>
+
+        <!-- Menu Grid -->
+        <div class="menu-grid" id="menuArea">
+          <!-- Menu items will be injected here -->
+        </div>
+
+        <!-- Empty State -->
+        <div class="empty-state" id="emptyState" style="display: none;">
+          <i class="fas fa-search"></i>
+          <h3>No items found</h3>
+          <p>Try adjusting your filters or search term</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Specials Section -->
+    <section id="specialsSection" class="section">
+      <div class="container">
+        <h2 class="section-title">Today's Specials</h2>
+        <div class="specials-grid" id="specialsGrid">
+          <!-- Specials will be injected here -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Other sections will be added similarly -->
   </main>
 
+  <!-- Favorites Sidebar -->
+  <aside class="favorites-sidebar" id="favoritesSidebar">
+    <div class="sidebar-header">
+      <h3>Your Favorites</h3>
+      <button class="sidebar-close" id="favoritesClose">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <div class="favorites-list" id="favoritesList">
+      <!-- Favorites will be injected here -->
+    </div>
+  </aside>
+
+  <!-- Modals -->
+  <!-- Image Modal -->
   <div id="imageModal" class="modal" aria-hidden="true">
-    <div class="modal-card" role="dialog" aria-modal="true">
-      <button class="modal-close" id="closeImageModal" aria-label="Close">×</button>
-      <div class="modal-media-container">
-        <img id="modalImg" class="modal-img" src="" alt="">
-      </div>
-      <div class="modal-meta">
-        <h2 id="modalName"></h2>
-        <p id="modalDesc"></p>
-        <p id="modalPrice" class="price"></p>
-        <div class="modal-actions">
-          <button id="modalAR" class="btn primary" style="display:none">View in AR</button>
+    <div class="modal-backdrop"></div>
+    <div class="modal-container">
+      <div class="modal-content">
+        <button class="modal-close" id="closeImageModal">
+          <i class="fas fa-times"></i>
+        </button>
+        
+        <div class="modal-media">
+          <img id="modalImg" src="" alt="" loading="lazy">
+          <button class="modal-favorite" id="modalFavorite">
+            <i class="far fa-heart"></i>
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <div class="modal-header">
+            <div class="dietary-badges" id="modalBadges"></div>
+            <h2 id="modalName"></h2>
+            <div class="modal-price" id="modalPrice"></div>
+          </div>
+
+          <p class="modal-desc" id="modalDesc"></p>
+
+          <div class="modal-details">
+            <div class="detail-group">
+              <h4>Ingredients</h4>
+              <p id="modalIngredients"></p>
+            </div>
+            <div class="detail-group">
+              <h4>Allergy Info</h4>
+              <p id="modalAllergy"></p>
+            </div>
+            <div class="detail-group">
+              <h4>Nutrition</h4>
+              <div class="nutrition-facts" id="modalNutrition">
+                <!-- Nutrition facts will be injected -->
+              </div>
+            </div>
+          </div>
+
+          <div class="modal-actions">
+            <button class="btn btn-secondary" id="modalAR">
+              <i class="fas fa-cube"></i>View in AR
+            </button>
+            <button class="btn btn-primary" id="modalAddFavorite">
+              <i class="far fa-heart"></i>Add to Favorites
+            </button>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- AR Modal -->
   <div id="modelModal" class="modal" aria-hidden="true">
-    <div class="modal-card" role="dialog" aria-modal="true">
-      <button class="modal-close" id="closeModelModal" aria-label="Close">×</button>
-      <model-viewer id="mv" src="" alt="3D view" camera-controls auto-rotate ar ar-modes="webxr scene-viewer quick-look" style="width:100%;height:60vh;border-radius:12px;background:#f5f5f5;"></model-viewer>
-      <div class="modal-meta">
-        <h2 id="modelName"></h2>
-        <p id="modelIngredients"></p>
+    <div class="modal-backdrop"></div>
+    <div class="modal-container ar-modal">
+      <div class="modal-content">
+        <button class="modal-close" id="closeModelModal">
+          <i class="fas fa-times"></i>
+        </button>
+        
+        <model-viewer
+          id="mv"
+          src=""
+          alt="3D model"
+          camera-controls
+          auto-rotate
+          ar
+          ar-modes="webxr scene-viewer quick-look"
+          ar-scale="auto"
+          style="width:100%;height:70vh;">
+        </model-viewer>
+
+        <div class="ar-controls">
+          <button class="btn btn-primary" id="arViewButton">
+            <i class="fas fa-vr-cardboard"></i>View in Your Space
+          </button>
+        </div>
       </div>
     </div>
   </div>
 
-  <div id="toast" class="toast" aria-hidden="true"></div>
+  <!-- Toast -->
+  <div id="toast" class="toast" aria-live="polite"></div>
 
-  <footer>
-    <div class="visuplate">Visuplate by G&amp;H</div>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>The Leela</h4>
+          <p>Premium dining experience with innovative digital menu</p>
+          <div class="social-links">
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+        <div class="footer-section">
+          <h4>Contact</h4>
+          <p>📍 123 Gourmet Street</p>
+          <p>📞 +1 234 567 890</p>
+          <p>✉️ hello@leela.com</p>
+        </div>
+        <div class="footer-section">
+          <h4>Hours</h4>
+          <p>Mon-Fri: 11:00 - 22:00</p>
+          <p>Weekend: 10:00 - 23:00</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 The Leela. All rights reserved.</p>
+        <a href="https://wa.me/918377861214" target="_blank" class="visuplate">
+  Visuplate by G&amp;H
+</a>
+
+      </div>
+    </div>
   </footer>
 
-  <script src="main.js" defer></script>
+  <script src="main.js"></script>
 </body>
 </html>

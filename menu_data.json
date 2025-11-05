@@ -1,162 +1,310 @@
 {
-  "bestsellers": {
-    "label": {"en": "Signature Dishes", "fr": "Plats Signature", "es": "Platos de Autor", "it": "Piatti d'Autore", "jp": "シグネチャー"},
+  "mocktails": {
+    "label": {"en":"Mocktails","fr":"Mocktails","es":"Mocktails","it":"Mocktail","jp":"モクテル"},
     "items": [
       {
-        "id": "tandoori-burger",
-        "image": "https://images.unsplash.com/photo-1541691538877-1d6b6c9cdd88?auto=format&fit=crop&w=900&q=80",
-        "model": "assets/models/burger_realistic_free.glb",
-        "translations": {
-          "en": {"name": "Tandoori Burger", "desc": "Smoky spice **chicken** burger with mint yogurt aioli.", "price": "₹480", "ingredients": "Bun, chicken patty, tandoori masala, yogurt"},
-          "fr": {"name": "Burger Tandoori", "desc": "Burger épicé fumé avec **yaourt** à la menthe.", "price": "₹480", "ingredients": "Pain, poulet, masala, yaourt"},
-          "es": {"name": "Hamburguesa Tandoori", "desc": "Hamburguesa especiada con yogur de menta.", "price": "₹480", "ingredients": "Pan, pollo, masala, yogur"},
-          "it": {"name": "Burger Tandoori", "desc": "Burger speziato con yogurt alla menta.", "price": "₹480", "ingredients": "Panino, pollo, masala, yogurt"},
-          "jp": {"name": "タンドリーバーガー", "desc": "ヨーグルトミントの**スパイシーチキン**バーガー。", "price": "₹480", "ingredients": "バンズ、チキン、マサラ、ヨーグルト"}
+        "id":"mint-mojito-virgin",
+        "image": "images/Virgin_Mint_Mojito.jpg",
+        "model":"assets/models/burger_low_poly.glb",
+        "dietaryFlags":["VEG","ALCOHOL_FREE","NUTS_FREE"],
+        "dietaryColor":"green",
+        "spiceLevel": 0,
+        "isChefPick": false,
+        "isDailySpecial": true,
+        "prepTime": 5,
+        "nutrition": {"calories": 120, "sugar": "18g", "carbs": "22g"},
+        "allergyInfo": "Contains no common allergens",
+        "translations":{
+          "en":{"name":"Virgin Mint Mojito","desc":"Fresh mint, lime, soda, cane sugar. **Refreshing summer drink**","price":"₹220","ingredients":"Mint, lime, soda, sugar"},
+          "fr":{"name":"Mojito Menthe Sans Alcool","desc":"Menthe fraîche, citron vert, soda. **Boisson estivale rafraîchissante**","price":"₹220","ingredients":"Menthe, citron vert, soda, sucre"},
+          "es":{"name":"Mojito de Menta Sin Alcohol","desc":"Menta fresca, lima, soda. **Bebida refrescante de verano**","price":"₹220","ingredients":"Menta, lima, soda, azúcar"},
+          "it":{"name":"Virgin Mojito alla Menta","desc":"Menta fresca, lime, soda. **Bevanda rinfrescante estiva**","price":"₹220","ingredients":"Menta, lime, soda, zucchero"},
+          "jp":{"name":"バージンミントモヒート","desc":"フレッシュミントとライムの爽やかソーダ。**さわやかな夏のドリンク**","price":"₹220","ingredients":"ミント、ライム、ソーダ、砂糖"}
         }
       },
       {
-        "id": "pan-seared-salmon",
-        "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=900&q=80",
-        "model": "",
-        "translations": {
-          "en": {"name": "Pan-Seared Salmon", "desc": "Crisp-skinned **Atlantic Salmon** with lemon-butter sauce and asparagus.", "price": "₹1250", "ingredients": "Salmon, butter, lemon, asparagus, mash"},
-          "fr": {"name": "Saumon Poêlé", "desc": "Saumon de l'Atlantique, sauce citron-beurre et asperges.", "price": "₹1250", "ingredients": "Saumon, beurre, citron, asperges"},
-          "es": {"name": "Salmón a la Plancha", "desc": "Salmón Atlántico con salsa de limón y mantequilla.", "price": "₹1250", "ingredients": "Salmón, mantequilla, limón, espárragos"},
-          "it": {"name": "Salmone in Padella", "desc": "Salmone atlantico con salsa burro e limone.", "price": "₹1250", "ingredients": "Salmone, burro, limone, asparagi"},
-          "jp": {"name": "サーモンソテー", "desc": "レモンバターソースと**アスパラガス**添え。", "price": "₹1250", "ingredients": "サーモン、バター、レモン、アスパラガス"}
+        "id":"tropical-sunrise",
+        "image":"https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?auto=format&fit=crop&w=900&q=80",
+        "model":"",
+        "dietaryFlags":["VEG","ALCOHOL_FREE","NUTS_FREE"],
+        "dietaryColor":"green",
+        "spiceLevel": 0,
+        "isChefPick": true,
+        "isDailySpecial": false,
+        "prepTime": 7,
+        "nutrition": {"calories": 140, "sugar": "22g", "carbs": "28g"},
+        "allergyInfo": "Contains citrus",
+        "translations":{
+          "en":{"name":"Tropical Sunrise","desc":"Mango, pineapple, citrus, soda. **Chef's signature mocktail**","price":"₹240","ingredients":"Mango, pineapple, orange, soda"},
+          "fr":{"name":"Lever de Soleil Tropical","desc":"Mangue, ananas, agrumes, soda. **Mocktail signature du chef**","price":"₹240","ingredients":"Mangue, ananas, orange, soda"},
+          "es":{"name":"Amanecer Tropical","desc":"Mango, piña, cítricos, soda. **Mocktail signature del chef**","price":"₹240","ingredients":"Mango, piña, naranja, soda"},
+          "it":{"name":"Alba Tropicale","desc":"Mango, ananas, agrumi, soda. **Mocktail signature dello chef**","price":"₹240","ingredients":"Mango, ananas, arancia, soda"},
+          "jp":{"name":"トロピカルサンライズ","desc":"マンゴーとパイナップルの爽やかドリンク。**シェフシグネチャーモクテル**","price":"₹240","ingredients":"マンゴー、パイン、オレンジ、ソーダ"}
+        }
+      },
+      {
+        "id":"cucumber-cooler",
+        "image":"images/sandwich.jpg",
+        "model":"assets/models/cup_of_cappuccino.glb",
+        "dietaryFlags":["VEG","ALCOHOL_FREE","NUTS_FREE"],
+        "dietaryColor":"green",
+        "spiceLevel": 0,
+        "isChefPick": false,
+        "isDailySpecial": true,
+        "prepTime": 4,
+        "nutrition": {"calories": 80, "sugar": "8g", "carbs": "12g"},
+        "allergyInfo": "Contains no common allergens",
+        "translations":{
+          "en":{"name":"Cucumber Cooler","desc":"Cucumber, mint, lime, tonic. **Low-calorie refreshment**","price":"₹210","ingredients":"Cucumber, mint, lime, tonic"},
+          "fr":{"name":"Refroidisseur Concombre","desc":"Concombre, menthe, citron vert, tonic. **Rafraîchissement faible en calories**","price":"₹210","ingredients":"Concombre, menthe, lime, tonic"},
+          "es":{"name":"Refrescante de Pepino","desc":"Pepino, menta, lima, tónica. **Refresco bajo en calorías**","price":"₹210","ingredients":"Pepino, menta, lima, tónica"},
+          "it":{"name":"Cucumber Cooler","desc":"Cetriolo, menta, lime, tonica. **Rinfrescante a basso contenuto calorico**","price":"₹210","ingredients":"Cetriolo, menta, lime, tonica"},
+          "jp":{"name":"キュウリクーラー","desc":"キュウリとミント、ライムのトニック。**低カロリーリフレッシュ**","price":"₹210","ingredients":"きゅうり、ミント、ライム、トニック"}
         }
       }
     ]
   },
-  "soups-salads": {
-    "label": {"en": "Soups & Salads", "fr": "Soupes et Salades", "es": "Sopas y Ensaladas", "it": "Zuppe e Insalate", "jp": "スープとサラダ"},
+  "starters": {
+    "label": {"en":"Starters","fr":"Entrées","es":"Entrantes","it":"Antipasti","jp":"スターター"},
     "items": [
       {
-        "id": "creamy-mushroom-soup",
-        "image": "https://images.unsplash.com/photo-1596759247385-d60f5807921a?auto=format&fit=crop&w=900&q=80",
-        "model": "",
-        "translations": {
-          "en": {"name": "Cream of Wild Mushroom", "desc": "Classic European style, finished with **truffle oil** and croutons.", "price": "₹350", "ingredients": "Wild mushrooms, cream, truffle oil, herbs"},
-          "fr": {"name": "Crème de Champignons Sauvages", "desc": "Style européen, fini à **l'huile de truffe** et croûtons.", "price": "₹350", "ingredients": "Champignons, crème, huile de truffe"},
-          "es": {"name": "Crema de Champiñones", "desc": "Estilo clásico europeo, terminado con aceite de trufa.", "price": "₹350", "ingredients": "Champiñones, crema, aceite de trufa"},
-          "it": {"name": "Crema di Funghi Selvatici", "desc": "Classico europeo, finito con olio al tartufo.", "price": "₹350", "ingredients": "Funghi, panna, olio al tartufo"},
-          "jp": {"name": "キノコのクリームスープ", "desc": "**トリュフオイル**で仕上げたクラシックなスープ。", "price": "₹350", "ingredients": "キノコ、クリーム、トリュフオイル"}
+        "id":"crispy-calamari",
+        "image":"images/Virgin_Mint_Mojito.jpg",
+        "model":"assets/models/burger_low_poly.glb",
+        "dietaryFlags":["NON_VEG","NUTS_FREE"],
+        "dietaryColor":"red",
+        "spiceLevel": 1,
+        "isChefPick": false,
+        "isDailySpecial": false,
+        "prepTime": 15,
+        "nutrition": {"calories": 280, "protein": "18g", "carbs": "22g", "fat": "12g"},
+        "allergyInfo": "Contains seafood, gluten",
+        "translations":{
+          "en":{"name":"Crispy Calamari","desc":"Lightly battered squid, tartar dip. **Perfect seafood starter**","price":"₹520","ingredients":"Squid, flour, lemon, spices"},
+          "fr":{"name":"Calamars Croquants","desc":"Calmars panés, sauce tartare. **Entrée de fruits de mer parfaite**","price":"₹520","ingredients":"Calmars, farine, citron, épices"},
+          "es":{"name":"Calamares Crujientes","desc":"Calamares rebozados, dip tartar. **Entrante de marisco perfecto**","price":"₹520","ingredients":"Calamares, harina, limón, especias"},
+          "it":{"name":"Calamari Croccanti","desc":"Calamari impanati, salsa tartara. **Antipasto di mare perfetto**","price":"₹520","ingredients":"Calamari, farina, limone, spezie"},
+          "jp":{"name":"クリスピーカラマリ","desc":"軽い衣のイカ、タルタル添え。**完璧なシーフードスターター**","price":"₹520","ingredients":"イカ、小麦粉、レモン、スパイス"}
         }
       },
       {
-        "id": "burrata-heirloom-salad",
-        "image": "https://images.unsplash.com/photo-1621516086772-c518d6e3f282?auto=format&fit=crop&w=900&q=80",
-        "model": "",
-        "translations": {
-          "en": {"name": "Burrata & Heirloom Salad", "desc": "Creamy **Burrata cheese**, basil, balsamic glaze, and heirloom tomatoes.", "price": "₹650", "ingredients": "Burrata, heirloom tomatoes, basil, balsamic"},
-          "fr": {"name": "Salade Burrata & Tomates", "desc": "Crème de Burrata, basilic, glaçage balsamique, tomates anciennes.", "price": "₹650", "ingredients": "Burrata, tomates, basilic, balsamique"},
-          "es": {"name": "Ensalada Burrata", "desc": "Queso Burrata cremoso, albahaca, vinagre balsámico.", "price": "₹650", "ingredients": "Burrata, tomates, albahaca"},
-          "it": {"name": "Insalata Burrata", "desc": "Burrata cremosa, pomodori antichi, glassa balsamica.", "price": "₹650", "ingredients": "Burrata, pomodori, basilico"},
-          "jp": {"name": "ブッラータサラダ", "desc": "クリーミーな**ブッラータチーズ**とトマト、バルサミコ。", "price": "₹650", "ingredients": "ブッラータ、トマト、バジル"}
+        "id":"chicken-65",
+        "image":"https://images.unsplash.com/photo-1606755962778-7f3c47dc2f8a?auto=format&fit=crop&w=900&q=80",
+        "model":"",
+        "dietaryFlags":["NON_VEG","GLUTEN_FREE"],
+        "dietaryColor":"red",
+        "spiceLevel": 3,
+        "isChefPick": true,
+        "isDailySpecial": true,
+        "prepTime": 20,
+        "nutrition": {"calories": 320, "protein": "25g", "carbs": "8g", "fat": "18g"},
+        "allergyInfo": "Contains dairy",
+        "translations":{
+          "en":{"name":"Chicken 65","desc":"Spiced fried chicken, curry leaf. **🔥 Spicy favorite**","price":"₹380","ingredients":"Chicken, spices, yogurt, curry leaves"},
+          "fr":{"name":"Poulet 65","desc":"Poulet frit épicé, feuille de curry. **🔥 Préféré épicé**","price":"₹380","ingredients":"Poulet, épices, yaourt, feuilles de curry"},
+          "es":{"name":"Pollo 65","desc":"Pollo frito especiado, hoja de curry. **🔥 Favorito picante**","price":"₹380","ingredients":"Pollo, especias, yogur, hojas de curry"},
+          "it":{"name":"Chicken 65","desc":"Pollo fritto speziato, foglia di curry. **🔥 Preferito piccante**","price":"₹380","ingredients":"Pollo, spezie, yogurt, foglie di curry"},
+          "jp":{"name":"チキン65","desc":"スパイシーなフライドチキン、カレーリーフ。**🔥 スパイシーなお気に入り**","price":"₹380","ingredients":"鶏肉、スパイス、ヨーグルト、カレーリーフ"}
+        }
+      },
+      {
+        "id":"spicy-paneer-kebab",
+        "image":"https://images.unsplash.com/photo-1604908176836-2266d94c69b1?auto=format&fit=crop&w=900&q=80",
+        "model":"",
+        "dietaryFlags":["VEG","GLUTEN_FREE"],
+        "dietaryColor":"green",
+        "spiceLevel": 2,
+        "isChefPick": true,
+        "isDailySpecial": false,
+        "prepTime": 25,
+        "nutrition": {"calories": 240, "protein": "16g", "carbs": "12g", "fat": "14g"},
+        "allergyInfo": "Contains dairy",
+        "translations":{
+          "en":{"name":"Spicy Paneer Kebab","desc":"Tandoori paneer, mint chutney. **Vegetarian delight**","price":"₹380","ingredients":"Paneer, yogurt, spices, mint"},
+          "fr":{"name":"Kebab de Paneer Épicé","desc":"Paneer tandoori, chutney menthe. **Délice végétarien**","price":"₹380","ingredients":"Paneer, yaourt, épices, menthe"},
+          "es":{"name":"Kebab de Paneer Picante","desc":"Paneer tandoori, chutney de menta. **Delicia vegetariana**","price":"₹380","ingredients":"Paneer, yogur, especias, menta"},
+          "it":{"name":"Kebab di Paneer Piccante","desc":"Paneer tandoori, chutney alla menta. **Delizia vegetariana**","price":"₹380","ingredients":"Paneer, yogurt, spezie, menta"},
+          "jp":{"name":"スパイシーパニールケバブ","desc":"タンドリーパニールとミントチャツネ。**ベジタリアンの喜び**","price":"₹380","ingredients":"パニール、ヨーグルト、スパイス、ミント"}
         }
       }
     ]
   },
-  "dimsums-asian": {
-    "label": {"en": "Dim Sums & Asian", "fr": "Dim Sums et Asiatique", "es": "Dim Sums y Asiático", "it": "Dim Sums e Asiatico", "jp": "点心とアジア料理"},
+  "chef-picks": {
+    "label": {"en":"Chef's Picks","fr":"Choix du Chef","es":"Selección del Chef","it":"Scelte dello Chef","jp":"シェフのおすすめ"},
     "items": [
       {
-        "id": "prawn-har-gow",
-        "image": "https://images.unsplash.com/photo-1549419137-33f7d188b439?auto=format&fit=crop&w=900&q=80",
-        "model": "",
-        "translations": {
-          "en": {"name": "Prawn Har Gow", "desc": "Steamed translucent dumplings with savory **shrimp** filling.", "price": "₹420", "ingredients": "Shrimp, tapioca starch, bamboo shoots"},
-          "fr": {"name": "Har Gow aux Crevettes", "desc": "Raviolis translucides farcis aux crevettes.", "price": "₹420", "ingredients": "Crevettes, amidon de tapioca"},
-          "es": {"name": "Har Gow de Camarones", "desc": "Dumplings translucidos rellenos de camarones.", "price": "₹420", "ingredients": "Camarones, almidón"},
-          "it": {"name": "Har Gow di Gamberi", "desc": "Gnocchi trasparenti ripieni di gamberi.", "price": "₹420", "ingredients": "Gamberi, amido"},
-          "jp": {"name": "エビ蒸し餃子（ハーガオ）", "desc": "エビがたっぷり入った透明な蒸し餃子。", "price": "₹420", "ingredients": "エビ、タピオカ澱粉"}
+        "id":"signature-tandoori-platter",
+        "image":"https://images.unsplash.com/photo-1541691538877-1d6b6c9cdd88?auto=format&fit=crop&w=900&q=80",
+        "model":"assets/models/tandoori_platter.glb",
+        "dietaryFlags":["NON_VEG"],
+        "dietaryColor":"red",
+        "spiceLevel": 2,
+        "isChefPick": true,
+        "isDailySpecial": true,
+        "prepTime": 35,
+        "nutrition": {"calories": 680, "protein": "45g", "carbs": "28g", "fat": "32g"},
+        "allergyInfo": "Contains dairy, spices",
+        "translations":{
+          "en":{"name":"Signature Tandoori Platter","desc":"Assortment of tandoori meats and kebabs. **🏆 Chef's masterpiece**","price":"₹1290","ingredients":"Chicken, lamb, spices, yogurt, herbs"},
+          "fr":{"name":"Plateau Tandoori Signature","desc":"Assortiment de viandes tandoori et kebabs. **🏆 Chef-d'œuvre du chef**","price":"₹1290","ingredients":"Poulet, agneau, épices, yaourt, herbes"},
+          "es":{"name":"Plato Tandoori Firma","desc":"Surtido de carnes tandoori y kebabs. **🏆 Obra maestra del chef**","price":"₹1290","ingredients":"Pollo, cordero, especias, yogur, hierbas"},
+          "it":{"name":"Piatto Tandoori Signature","desc":"Assortimento di carni tandoori e kebab. **🏆 Capolavoro dello chef**","price":"₹1290","ingredients":"Pollo, agnello, spezie, yogurt, erbe"},
+          "jp":{"name":"シグネチャータンドリープラッター","desc":"タンドリーの肉盛り合わせ。**🏆 シェフの傑作**","price":"₹1290","ingredients":"チキン、ラム、スパイス、ヨーグルト、ハーブ"}
         }
       },
       {
-        "id": "veg-manchurian",
-        "image": "https://images.unsplash.com/photo-1594246665798-251c881c6204?auto=format&fit=crop&w=900&q=80",
-        "model": "",
-        "translations": {
-          "en": {"name": "Vegetable Manchurian", "desc": "Fried vegetable balls in a thick, savory **soy-ginger** gravy.", "price": "₹450", "ingredients": "Vegetable balls, soy sauce, ginger, garlic"},
-          "fr": {"name": "Manchurian de Légumes", "desc": "Boules de légumes frites dans une sauce **soja-gingembre**.", "price": "₹450", "ingredients": "Boules de légumes, sauce soja, gingembre"},
-          "es": {"name": "Manchurian de Verduras", "desc": "Bolas de verduras fritas en salsa de soja y jengibre.", "price": "₹450", "ingredients": "Verduras, salsa de soja, jengibre"},
-          "it": {"name": "Manchurian Vegetariano", "desc": "Polpette di verdure fritte in salsa di soia e zenzero.", "price": "₹450", "ingredients": "Verdure, salsa di soia, zenzero"},
-          "jp": {"name": "野菜満州", "desc": "濃厚な**醤油と生姜の**ソースの野菜団子。", "price": "₹450", "ingredients": "野菜団子、醤油、生姜"}
+        "id":"slow-cooked-short-ribs",
+        "image":"https://images.unsplash.com/photo-1555992336-cbf8a8b8f6d9?auto=format&fit=crop&w=900&q=80",
+        "model":"",
+        "dietaryFlags":["NON_VEG"],
+        "dietaryColor":"red",
+        "spiceLevel": 1,
+        "isChefPick": true,
+        "isDailySpecial": false,
+        "prepTime": 180,
+        "nutrition": {"calories": 420, "protein": "38g", "carbs": "15g", "fat": "22g"},
+        "allergyInfo": "Contains alcohol, dairy",
+        "translations":{
+          "en":{"name":"Slow Cooked Short Ribs","desc":"Red wine jus, truffle mash. **⏳ 3-hour preparation**","price":"₹1490","ingredients":"Beef, wine, potato, truffle, herbs"},
+          "fr":{"name":"Côtes Courtes Confites","desc":"Jus au vin rouge, purée à la truffe. **⏳ Préparation de 3 heures**","price":"₹1490","ingredients":"Boeuf, vin, pomme de terre, truffe, herbes"},
+          "es":{"name":"Costillas Estofadas","desc":"Jugo de vino tinto, puré trufado. **⏳ Preparación de 3 horas**","price":"₹1490","ingredients":"Carne, vino, patata, trufa, hierbas"},
+          "it":{"name":"Costine Brasate","desc":"Salsa al vino rosso, purè al tartufo. **⏳ Preparazione di 3 ore**","price":"₹1490","ingredients":"Manzo, vino, patata, tartufo, erbe"},
+          "jp":{"name":"ショートリブの低温調理","desc":"赤ワインソースとトリュフマッシュ。**⏳ 3時間調理**","price":"₹1490","ingredients":"牛肉、ワイン、じゃがいも、トリュフ、ハーブ"}
         }
       }
     ]
   },
-  "indian-mains": {
-    "label": {"en": "Indian Mains", "fr": "Plats Indiens", "es": "Platos Principales Indios", "it": "Piatti Indiani", "jp": "インド料理の主菜"},
+  "japanese": {
+    "label": {"en":"Japanese","fr":"Japonais","es":"Japonés","it":"Giapponese","jp":"和食"},
     "items": [
       {
-        "id": "butter-chicken",
-        "image": "https://images.unsplash.com/photo-1604908176836-2266d94c69b1?auto=format&fit=crop&w=900&q=80",
-        "model": "",
-        "translations": {
-          "en": {"name": "Butter Chicken", "desc": "Creamy tomato gravy with tandoori chicken, a **classic**.", "price": "₹550", "ingredients": "Chicken, tomato, cream, butter, spices"},
-          "fr": {"name": "Poulet au Beurre", "desc": "Poulet dans sauce crémeuse à la tomate, un classique.", "price": "₹550", "ingredients": "Poulet, tomate, crème, beurre"},
-          "es": {"name": "Pollo con Mantequilla", "desc": "Pollo en salsa cremosa de tomate, un clásico.", "price": "₹550", "ingredients": "Pollo, tomate, crema, mantequilla"},
-          "it": {"name": "Pollo al Burro", "desc": "Pollo in salsa cremosa di pomodoro, un classico.", "price": "₹550", "ingredients": "Pollo, pomodoro, panna, burro"},
-          "jp": {"name": "バターチキン", "desc": "トマトクリームのチキン、**定番**。", "price": "₹550", "ingredients": "チキン、トマト、クリーム、バター"}
+        "id":"sushi-assortment",
+        "image":"https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=900&q=80",
+        "model":"assets/models/sushi_set.glb",
+        "dietaryFlags":["NON_VEG","GLUTEN_FREE","NUTS_FREE"],
+        "dietaryColor":"red",
+        "spiceLevel": 0,
+        "isChefPick": true,
+        "isDailySpecial": false,
+        "prepTime": 20,
+        "nutrition": {"calories": 320, "protein": "22g", "carbs": "45g", "fat": "8g"},
+        "allergyInfo": "Contains seafood, soy",
+        "translations":{
+          "en":{"name":"Sushi Assortment","desc":"Selection of nigiri and rolls. **🎌 Authentic Japanese**","price":"₹850","ingredients":"Rice, fish, seaweed, soy, wasabi"},
+          "fr":{"name":"Assortiment Sushi","desc":"Sélection de nigiri et maki. **🎌 Japonais authentique**","price":"₹850","ingredients":"Riz, poisson, algue, soja, wasabi"},
+          "es":{"name":"Surtido de Sushi","desc":"Nigiri y rolls variados. **🎌 Japonés auténtico**","price":"₹850","ingredients":"Arroz, pescado, alga, soja, wasabi"},
+          "it":{"name":"Assortimento Sushi","desc":"Nigiri e roll assortiti. **🎌 Giapponese autentico**","price":"₹850","ingredients":"Riso, pesce, alghe, soia, wasabi"},
+          "jp":{"name":"寿司盛り合わせ","desc":"にぎりとロールの盛り合わせ。**🎌 本格的な日本料理**","price":"₹850","ingredients":"酢飯、魚、海苔、醤油、わさび"}
         }
       },
       {
-        "id": "dal-makhani",
-        "image": "https://images.unsplash.com/photo-1627328715728-7bcc1b5db87d?auto=format&fit=crop&w=900&q=80",
-        "model": "",
-        "translations": {
-          "en": {"name": "Dal Makhani", "desc": "Slow-cooked black lentils, richness from **cream and butter**.", "price": "₹380", "ingredients": "Black lentils, butter, cream, spices"},
-          "fr": {"name": "Dal Makhani", "desc": "Lentilles noires mijotées, richesse grâce à la crème et au beurre.", "price": "₹380", "ingredients": "Lentilles, beurre, crème"},
-          "es": {"name": "Dal Makhani", "desc": "Lentejas negras cocinadas lentamente, con crema y mantequilla.", "price": "₹380", "ingredients": "Lentejas, mantequilla, crema"},
-          "it": {"name": "Dal Makhani", "desc": "Lenticchie nere cotte lentamente, con panna e burro.", "price": "₹380", "ingredients": "Lenticchie, burro, panna"},
-          "jp": {"name": "ダールマカニ", "desc": "じっくり煮込んだ黒レンズ豆、クリームとバターで濃厚。", "price": "₹380", "ingredients": "黒レンズ豆、バター、クリーム"}
+        "id":"yakitori-skewers",
+        "image":"https://images.unsplash.com/photo-1562967914-608f8262970b?auto=format&fit=crop&w=900&q=80",
+        "model":"",
+        "dietaryFlags":["NON_VEG"],
+        "dietaryColor":"red",
+        "spiceLevel": 1,
+        "isChefPick": false,
+        "isDailySpecial": true,
+        "prepTime": 15,
+        "nutrition": {"calories": 280, "protein": "28g", "carbs": "12g", "fat": "14g"},
+        "allergyInfo": "Contains soy, gluten",
+        "translations":{
+          "en":{"name":"Yakitori Skewers","desc":"Grilled chicken skewers, tare glaze. **🍢 Today's special**","price":"₹360","ingredients":"Chicken, soy, sugar, mirin, sake"},
+          "fr":{"name":"Yakitori","desc":"Brochettes de poulet grillées, sauce tare. **🍢 Spécialité du jour**","price":"₹360","ingredients":"Poulet, soja, sucre, mirin, sake"},
+          "es":{"name":"Yakitori","desc":"Brochetas de pollo a la parrilla. **🍢 Especial del día**","price":"₹360","ingredients":"Pollo, soja, azúcar, mirin, sake"},
+          "it":{"name":"Yakitori","desc":"Spiedini di pollo alla griglia con salsa tare. **🍢 Speciale del giorno**","price":"₹360","ingredients":"Pollo, salsa di soia, zucchero, mirin, sake"},
+          "jp":{"name":"焼き鳥","desc":"タレを塗った焼き鳥。**🍢 本日のスペシャル**","price":"₹360","ingredients":"鶏肉、醤油、砂糖、みりん、酒"}
         }
       }
     ]
   },
-  "european-pasta": {
-    "label": {"en": "European & Pasta", "fr": "Européen et Pâtes", "es": "Europeo y Pasta", "it": "Europeo e Pasta", "jp": "ヨーロッパとパスタ"},
+  "daily-specials": {
+    "label": {"en":"Today's Specials","fr":"Spécialités du Jour","es":"Especiales del Día","it":"Speciali del Giorno","jp":"本日のスペシャル"},
     "items": [
       {
-        "id": "penne-pink-sauce",
-        "image": "https://images.unsplash.com/photo-1574974775878-1a520e5c9b4f?auto=format&fit=crop&w=900&q=80",
-        "model": "",
-        "translations": {
-          "en": {"name": "Penne in Pink Sauce", "desc": "Penne pasta in a creamy tomato-based sauce with **fresh basil**.", "price": "₹580", "ingredients": "Penne, tomato, cream, basil, parmesan"},
-          "fr": {"name": "Penne Sauce Rose", "desc": "Pâtes Penne dans une sauce crémeuse à la tomate et basilic.", "price": "₹580", "ingredients": "Penne, tomate, crème, basilic"},
-          "es": {"name": "Penne Salsa Rosa", "desc": "Pasta Penne en una salsa cremosa de tomate y albahaca.", "price": "₹580", "ingredients": "Penne, tomate, crema, albahaca"},
-          "it": {"name": "Penne Salsa Rosa", "desc": "Penne in salsa cremosa di pomodoro e basilico.", "price": "₹580", "ingredients": "Penne, pomodoro, panna, basilico"},
-          "jp": {"name": "ペンネピンクソース", "desc": "トマトベースのクリームソースのペンネ、**新鮮なバジル**。", "price": "₹580", "ingredients": "ペンネ、トマト、クリーム、バジル"}
+        "id":"chef-special-seafood",
+        "image":"https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=900&q=80",
+        "model":"",
+        "dietaryFlags":["NON_VEG","GLUTEN_FREE"],
+        "dietaryColor":"red",
+        "spiceLevel": 1,
+        "isChefPick": true,
+        "isDailySpecial": true,
+        "prepTime": 25,
+        "nutrition": {"calories": 380, "protein": "35g", "carbs": "8g", "fat": "22g"},
+        "allergyInfo": "Contains seafood, dairy",
+        "translations":{
+          "en":{"name":"Chef Special Seafood","desc":"Grilled catch, herbed butter, seasonal sides. **🌟 Today's highlight**","price":"₹1380","ingredients":"Fish, prawns, butter, herbs, lemon"},
+          "fr":{"name":"Spécialité Fruits de Mer","desc":"Poisson grillé, beurre aux herbes. **🌟 Point fort du jour**","price":"₹1380","ingredients":"Poisson, crevettes, beurre, herbes, citron"},
+          "es":{"name":"Especial Mariscos Chef","desc":"Pescado a la parrilla con mantequilla de hierbas. **🌟 Destacado del día**","price":"₹1380","ingredients":"Pescado, camarones, mantequilla, hierbas, limón"},
+          "it":{"name":"Specialità di Mare dello Chef","desc":"Pesce alla griglia con burro alle erbe. **🌟 Punto saliente della giornata**","price":"₹1380","ingredients":"Pesce, gamberi, burro, erbe, limone"},
+          "jp":{"name":"シェフ特製シーフード","desc":"グリルシーフードとハーブバター。**🌟 本日のハイライト**","price":"₹1380","ingredients":"魚、海老、バター、ハーブ、レモン"}
         }
       },
       {
-        "id": "chicken-scaloppine",
-        "image": "https://images.unsplash.com/photo-1619895092037-256674360e25?auto=format&fit=crop&w=900&q=80",
-        "model": "",
-        "translations": {
-          "en": {"name": "Chicken Scaloppine", "desc": "Thinly sliced chicken breast with capers in a **white wine** reduction.", "price": "₹750", "ingredients": "Chicken breast, capers, white wine, flour, butter"},
-          "fr": {"name": "Scaloppine de Poulet", "desc": "Fines tranches de poulet aux câpres dans une réduction de vin blanc.", "price": "₹750", "ingredients": "Poulet, câpres, vin blanc"},
-          "es": {"name": "Escalopines de Pollo", "desc": "Pollo en rodajas finas con alcaparras en reducción de vino blanco.", "price": "₹750", "ingredients": "Pollo, alcaparras, vino blanco"},
-          "it": {"name": "Scaloppine di Pollo", "desc": "Fettine di pollo con capperi in riduzione di vino bianco.", "price": "₹750", "ingredients": "Pollo, capperi, vino bianco"},
-          "jp": {"name": "チキン・スカロッピーニ", "desc": "ケッパーと**白ワイン**ソースの薄切りチキンブレスト。", "price": "₹750", "ingredients": "鶏むね肉、ケッパー、白ワイン"}
+        "id":"vegetarian-thali-chef",
+        "image":"https://images.unsplash.com/photo-1627328715728-7bcc1b5db87d?auto=format&fit=crop&w=900&q=80",
+        "model":"",
+        "dietaryFlags":["VEG"],
+        "dietaryColor":"green",
+        "spiceLevel": 2,
+        "isChefPick": true,
+        "isDailySpecial": true,
+        "prepTime": 30,
+        "nutrition": {"calories": 520, "protein": "18g", "carbs": "75g", "fat": "16g"},
+        "allergyInfo": "Contains gluten, dairy",
+        "translations":{
+          "en":{"name":"Vegetarian Thali (Chef)","desc":"Assorted vegetable curries, rice, breads. **🌱 Complete meal**","price":"₹590","ingredients":"Vegetables, rice, roti, lentils, spices"},
+          "fr":{"name":"Thali Végétarien (Chef)","desc":"Assortiment de currys végétariens, riz. **🌱 Repas complet**","price":"₹590","ingredients":"Légumes, riz, pain, lentilles, épices"},
+          "es":{"name":"Thali Vegetariano (Chef)","desc":"Variedad de currys vegetales, arroz. **🌱 Comida completa**","price":"₹590","ingredients":"Verduras, arroz, pan, lentejas, especias"},
+          "it":{"name":"Thali Vegetariano (Chef)","desc":"Assortimento di curry vegetariani, riso. **🌱 Pasto completo**","price":"₹590","ingredients":"Verdure, riso, pane, lenticchie, spezie"},
+          "jp":{"name":"ベジタリアンターリー（シェフ）","desc":"野菜カレー各種、ご飯、パン。**🌱 コンプリートミール**","price":"₹590","ingredients":"野菜、ご飯、ロティ、レンズ豆、スパイス"}
         }
       }
     ]
   },
-  "dessert-platter": {
-    "label": {"en": "Dessert Platters", "fr": "Plateaux de Desserts", "es": "Fuentes de Postres", "it": "Piatti di Dolci", "jp": "デザートの盛り合わせ"},
+  "Naya maal": {
+    "label": {"en":"naya maal","fr":"naya maal","es":"naya maal","it":"naya maal","jp":"モクテル"},
     "items": [
       {
-        "id": "artisan-petite-fours",
-        "image": "https://images.unsplash.com/photo-1598270550013-057d5440d9d0?auto=format&fit=crop&w=900&q=80",
-        "model": "",
-        "translations": {
-          "en": {"name": "Artisan Petite Fours Platter", "desc": "A selection of 5 miniature desserts: Macaron, Tiramisu, Lemon Tart, **Chocolate Truffle**, and Éclair.", "price": "₹950", "ingredients": "Assorted pastries, chocolate, cream, fruit"},
-          "fr": {"name": "Assortiment de Petits Fours", "desc": "Sélection de 5 miniatures : Macaron, Tiramisu, Tarte au Citron, Truffe, et Éclair.", "price": "₹950", "ingredients": "Pâtisseries assorties, chocolat, fruits"},
-          "es": {"name": "Plato de Petits Fours", "desc": "Selección de 5 postres en miniatura: Macaron, Tiramisú, Tarta de Limón.", "price": "₹950", "ingredients": "Pasteles variados, chocolate, fruta"},
-          "it": {"name": "Piatto di Pasticceria Mignon", "desc": "Selezione di 5 dolci in miniatura: Macaron, Tiramisù, Crostata di Limone.", "price": "₹950", "ingredients": "Pasticceria assortita, cioccolato"},
-          "jp": {"name": "プティフール盛り合わせ", "desc": "マカロン、ティラミス、タルト、**チョコレート**など5種類のミニデザート。", "price": "₹950", "ingredients": "各種ペストリー、チョコレート、フルーツ"}
+        "id":"Samosa",
+        "image": "images/samosa.jpeg",
+        "model":"assets/models/day_226_samosa.glb",
+        "dietaryFlags":["VEG","ALCOHOL_FREE","NUTS_FREE"],
+        "dietaryColor":"green",
+        "spiceLevel": 0,
+        "isChefPick": false,
+        "isDailySpecial": true,
+        "prepTime": 5,
+        "nutrition": {"calories": 120, "sugar": "18g", "carbs": "22g"},
+        "allergyInfo": "Contains no common allergens",
+        "translations":{
+          "en":{"name":"Virgin Mint Mojito","desc":"Fresh mint, lime, soda, cane sugar. **Refreshing summer drink**","price":"₹220","ingredients":"Mint, lime, soda, sugar"},
+          "fr":{"name":"Mojito Menthe Sans Alcool","desc":"Menthe fraîche, citron vert, soda. **Boisson estivale rafraîchissante**","price":"₹220","ingredients":"Menthe, citron vert, soda, sucre"},
+          "es":{"name":"Mojito de Menta Sin Alcohol","desc":"Menta fresca, lima, soda. **Bebida refrescante de verano**","price":"₹220","ingredients":"Menta, lima, soda, azúcar"},
+          "it":{"name":"Virgin Mojito alla Menta","desc":"Menta fresca, lime, soda. **Bevanda rinfrescante estiva**","price":"₹220","ingredients":"Menta, lime, soda, zucchero"},
+          "jp":{"name":"バージンミントモヒート","desc":"フレッシュミントとライムの爽やかソーダ。**さわやかな夏のドリンク**","price":"₹220","ingredients":"ミント、ライム、ソーダ、砂糖"}
+        }
+      },
+            {
+        "id":"Sandwich",
+        "image":"images/sandwich.jpg",
+        "model":"assets/models/sandwich.glb",
+        "dietaryFlags":["VEG","ALCOHOL_FREE","NUTS_FREE"],
+        "dietaryColor":"green",
+        "spiceLevel": 0,
+        "isChefPick": false,
+        "isDailySpecial": true,
+        "prepTime": 4,
+        "nutrition": {"calories": 80, "sugar": "8g", "carbs": "12g"},
+        "allergyInfo": "Contains no common allergens",
+        "translations":{
+          "en":{"name":"Sandwich","desc":"Cucumber, mint, lime, tonic. **Low-calorie refreshment**","price":"₹210","ingredients":"Cucumber, mint, lime, tonic"},
+          "fr":{"name":"Refroidisseur Concombre","desc":"Concombre, menthe, citron vert, tonic. **Rafraîchissement faible en calories**","price":"₹210","ingredients":"Concombre, menthe, lime, tonic"},
+          "es":{"name":"Refrescante de Pepino","desc":"Pepino, menta, lima, tónica. **Refresco bajo en calorías**","price":"₹210","ingredients":"Pepino, menta, lima, tónica"},
+          "it":{"name":"Cucumber Cooler","desc":"Cetriolo, menta, lime, tonica. **Rinfrescante a basso contenuto calorico**","price":"₹210","ingredients":"Cetriolo, menta, lime, tonica"},
+          "jp":{"name":"キュウリクーラー","desc":"キュウリとミント、ライムのトニック。**低カロリーリフレッシュ**","price":"₹210","ingredients":"きゅうり、ミント、ライム、トニック"}
         }
       }
     ]

@@ -1,315 +1,791 @@
-// main.js — World-Class UI/UX with Asynchronous Data Loading
-document.addEventListener('DOMContentLoaded', () => {
-
-  // --- Initial Setup and Data Fetch ---
-  let MENU = {}; // MENU data will be loaded here
-  let currentLang = 'en';
-  let openCategory = null;
-  let lastScrollY = window.scrollY;
-
-  // DOM elements (same as before)
-  const topbar = document.querySelector('.topbar');
-  const categoryBar = document.getElementById('categoryBar');
-  const menuArea = document.getElementById('menuArea');
-  const langSelect = document.getElementById('lang');
-  
-  const imageModal = document.getElementById('imageModal');
-  const closeImageModalBtn = document.getElementById('closeImageModal');
-  const modalImg = document.getElementById('modalImg');
-  const modalName = document.getElementById('modalName');
-  const modalDesc = document.getElementById('modalDesc');
-  const modalPrice = document.getElementById('modalPrice');
-  const modalARBtn = document.getElementById('modalAR');
-
-  const modelModal = document.getElementById('modelModal');
-  const closeModelModalBtn = document.getElementById('closeModelModal');
-  const mv = document.getElementById('mv');
-  const modelNameEl = document.getElementById('modelName');
-  const modelIngredients = document.getElementById('modelIngredients');
-  
-  const toastEl = document.getElementById('toast');
-
-
-  async function fetchMenuData() {
-    try {
-      // Fetch the separate JSON file
-      const response = await fetch('menu_data.json');
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      MENU = await response.json();
-      
-      // Set the first category as the default open category
-      openCategory = Object.keys(MENU)[0]; 
-
-      // Once data is loaded, run the initial build functions
-      buildCategoryBar();
-      renderMenuArea();
-
-    } catch (e) {
-      console.error("Could not load menu data:", e);
-      menuArea.innerHTML = '<p class="error-msg">Error loading menu. Please try again later.</p>';
-    }
-  }
-
-  // --- Utilities ---
-
-  function label(key){
-    const L = {
-      ingredients:{en:'Ingredients',fr:'Ingrédients',es:'Ingredientes',it:'Ingredienti',jp:'材料'},
-      viewButton:{en:'View', fr:'Voir', es:'Ver', it:'Vedi', jp:'表示'},
-      arComingSoon: {en:'AR feature coming soon',fr:'Fonctionnalité AR bientôt',es:'AR pronto',it:'AR in arrivo',jp:'AR 近日公開'}
-    };
-    return (L[key] && L[key][currentLang]) ? L[key][currentLang] : (L[key]?.en || key);
-  }
-
-  function showToast(msg, ms=1800){
-    toastEl.textContent = msg;
-    toastEl.style.opacity = '1';
-    toastEl.setAttribute('aria-hidden','false');
-    setTimeout(()=>{ toastEl.style.opacity = '0'; toastEl.setAttribute('aria-hidden','true'); }, ms);
-  }
-
-  // --- Header/Scroll Logic ---
-
-  window.addEventListener('scroll', () => {
-      topbar.classList.toggle('has-shadow', window.scrollY > 10);
-      
-      if (window.scrollY > 80 && window.scrollY > lastScrollY) {
-          topbar.classList.add('is-hidden');
-      } else {
-          topbar.classList.remove('is-hidden');
-      }
-      
-      lastScrollY = window.scrollY;
-  });
-
-  // --- Build/Render Functions ---
-
-  function buildCategoryBar(){
-    categoryBar.innerHTML = '';
-    Object.keys(MENU).forEach(key => {
-      const btn = document.createElement('button');
-      btn.className = 'cat-btn';
-      btn.dataset.cat = key;
-      btn.innerText = MENU[key].label[currentLang] || key;
-      btn.addEventListener('click', () => {
-        const wasOpen = openCategory === key;
-        openCategory = wasOpen ? null : key;
+// main.js - Premium Restaurant Menu with Advanced Features
+class PremiumMenu {
+    constructor() {
+        this.MENU = {};
+        this.currentLang = 'en';
+        this.openCategory = null;
+        this.currentSearchQuery = '';
+        this.activeFilters = [];
+        this.activeSpiceFilters = [];
+        this.maxPrice = 2000;
+        this.favorites = new Set();
+        this.currentSection = 'menu';
+        this.isDarkTheme = false;
+        this.currentModalItem = null;
         
-        // Use a slight delay if closing to allow CSS transition to start
-        if(wasOpen){
-          document.querySelector(`.cat-block[data-cat="${key}"]`)?.classList.remove('is-open');
-          setTimeout(() => renderMenuArea(key), 250);
+        this.init();
+    }
+
+    async init() {
+        this.cacheDOM();
+        this.bindEvents();
+        await this.loadMenuData();
+        this.loadUserPreferences();
+        this.hideLoadingScreen();
+    }
+
+    // Utility Functions
+    debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    }
+
+    throttle(func, limit) {
+        let inThrottle;
+        return function(...args) {
+            if (!inThrottle) {
+                func.apply(this, args);
+                inThrottle = true;
+                setTimeout(() => inThrottle = false, limit);
+            }
+        };
+    }
+
+    cacheDOM() {
+        // Header & Navigation
+        this.header = document.getElementById('mainHeader');
+        this.mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        this.mobileNav = document.getElementById('mobileNav');
+        this.searchToggle = document.getElementById('searchToggle');
+        this.searchExpandable = document.getElementById('searchExpandable');
+        this.searchInput = document.getElementById('searchInput');
+        this.searchClose = document.getElementById('searchClose');
+        
+        // Theme & Language
+        this.themeToggle = document.getElementById('themeToggle');
+        this.langSelect = document.getElementById('lang');
+        
+        // Favorites
+        this.favoritesToggle = document.getElementById('favoritesToggle');
+        this.favoritesSidebar = document.getElementById('favoritesSidebar');
+        this.favoritesClose = document.getElementById('favoritesClose');
+        this.favoritesList = document.getElementById('favoritesList');
+        this.favoritesCount = document.querySelector('.favorites-count');
+        
+        // Filters
+        this.advancedFilters = document.getElementById('advancedFilters');
+        this.clearFilters = document.getElementById('clearFilters');
+        this.priceRange = document.getElementById('priceRange');
+        this.priceDisplay = document.getElementById('priceDisplay');
+        
+        // Content Areas
+        this.categoryNav = document.querySelector('.category-scroll');
+        this.menuArea = document.getElementById('menuArea');
+        this.emptyState = document.getElementById('emptyState');
+        
+        // Modals
+        this.imageModal = document.getElementById('imageModal');
+        this.modalImg = document.getElementById('modalImg');
+        this.modalName = document.getElementById('modalName');
+        this.modalDesc = document.getElementById('modalDesc');
+        this.modalPrice = document.getElementById('modalPrice');
+        this.modalIngredients = document.getElementById('modalIngredients');
+        this.modalBadges = document.getElementById('modalBadges');
+        this.modalFavorite = document.getElementById('modalFavorite');
+        this.modalAddFavorite = document.getElementById('modalAddFavorite');
+        this.closeImageModal = document.getElementById('closeImageModal');
+        this.modalAR = document.getElementById('modalAR');
+        
+        // AR Modal
+        this.modelModal = document.getElementById('modelModal');
+        this.mv = document.getElementById('mv');
+        this.closeModelModal = document.getElementById('closeModelModal');
+        
+        // Loading
+        this.loadingScreen = document.getElementById('loadingScreen');
+        
+        // Toast
+        this.toast = document.getElementById('toast');
+    }
+
+    bindEvents() {
+        // Navigation
+        this.mobileMenuBtn.addEventListener('click', () => this.toggleMobileMenu());
+        document.querySelectorAll('.nav-btn, .nav-item').forEach(btn => {
+            btn.addEventListener('click', (e) => this.switchSection(e.currentTarget.dataset.section));
+        });
+
+        // Search
+        this.searchToggle.addEventListener('click', () => this.toggleSearch());
+        this.searchClose.addEventListener('click', () => this.toggleSearch(false));
+        this.searchInput.addEventListener('input', this.debounce((e) => {
+            this.handleSearch(e.target.value);
+        }, 300));
+
+        // Theme & Language
+        this.themeToggle.addEventListener('click', () => this.toggleTheme());
+        this.langSelect.addEventListener('change', (e) => {
+            this.currentLang = e.target.value;
+            this.updateContent();
+        });
+
+        // Favorites
+        this.favoritesToggle.addEventListener('click', () => this.toggleFavoritesSidebar());
+        this.favoritesClose.addEventListener('click', () => this.toggleFavoritesSidebar(false));
+
+        // Filters
+        document.querySelectorAll('.filter-tag').forEach(tag => {
+            tag.addEventListener('click', (e) => this.toggleFilter(e.currentTarget.dataset.filter));
+        });
+        
+        document.querySelectorAll('.spice-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => this.toggleSpiceFilter(e.currentTarget.dataset.spice));
+        });
+
+        this.priceRange.addEventListener('input', (e) => {
+            this.updatePriceFilter(parseInt(e.target.value));
+        });
+
+        this.clearFilters.addEventListener('click', () => this.clearAllFilters());
+
+        // Scroll
+        window.addEventListener('scroll', this.throttle(() => this.handleScroll(), 100));
+
+        // Modals
+        this.closeImageModal.addEventListener('click', () => this.closeModal(this.imageModal));
+        this.modalFavorite.addEventListener('click', () => this.toggleFavorite(this.currentModalItem));
+        this.modalAddFavorite.addEventListener('click', () => this.toggleFavorite(this.currentModalItem));
+        this.modalAR.addEventListener('click', () => this.openARModal(this.currentModalItem));
+        this.closeModelModal.addEventListener('click', () => this.closeModal(this.modelModal));
+
+        // Modal backdrops
+        document.querySelectorAll('.modal-backdrop').forEach(backdrop => {
+            backdrop.addEventListener('click', (e) => {
+                if (e.target === backdrop) {
+                    this.closeAllModals();
+                }
+            });
+        });
+
+        // Keyboard
+        document.addEventListener('keydown', (e) => this.handleKeyboard(e));
+    }
+
+    // Data Management
+    async loadMenuData() {
+        try {
+            const response = await fetch('menu_data.json');
+            if (!response.ok) throw new Error('Failed to load menu data');
+            this.MENU = await response.json();
+            this.buildCategoryNav();
+            this.renderMenu();
+        } catch (error) {
+            console.error('Error loading menu:', error);
+            this.showError('Failed to load menu. Please refresh the page.');
+        }
+    }
+
+    loadUserPreferences() {
+        // Load theme
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            this.toggleTheme(true);
+        }
+
+        // Load favorites
+        const savedFavorites = localStorage.getItem('favorites');
+        if (savedFavorites) {
+            this.favorites = new Set(JSON.parse(savedFavorites));
+            this.updateFavoritesCount();
+        }
+
+        // Load language
+        const savedLang = localStorage.getItem('language');
+        if (savedLang) {
+            this.currentLang = savedLang;
+            this.langSelect.value = savedLang;
+        }
+    }
+
+    // Navigation & UI
+    toggleMobileMenu() {
+        this.mobileMenuBtn.classList.toggle('active');
+        this.mobileNav.classList.toggle('active');
+    }
+
+    switchSection(section) {
+        // Update active states
+        document.querySelectorAll('.nav-btn, .nav-item').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        document.querySelectorAll(`[data-section="${section}"]`).forEach(btn => {
+            btn.classList.add('active');
+        });
+
+        // Hide all sections
+        document.querySelectorAll('.section').forEach(sec => {
+            sec.classList.remove('active');
+        });
+
+        // Show target section
+        const targetSection = document.getElementById(`${section}Section`);
+        if (targetSection) {
+            targetSection.classList.add('active');
+        }
+
+        this.currentSection = section;
+        
+        // Close mobile menu if open
+        this.mobileMenuBtn.classList.remove('active');
+        this.mobileNav.classList.remove('active');
+    }
+
+    toggleSearch(show = null) {
+        const shouldShow = show !== null ? show : !this.searchExpandable.classList.contains('active');
+        
+        if (shouldShow) {
+            this.searchExpandable.classList.add('active');
+            this.searchInput.focus();
         } else {
-          renderMenuArea(key);
+            this.searchExpandable.classList.remove('active');
+            this.searchInput.value = '';
+            this.handleSearch('');
+        }
+    }
+
+    handleSearch(query) {
+        this.currentSearchQuery = query.trim().toLowerCase();
+        this.renderMenu();
+    }
+
+    // Theme Management
+    toggleTheme(forceDark = null) {
+        this.isDarkTheme = forceDark !== null ? forceDark : !this.isDarkTheme;
+        
+        if (this.isDarkTheme) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            this.themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            localStorage.setItem('theme', 'dark');
+        } else {
+            document.documentElement.removeAttribute('data-theme');
+            this.themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            localStorage.setItem('theme', 'light');
+        }
+    }
+
+    // Favorites System
+    toggleFavoritesSidebar(show = null) {
+        const shouldShow = show !== null ? show : !this.favoritesSidebar.classList.contains('active');
+        
+        if (shouldShow) {
+            this.favoritesSidebar.classList.add('active');
+            this.renderFavorites();
+        } else {
+            this.favoritesSidebar.classList.remove('active');
+        }
+    }
+
+    toggleFavorite(item) {
+        if (!item) return;
+
+        const itemId = item.id;
+        
+        if (this.favorites.has(itemId)) {
+            this.favorites.delete(itemId);
+            this.showToast('Removed from favorites');
+        } else {
+            this.favorites.add(itemId);
+            this.showToast('Added to favorites');
         }
 
-        // Smooth scroll to category
-        const el = document.querySelector(`.cat-block[data-cat="${key}"]`);
-        if(el) {
-          const headerHeight = topbar.offsetHeight + categoryBar.offsetHeight + 10;
-          const targetY = el.offsetTop - headerHeight;
-          window.scrollTo({top: targetY, behavior:'smooth'});
+        // Update UI
+        this.updateFavoritesCount();
+        this.updateFavoriteButtons(itemId);
+        this.renderFavorites();
+        
+        // Save to localStorage
+        localStorage.setItem('favorites', JSON.stringify([...this.favorites]));
+    }
+
+    updateFavoritesCount() {
+        this.favoritesCount.textContent = this.favorites.size;
+    }
+
+    updateFavoriteButtons(itemId) {
+        const isFavorite = this.favorites.has(itemId);
+        
+        // Update modal favorite button
+        if (this.currentModalItem && this.currentModalItem.id === itemId) {
+            const icon = this.modalFavorite.querySelector('i');
+            icon.className = isFavorite ? 'fas fa-heart' : 'far fa-heart';
+            this.modalFavorite.classList.toggle('active', isFavorite);
         }
-      });
-      categoryBar.appendChild(btn);
-    });
-    highlightActiveButton();
-  }
 
-  function highlightActiveButton(){
-    document.querySelectorAll('.cat-btn').forEach(b => {
-      b.classList.toggle('active', b.dataset.cat === openCategory);
-    });
-  }
+        // Update card favorite buttons
+        document.querySelectorAll(`[data-item-id="${itemId}"] .card-favorite`).forEach(btn => {
+            const icon = btn.querySelector('i');
+            icon.className = isFavorite ? 'fas fa-heart' : 'far fa-heart';
+            btn.classList.toggle('active', isFavorite);
+        });
+    }
 
-  function renderMenuArea(){
-    menuArea.innerHTML = '';
-    Object.keys(MENU).forEach(key => {
-      const cat = MENU[key];
-      const block = document.createElement('div');
-      block.className = 'cat-block';
-      block.dataset.cat = key;
-      
-      const isOpen = openCategory === key;
-      if (isOpen) {
-        block.classList.add('is-open');
-      }
+    renderFavorites() {
+        if (!this.favoritesList) return;
 
-      const header = document.createElement('div');
-      header.className = 'cat-header';
-      const h = document.createElement('h2'); 
-      // Use innerHTML for description to allow bolding via ** (not yet fully implemented but ready for it)
-      h.innerHTML = cat.label[currentLang] || ''; 
-      const p = document.createElement('p'); p.textContent = `${cat.items.length} items`;
-      header.appendChild(h); header.appendChild(p);
+        if (this.favorites.size === 0) {
+            this.favoritesList.innerHTML = `
+                <div class="empty-favorites">
+                    <i class="far fa-heart"></i>
+                    <p>No favorites yet</p>
+                    <small>Click the heart icon to add items</small>
+                </div>
+            `;
+            return;
+        }
 
-      header.addEventListener('click', () => {
-        document.querySelector(`.cat-btn[data-cat="${key}"]`).click();
-      });
+        const favoritesHTML = Array.from(this.favorites).map(itemId => {
+            const item = this.findItemById(itemId);
+            if (!item) return '';
+            
+            const t = item.translations?.[this.currentLang] || item.translations?.en || {};
+            return `
+                <div class="favorite-item" data-item-id="${item.id}">
+                    <img src="${item.image}" alt="${t.name}" class="favorite-img">
+                    <div class="favorite-info">
+                        <h4>${t.name}</h4>
+                        <p class="favorite-price">${t.price}</p>
+                    </div>
+                    <button class="favorite-remove" onclick="premiumMenu.toggleFavorite(${JSON.stringify(item).replace(/"/g, '&quot;')})">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            `;
+        }).join('');
 
-      const body = document.createElement('div');
-      body.className = 'cat-body';
-      
-      const grid = document.createElement('div');
-      grid.className = 'grid';
+        this.favoritesList.innerHTML = favoritesHTML;
+    }
 
-      cat.items.forEach(item => {
-        const t = item.translations[currentLang] || item.translations.en || {};
-        const card = document.createElement('article');
-        card.className = 'card';
+    // Filter System
+    toggleFilter(filter) {
+        const index = this.activeFilters.indexOf(filter);
+        if (index > -1) {
+            this.activeFilters.splice(index, 1);
+        } else {
+            // Handle exclusive filters
+            if (filter === 'VEG' || filter === 'NON_VEG') {
+                this.activeFilters = this.activeFilters.filter(f => f !== 'VEG' && f !== 'NON_VEG');
+            }
+            this.activeFilters.push(filter);
+        }
         
-        // Add press effect listeners
-        card.addEventListener('mousedown', () => card.classList.add('is-pressed'));
-        card.addEventListener('mouseup', () => card.classList.remove('is-pressed'));
-        card.addEventListener('touchstart', () => card.classList.add('is-pressed'));
-        card.addEventListener('touchend', () => card.classList.remove('is-pressed'));
+        this.updateFilterUI();
+        this.renderMenu();
+    }
 
+    toggleSpiceFilter(spiceLevel) {
+        const index = this.activeSpiceFilters.indexOf(spiceLevel);
+        if (index > -1) {
+            this.activeSpiceFilters.splice(index, 1);
+        } else {
+            this.activeSpiceFilters.push(spiceLevel);
+        }
+        
+        this.updateFilterUI();
+        this.renderMenu();
+    }
 
-        const media = document.createElement('div');
-        media.className = 'card-media';
-        
-        const img = document.createElement('img');
-        img.className = 'card-img';
-        img.src = item.image;
-        img.alt = t.name || '';
-        img.loading = 'lazy'; 
-        
-        img.onload = () => { img.style.opacity = '1'; };
-        
-        media.appendChild(img);
+    updatePriceFilter(price) {
+        this.maxPrice = price;
+        this.priceDisplay.textContent = `Up to ₹${price}`;
+        this.renderMenu();
+    }
 
-
-        const cbody = document.createElement('div');
-        cbody.className = 'card-body';
-        const title = document.createElement('h3'); title.className='card-title'; title.textContent = t.name || '';
+    clearAllFilters() {
+        this.activeFilters = [];
+        this.activeSpiceFilters = [];
+        this.maxPrice = 2000;
+        this.priceRange.value = 2000;
+        this.priceDisplay.textContent = 'Up to ₹2000';
+        this.currentSearchQuery = '';
+        this.searchInput.value = '';
         
-        const desc = document.createElement('p'); 
-        desc.className='card-desc'; 
-        // Quick regex to handle simple **bolding** from the JSON data
-        desc.innerHTML = (t.desc || '').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-        
-        const footer = document.createElement('div'); footer.className = 'card-footer';
-        const price = document.createElement('div'); price.className='price'; price.textContent = t.price || '';
-        const actions = document.createElement('div'); actions.className='actions';
+        this.updateFilterUI();
+        this.renderMenu();
+    }
 
-        const viewBtn = document.createElement('button'); viewBtn.className='btn'; viewBtn.textContent = label('viewButton');
-        viewBtn.addEventListener('click', (ev) => {
-          ev.stopPropagation();
-          openImageModal(item);
+    updateFilterUI() {
+        // Update filter tags
+        document.querySelectorAll('.filter-tag').forEach(tag => {
+            const isActive = this.activeFilters.includes(tag.dataset.filter);
+            tag.classList.toggle('active', isActive);
         });
 
-        const arBtn = document.createElement('button'); arBtn.className='btn primary'; arBtn.textContent = 'AR';
-        arBtn.addEventListener('click', (ev) => {
-          ev.stopPropagation();
-          if(item.model && item.model.length){
-            openModelModal(item);
-          } else {
-            showToast(label('arComingSoon'));
-          }
+        // Update spice buttons
+        document.querySelectorAll('.spice-btn').forEach(btn => {
+            const isActive = this.activeSpiceFilters.includes(btn.dataset.spice);
+            btn.classList.toggle('active', isActive);
+        });
+    }
+
+    // Menu Rendering
+    buildCategoryNav() {
+        if (!this.categoryNav) return;
+
+        this.categoryNav.innerHTML = Object.keys(this.MENU).map(categoryKey => {
+            const category = this.MENU[categoryKey];
+            const label = category.label[this.currentLang] || categoryKey;
+            return `
+                <button class="category-btn" data-category="${categoryKey}">
+                    ${label}
+                </button>
+            `;
+        }).join('');
+
+        // Add event listeners
+        this.categoryNav.querySelectorAll('.category-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                this.openCategory = e.currentTarget.dataset.category;
+                this.updateCategoryNav();
+                this.renderMenu();
+                
+                // Scroll to category
+                const categoryElement = document.querySelector(`[data-category="${this.openCategory}"]`);
+                if (categoryElement) {
+                    categoryElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
         });
 
-        actions.appendChild(viewBtn);
-        if(item.model && item.model.length) {
-            actions.appendChild(arBtn);
+        this.updateCategoryNav();
+    }
+
+    updateCategoryNav() {
+        this.categoryNav.querySelectorAll('.category-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.category === this.openCategory);
+        });
+    }
+
+    renderMenu() {
+        if (!this.menuArea) return;
+
+        const filteredData = this.filterMenu();
+        
+        if (!filteredData || Object.keys(filteredData).length === 0) {
+            this.showEmptyState();
+            return;
         }
 
-        footer.appendChild(price);
-        footer.appendChild(actions);
+        this.hideEmptyState();
 
-        cbody.appendChild(title);
-        cbody.appendChild(desc);
-        cbody.appendChild(footer);
+        let menuHTML = '';
 
-        card.appendChild(media);
-        card.appendChild(cbody);
+        Object.keys(filteredData).forEach(categoryKey => {
+            const category = filteredData[categoryKey];
+            const categoryLabel = category.label[this.currentLang] || categoryKey;
+            
+            menuHTML += `
+                <div class="category-section" data-category="${categoryKey}">
+                    <h3 class="category-title">${categoryLabel}</h3>
+                    <div class="menu-grid">
+                        ${category.items.map(item => this.createMenuItemHTML(item)).join('')}
+                    </div>
+                </div>
+            `;
+        });
 
-        card.addEventListener('click', () => openImageModal(item));
-
-        grid.appendChild(card);
-      });
-
-      body.appendChild(grid);
-
-      block.appendChild(header);
-      block.appendChild(body);
-      menuArea.appendChild(block);
-    });
-
-    highlightActiveButton();
-  }
-
-  // --- Modal Logic (unchanged) ---
-
-  function openImageModal(item){
-    const t = item.translations[currentLang] || item.translations.en || {};
-    
-    modalImg.src = ''; 
-    modalImg.src = item.image;
-    modalImg.alt = t.name || '';
-    modalName.textContent = t.name || '';
-    modalDesc.innerHTML = (t.desc || '').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-    modalPrice.textContent = t.price || '';
-    
-    const hasModel = item.model && item.model.length;
-    modalARBtn.style.display = hasModel ? 'inline-block' : 'none';
-    modalARBtn.onclick = hasModel ? () => { 
-        closeImageModal(); 
-        openModelModal(item); 
-    } : null;
-    
-    imageModal.setAttribute('aria-hidden','false');
-  }
-
-  function closeImageModal(){
-    imageModal.setAttribute('aria-hidden','true');
-  }
-
-  function openModelModal(item){
-    const t = item.translations[currentLang] || item.translations.en || {};
-    
-    mv.removeAttribute('src');
-    if(item.model && item.model.length){
-      mv.setAttribute('src', item.model);
+        this.menuArea.innerHTML = menuHTML;
+        this.attachItemEventListeners();
     }
-    modelNameEl.textContent = t.name || '';
-    // Use innerHTML to style ingredients if needed
-    modelIngredients.innerHTML = (t.ingredients ? (label('ingredients') + ': ' + t.ingredients) : ''); 
-    modelModal.setAttribute('aria-hidden','false');
-  }
 
-  function closeModelModal(){
-    mv.removeAttribute('src');
-    modelModal.setAttribute('aria-hidden','true');
-  }
-
-  // --- Event Listeners ---
-
-  langSelect.addEventListener('change', (e) => {
-    currentLang = e.target.value;
-    // Re-render entire menu with new language
-    buildCategoryBar();
-    renderMenuArea();
-  });
-
-  closeImageModalBtn.addEventListener('click', closeImageModal);
-  closeModelModalBtn.addEventListener('click', closeModelModal);
-
-  [imageModal, modelModal].forEach(m => {
-    m.addEventListener('click', (ev) => {
-      if(ev.target === m) { if(m===imageModal) closeImageModal(); else closeModelModal(); }
-    });
-  });
-
-  document.addEventListener('keydown', (e) => {
-    if(e.key === 'Escape'){ 
-      if(imageModal.getAttribute('aria-hidden') === 'false') closeImageModal(); 
-      if(modelModal.getAttribute('aria-hidden') === 'false') closeModelModal(); 
+    createMenuItemHTML(item) {
+        const t = item.translations?.[this.currentLang] || item.translations?.en || {};
+        const isFavorite = this.favorites.has(item.id);
+        const price = parseInt(t.price.replace(/[^0-9]/g, '')) || 0;
+        
+        // Create dietary badges
+        const badges = this.createDietaryBadges(item);
+        
+        return `
+            <div class="menu-card" data-item-id="${item.id}">
+                <div class="card-media">
+                    <img src="${item.image}" alt="${t.name}" class="card-img" loading="lazy">
+                    <div class="card-badges">
+                        ${badges}
+                    </div>
+                    <button class="card-favorite ${isFavorite ? 'active' : ''}" onclick="premiumMenu.toggleFavorite(${JSON.stringify(item).replace(/"/g, '&quot;')})">
+                        <i class="${isFavorite ? 'fas' : 'far'} fa-heart"></i>
+                    </button>
+                </div>
+                <div class="card-body">
+                    <div class="card-header">
+                        <h3 class="card-title">${t.name}</h3>
+                        <div class="card-price">${t.price}</div>
+                    </div>
+                    <p class="card-desc">${t.desc}</p>
+                    <div class="card-footer">
+                        <div class="card-ingredients">
+                            <small>${t.ingredients}</small>
+                        </div>
+                        <div class="card-actions">
+                            <button class="btn btn-secondary" onclick="premiumMenu.openItemModal(${JSON.stringify(item).replace(/"/g, '&quot;')})">
+                                <i class="fas fa-eye"></i>View
+                            </button>
+                            ${item.model ? `
+                                <button class="btn btn-primary" onclick="premiumMenu.openARModal(${JSON.stringify(item).replace(/"/g, '&quot;')})">
+                                    <i class="fas fa-cube"></i>AR
+                                </button>
+                            ` : ''}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
     }
-  });
 
-  // --- Final Execution ---
-  fetchMenuData();
+    createDietaryBadges(item) {
+        const badges = [];
+        const flags = item.dietaryFlags || [];
+        
+        if (flags.includes('VEG') || item.dietaryColor === 'green') {
+            badges.push('<span class="badge veg">Veg</span>');
+        }
+        if (flags.includes('NON_VEG') || item.dietaryColor === 'red') {
+            badges.push('<span class="badge nonveg">Non-Veg</span>');
+        }
+        if (flags.includes('GLUTEN_FREE')) {
+            badges.push('<span class="badge gluten-free">GF</span>');
+        }
+        
+        return badges.join('');
+    }
 
+    attachItemEventListeners() {
+        // Card click opens modal
+        this.menuArea.querySelectorAll('.menu-card').forEach(card => {
+            card.addEventListener('click', (e) => {
+                // Don't open modal if clicking buttons
+                if (e.target.closest('button')) return;
+                
+                const itemId = card.dataset.itemId;
+                const item = this.findItemById(itemId);
+                if (item) {
+                    this.openItemModal(item);
+                }
+            });
+        });
+    }
+
+    // Filtering Logic
+    filterMenu() {
+        let filtered = { ...this.MENU };
+
+        // Apply search
+        if (this.currentSearchQuery) {
+            filtered = this.applySearch(filtered);
+            if (!filtered) return null;
+        }
+
+        // Apply dietary filters
+        if (this.activeFilters.length > 0) {
+            filtered = this.applyDietaryFilters(filtered);
+            if (!filtered) return null;
+        }
+
+        // Apply price filter
+        if (this.maxPrice < 2000) {
+            filtered = this.applyPriceFilter(filtered);
+            if (!filtered) return null;
+        }
+
+        // Apply category filter
+        if (this.openCategory) {
+            filtered = { [this.openCategory]: filtered[this.openCategory] };
+            if (!filtered[this.openCategory]) return null;
+        }
+
+        return Object.keys(filtered).length > 0 ? filtered : null;
+    }
+
+    applySearch(data) {
+        const results = {};
+        const query = this.currentSearchQuery.toLowerCase();
+
+        for (const [categoryKey, category] of Object.entries(data)) {
+            const matchingItems = category.items.filter(item => {
+                const t = item.translations?.[this.currentLang] || item.translations?.en || {};
+                const searchText = `${t.name} ${t.desc} ${t.ingredients}`.toLowerCase();
+                return searchText.includes(query);
+            });
+
+            if (matchingItems.length > 0) {
+                results[categoryKey] = { ...category, items: matchingItems };
+            }
+        }
+
+        return Object.keys(results).length > 0 ? results : null;
+    }
+
+    applyDietaryFilters(data) {
+        const results = {};
+
+        for (const [categoryKey, category] of Object.entries(data)) {
+            const matchingItems = category.items.filter(item => {
+                return this.activeFilters.every(filter => 
+                    (item.dietaryFlags || []).includes(filter)
+                );
+            });
+
+            if (matchingItems.length > 0) {
+                results[categoryKey] = { ...category, items: matchingItems };
+            }
+        }
+
+        return Object.keys(results).length > 0 ? results : null;
+    }
+
+    applyPriceFilter(data) {
+        const results = {};
+
+        for (const [categoryKey, category] of Object.entries(data)) {
+            const matchingItems = category.items.filter(item => {
+                const t = item.translations?.[this.currentLang] || item.translations?.en || {};
+                const price = parseInt(t.price.replace(/[^0-9]/g, '')) || 0;
+                return price <= this.maxPrice;
+            });
+
+            if (matchingItems.length > 0) {
+                results[categoryKey] = { ...category, items: matchingItems };
+            }
+        }
+
+        return Object.keys(results).length > 0 ? results : null;
+    }
+
+    // Modal System
+    openItemModal(item) {
+        this.currentModalItem = item;
+        const t = item.translations?.[this.currentLang] || item.translations?.en || {};
+        const isFavorite = this.favorites.has(item.id);
+
+        // Update modal content
+        this.modalImg.src = item.image;
+        this.modalImg.alt = t.name;
+        this.modalName.textContent = t.name;
+        this.modalDesc.textContent = t.desc;
+        this.modalPrice.textContent = t.price;
+        this.modalIngredients.textContent = t.ingredients;
+
+        // Update dietary badges
+        this.modalBadges.innerHTML = this.createDietaryBadges(item);
+
+        // Update favorite button
+        const favoriteIcon = this.modalFavorite.querySelector('i');
+        favoriteIcon.className = isFavorite ? 'fas fa-heart' : 'far fa-heart';
+        this.modalFavorite.classList.toggle('active', isFavorite);
+
+        // Show/hide AR button
+        this.modalAR.style.display = item.model ? 'inline-flex' : 'none';
+
+        this.openModal(this.imageModal);
+    }
+
+    openARModal(item) {
+        if (!item.model) {
+            this.showToast('AR model not available for this item');
+            return;
+        }
+
+        try {
+            this.mv.setAttribute('src', item.model);
+            this.mv.setAttribute('alt', `3D model of ${item.translations?.[this.currentLang]?.name || item.translations?.en?.name}`);
+            this.openModal(this.modelModal);
+        } catch (error) {
+            console.error('Error opening AR modal:', error);
+            this.showToast('AR feature not supported');
+        }
+    }
+
+    openModal(modal) {
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+    }
+
+    closeModal(modal) {
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+    }
+
+    closeAllModals() {
+        this.closeModal(this.imageModal);
+        this.closeModal(this.modelModal);
+    }
+
+    // Utility Methods
+    findItemById(itemId) {
+        for (const category of Object.values(this.MENU)) {
+            const item = category.items.find(item => item.id === itemId);
+            if (item) return item;
+        }
+        return null;
+    }
+
+    updateContent() {
+        this.buildCategoryNav();
+        this.renderMenu();
+        this.renderFavorites();
+        localStorage.setItem('language', this.currentLang);
+    }
+
+    handleScroll() {
+        const scrolled = window.scrollY > 50;
+        this.header.classList.toggle('scrolled', scrolled);
+    }
+
+    handleKeyboard(e) {
+        // Escape key closes modals
+        if (e.key === 'Escape') {
+            this.closeAllModals();
+        }
+
+        // Ctrl+K opens search
+        if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+            e.preventDefault();
+            this.toggleSearch(true);
+        }
+    }
+
+    showEmptyState() {
+        this.menuArea.style.display = 'none';
+        this.emptyState.style.display = 'block';
+    }
+
+    hideEmptyState() {
+        this.menuArea.style.display = 'block';
+        this.emptyState.style.display = 'none';
+    }
+
+    hideLoadingScreen() {
+        setTimeout(() => {
+            this.loadingScreen.style.opacity = '0';
+            setTimeout(() => {
+                this.loadingScreen.style.display = 'none';
+            }, 500);
+        }, 1000);
+    }
+
+    showToast(message, duration = 3000) {
+        this.toast.textContent = message;
+        this.toast.classList.add('active');
+        
+        setTimeout(() => {
+            this.toast.classList.remove('active');
+        }, duration);
+    }
+
+    showError(message) {
+        this.showToast(message, 5000);
+    }
+}
+
+// Initialize the application
+let premiumMenu;
+document.addEventListener('DOMContentLoaded', () => {
+    premiumMenu = new PremiumMenu();
 });
