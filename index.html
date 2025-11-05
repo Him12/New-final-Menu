@@ -1,20 +1,25 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>The Leela — Premium Dining Experience</title>
-  <meta name="description" content="The Leela — Luxury multi-language menu with AR previews, advanced filtering, and premium features" />
+  <meta name="description"
+    content="The Leela — Luxury multi-language menu with AR previews, advanced filtering, and premium features" />
   <meta name="theme-color" content="#b76e79" />
-  
+
   <!-- Fonts & Icons -->
-  <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="styles.css">
 
   <!-- Model Viewer -->
-  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.3.0/model-viewer.min.js"></script>
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 </head>
+
 <body>
   <!-- Theme Toggle -->
   <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
@@ -226,7 +231,7 @@
         <button class="modal-close" id="closeImageModal">
           <i class="fas fa-times"></i>
         </button>
-        
+
         <div class="modal-media">
           <img id="modalImg" src="" alt="" loading="lazy">
           <button class="modal-favorite" id="modalFavorite">
@@ -278,29 +283,34 @@
     <div class="modal-backdrop"></div>
     <div class="modal-container ar-modal">
       <div class="modal-content">
+        <!-- Close Button -->
         <button class="modal-close" id="closeModelModal">
           <i class="fas fa-times"></i>
         </button>
-        
-        <model-viewer
-          id="mv"
-          src=""
-          alt="3D model"
-          camera-controls
-          auto-rotate
-          ar
-          ar-modes="webxr scene-viewer quick-look"
-          ar-scale="auto"
-          style="width:100%;height:70vh;">
+
+        <!-- Model Viewer for AR -->
+        <model-viewer id="mv" src="" alt="3D model" camera-controls auto-rotate ar
+          ar-modes="webxr scene-viewer quick-look" ar-scale="auto" shadow-intensity="1"
+          style="width:100%;height:70vh;border-radius:10px;position:relative;">
+          <button slot="ar-button" class="ar-button" id="manualARButton">
+            👓 View in your space
+          </button>
         </model-viewer>
 
-        <div class="ar-controls">
-          <button class="btn btn-primary" id="arViewButton">
-            <i class="fas fa-vr-cardboard"></i>View in Your Space
-          </button>
-        </div>
+
       </div>
     </div>
+  </div>
+
+
+
+  <div class="ar-controls">
+    <button class="btn btn-primary" id="arViewButton">
+      <i class="fas fa-vr-cardboard"></i>View in Your Space
+    </button>
+  </div>
+  </div>
+  </div>
   </div>
 
   <!-- Toast -->
@@ -334,8 +344,8 @@
       <div class="footer-bottom">
         <p>&copy; 2024 The Leela. All rights reserved.</p>
         <a href="https://wa.me/918377861214" target="_blank" class="visuplate">
-  Visuplate by G&amp;H
-</a>
+          Visuplate by G&amp;H
+        </a>
 
       </div>
     </div>
@@ -343,4 +353,5 @@
 
   <script src="main.js"></script>
 </body>
+
 </html>

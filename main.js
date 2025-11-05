@@ -687,20 +687,58 @@ class PremiumMenu {
     }
 
     openARModal(item) {
-        if (!item.model) {
-            this.showToast('AR model not available for this item');
-            return;
-        }
+  if (!item.model) {
+    this.showToast('AR model not available for this item');
+    return;
+  }
 
-        try {
-            this.mv.setAttribute('src', item.model);
-            this.mv.setAttribute('alt', `3D model of ${item.translations?.[this.currentLang]?.name || item.translations?.en?.name}`);
-            this.openModal(this.modelModal);
-        } catch (error) {
-            console.error('Error opening AR modal:', error);
-            this.showToast('AR feature not supported');
-        }
-    }
+  try {
+    // Dynamically assign the model and alt text
+    this.mv.setAttribute('src', item.model);
+    this.mv.setAttribute(
+      'alt',
+      `3D model of ${item.translations?.[this.currentLang]?.name || item.translations?.en?.name}`
+    );
+
+    // Make sure the AR button is visible
+    const manualARButton = document.getElementById('manualARButton');
+    if (manualARButton) manualARButton.style.display = 'inline-block';
+
+    // Request camera permission before showing modal
+    navigator.mediaDevices.getUserMedia({ video: true })
+      .then(() => {
+        console.log('✅ Camera permission granted');
+
+        // Open the AR modal
+        this.openModal(this.modelModal);
+
+        // Wait a short delay to ensure <model-viewer> renders properly
+        setTimeout(() => {
+          const modelViewer = this.mv;
+
+          // Auto-start AR if supported
+          if (modelViewer.canActivateAR) {
+            console.log('🚀 Launching AR mode automatically...');
+            modelViewer.activateAR();
+          } else {
+            console.warn('⚠️ AR not supported, fallback to 3D view.');
+            this.showToast('AR not supported — showing 3D preview.');
+          }
+        }, 800);
+      })
+      .catch(err => {
+        console.error('❌ Camera access denied or unavailable:', err);
+        alert('Camera access is required to view the 3D model in AR.');
+      });
+  } catch (error) {
+    console.error('Error opening AR modal:', error);
+    this.showToast('AR feature not supported on this device');
+  }
+}
+
+
+
+
 
     openModal(modal) {
         modal.setAttribute('aria-hidden', 'false');

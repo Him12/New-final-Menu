@@ -89,8 +89,8 @@
       },
       {
         "id":"chicken-65",
-        "image":"https://images.unsplash.com/photo-1606755962778-7f3c47dc2f8a?auto=format&fit=crop&w=900&q=80",
-        "model":"",
+        "image":"images/samosa.jpeg",
+        "model":"assets/models/day_226_samosa.glb",
         "dietaryFlags":["NON_VEG","GLUTEN_FREE"],
         "dietaryColor":"red",
         "spiceLevel": 3,
@@ -109,8 +109,8 @@
       },
       {
         "id":"spicy-paneer-kebab",
-        "image":"https://images.unsplash.com/photo-1604908176836-2266d94c69b1?auto=format&fit=crop&w=900&q=80",
-        "model":"",
+        "image":"images/samosa.jpeg",
+        "model":"assets/models/day_226_samosa.glb",
         "dietaryFlags":["VEG","GLUTEN_FREE"],
         "dietaryColor":"green",
         "spiceLevel": 2,
@@ -134,8 +134,8 @@
     "items": [
       {
         "id":"signature-tandoori-platter",
-        "image":"https://images.unsplash.com/photo-1541691538877-1d6b6c9cdd88?auto=format&fit=crop&w=900&q=80",
-        "model":"assets/models/tandoori_platter.glb",
+        "image":"images/samosa.jpeg",
+        "model":"assets/models/day_226_samosa.glb",
         "dietaryFlags":["NON_VEG"],
         "dietaryColor":"red",
         "spiceLevel": 2,
@@ -154,8 +154,8 @@
       },
       {
         "id":"slow-cooked-short-ribs",
-        "image":"https://images.unsplash.com/photo-1555992336-cbf8a8b8f6d9?auto=format&fit=crop&w=900&q=80",
-        "model":"",
+        "image":"images/samosa.jpeg",
+        "model":"assets/models/day_226_samosa.glb",
         "dietaryFlags":["NON_VEG"],
         "dietaryColor":"red",
         "spiceLevel": 1,
@@ -179,8 +179,8 @@
     "items": [
       {
         "id":"sushi-assortment",
-        "image":"https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=900&q=80",
-        "model":"assets/models/sushi_set.glb",
+        "image":"images/samosa.jpeg",
+        "model":"assets/models/day_226_samosa.glb",
         "dietaryFlags":["NON_VEG","GLUTEN_FREE","NUTS_FREE"],
         "dietaryColor":"red",
         "spiceLevel": 0,
@@ -199,8 +199,8 @@
       },
       {
         "id":"yakitori-skewers",
-        "image":"https://images.unsplash.com/photo-1562967914-608f8262970b?auto=format&fit=crop&w=900&q=80",
-        "model":"",
+        "image":"images/samosa.jpeg",
+        "model":"assets/models/day_226_samosa.glb",
         "dietaryFlags":["NON_VEG"],
         "dietaryColor":"red",
         "spiceLevel": 1,
@@ -224,8 +224,8 @@
     "items": [
       {
         "id":"chef-special-seafood",
-        "image":"https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=900&q=80",
-        "model":"",
+        "image":"images/samosa.jpeg",
+        "model":"assets/models/day_226_samosa.glb",
         "dietaryFlags":["NON_VEG","GLUTEN_FREE"],
         "dietaryColor":"red",
         "spiceLevel": 1,
@@ -244,8 +244,8 @@
       },
       {
         "id":"vegetarian-thali-chef",
-        "image":"https://images.unsplash.com/photo-1627328715728-7bcc1b5db87d?auto=format&fit=crop&w=900&q=80",
-        "model":"",
+        "image":"images/samosa.jpeg",
+        "model":"assets/models/day_226_samosa.glb",
         "dietaryFlags":["VEG"],
         "dietaryColor":"green",
         "spiceLevel": 2,
