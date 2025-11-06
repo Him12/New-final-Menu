@@ -463,9 +463,10 @@ class PremiumMenu {
                             <i class="fas fa-eye"></i> View
                         </button>
                         ${item.model ? `
-                            <button class="btn btn-primary" onclick="premiumMenu.openARModal(${JSON.stringify(item).replace(/"/g, '&quot;')})">
-                                <i class="fas fa-cube"></i> 3D
-                            </button>` : ''}
+                            <button class="btn btn-3d" onclick="premiumMenu.handle3DClick(this, ${JSON.stringify(item).replace(/"/g, '&quot;')})">
+  <i class="fas fa-cube"></i> 3D
+</button>
+` : ''}
                         ${item.video ? `
                             <button class="btn btn-secondary" onclick="premiumMenu.openVideo(${JSON.stringify(item).replace(/"/g, '&quot;')})">
                                 <i class="fas fa-play"></i> Video
@@ -596,6 +597,21 @@ class PremiumMenu {
             this.showToast('AR feature not supported on this device');
         }
     }
+
+    // 🧊 Handle 3D button click effect + open model viewer
+    handle3DClick(button, item) {
+        // Add temporary highlight
+        button.classList.add("active");
+
+        // Open AR/3D modal
+        this.openARModal(item);
+
+        // Remove highlight after 0.6s
+        setTimeout(() => {
+            button.classList.remove("active");
+        }, 600);
+    }
+
 
     openModal(modal) {
         if (!modal) return;

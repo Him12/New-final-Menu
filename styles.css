@@ -833,6 +833,72 @@ body {
   transform: translateY(-1px);
 }
 
+/* ============================================================
+   UNIFIED BUTTON STYLE (View / 3D / Video)
+   ============================================================ */
+.btn {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--bg-secondary);
+  color: var(--text);
+}
+
+/* Neutral default look */
+.btn:hover {
+  background: var(--primary);
+  color: white;
+  transform: translateY(-1px);
+}
+
+/* Differentiate types slightly if needed */
+.btn-view, .btn-3d, .btn-video {
+  background: var(--bg-secondary);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+/* Shared hover behavior */
+.btn-view:hover,
+.btn-3d:hover,
+.btn-video:hover {
+  background: var(--primary);
+  color: white;
+  transform: translateY(-1px);
+}
+
+
+/* ============================================================
+   CUSTOM 3D BUTTON INTERACTION EFFECT (Neutral Look + Flash)
+   ============================================================ */
+.btn-3d {
+  background-color: var(--bg-secondary);
+  color: var(--text);
+  border: 1px solid var(--border);
+  transition: all 0.3s ease;
+}
+
+.btn-3d:hover {
+  background-color: var(--primary-light);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.btn-3d.active {
+  background-color: var(--primary);
+  color: #fff;
+  box-shadow: 0 0 10px rgba(183, 110, 121, 0.5);
+  transform: scale(0.97);
+}
+
+
 /* Empty State */
 .empty-state {
   text-align: center;
@@ -1812,6 +1878,8 @@ body {
     bottom: 2rem !important;
   }
 }
+
+
 
 /* ============================================================
    MOVE SEARCH BAR BELOW CATEGORY BUTTONS (Mobile View Only)
