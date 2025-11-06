@@ -439,39 +439,57 @@ class PremiumMenu {
         this.attachItemEventListeners();
     }
 
+    // ✅ Updated version with 3 buttons (View / 3D / Video)
     createMenuItemHTML(item) {
         const t = item.translations?.[this.currentLang] || item.translations?.en || {};
         const badges = this.createDietaryBadges(item);
 
         return `
-            <div class="menu-card" data-item-id="${item.id}">
-                <div class="card-media">
-                    <img src="${item.image}" alt="${t.name}" class="card-img" loading="lazy">
-                    <div class="card-badges">${badges}</div>
+        <div class="menu-card" data-item-id="${item.id}">
+            <div class="card-media">
+                <img src="${item.image}" alt="${t.name}" class="card-img" loading="lazy">
+                <div class="card-badges">${badges}</div>
+            </div>
+            <div class="card-body">
+                <div class="card-header">
+                    <h3 class="card-title">${t.name}</h3>
+                    <div class="card-price">${t.price}</div>
                 </div>
-                <div class="card-body">
-                    <div class="card-header">
-                        <h3 class="card-title">${t.name}</h3>
-                        <div class="card-price">${t.price}</div>
-                    </div>
-                    <p class="card-desc">${t.desc}</p>
-                    <div class="card-footer">
-                        <div class="card-ingredients"><small>${t.ingredients}</small></div>
-                        <div class="card-actions">
-                            <button class="btn btn-secondary" onclick="premiumMenu.openItemModal(${JSON.stringify(item).replace(/"/g, '&quot;')})">
-                                <i class="fas fa-eye"></i> View
-                            </button>
-                            ${item.model ? `
-                                <button class="btn btn-primary" onclick="premiumMenu.openARModal(${JSON.stringify(item).replace(/"/g, '&quot;')})">
-                                    <i class="fas fa-cube"></i> AR
-                                </button>
-                            ` : ''}
-                        </div>
+                <p class="card-desc">${t.desc}</p>
+                ${t.ingredients ? `<div class="card-ingredients"><small>${t.ingredients}</small></div>` : ''}
+                <div class="card-footer">
+                    <div class="card-actions">
+                        <button class="btn btn-secondary" onclick="premiumMenu.openItemModal(${JSON.stringify(item).replace(/"/g, '&quot;')})">
+                            <i class="fas fa-eye"></i> View
+                        </button>
+                        ${item.model ? `
+                            <button class="btn btn-primary" onclick="premiumMenu.openARModal(${JSON.stringify(item).replace(/"/g, '&quot;')})">
+                                <i class="fas fa-cube"></i> 3D
+                            </button>` : ''}
+                        ${item.video ? `
+                            <button class="btn btn-secondary" onclick="premiumMenu.openVideo(${JSON.stringify(item).replace(/"/g, '&quot;')})">
+                                <i class="fas fa-play"></i> Video
+                            </button>` : ''}
                     </div>
                 </div>
             </div>
-        `;
+        </div>
+    `;
     }
+    // 🎥 Open video in new tab
+    openVideo(item) {
+        if (!item || !item.video) {
+            this.showToast('Video not available for this item');
+            return;
+        }
+
+        try {
+            window.open(item.video, "_blank"); // open video in new tab
+        } catch {
+            this.showToast('Unable to open video.');
+        }
+    }
+
 
     createDietaryBadges(item) {
         const badges = [];

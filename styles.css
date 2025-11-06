@@ -782,14 +782,23 @@ body {
 }
 
 .card-footer {
+  margin-top: 1rem;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .card-actions {
   display: flex;
   gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.card-ingredients {
+  color: var(--text-light);
+  font-size: 1rem;
+  margin-top: 0.5rem;
+  line-height: 1.4;
 }
 
 .btn {
@@ -1509,7 +1518,7 @@ body {
     }
   }
 
-  
+
 
   /* Ambience Gallery */
   .gallery-grid {
@@ -1547,7 +1556,231 @@ body {
     color: var(--primary-dark);
   }
 
+  .modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+    /* Ensures it’s above all content */
+  }
 
+  .choice-modal,
+  .video-modal {
+    background: var(--card-bg, #fff);
+    border-radius: 16px;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    position: relative;
+    animation: fadeIn 0.3s ease;
+  }
+
+  .video-modal {
+    max-width: 600px;
+    margin: 10vh auto;
+  }
+
+  .choice-modal {
+    max-width: 400px;
+    margin: 15vh auto;
+  }
+
+  .choice-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .close-video,
+  .close-choice {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #b76e79;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  /* Enhanced Choice Modal */
+  .enhanced-choice {
+    background: #fff;
+    border-radius: 18px;
+    max-width: 420px;
+    width: 90%;
+    padding: 0;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .choice-preview {
+    width: 100%;
+    height: 230px;
+    overflow: hidden;
+    background: #f7f7f7;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .preview-video,
+  .preview-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .choice-header {
+    padding: 1rem;
+  }
+
+  .choice-header h3 {
+    font-size: 1.2rem;
+    color: #2c2c2c;
+    margin-bottom: 0.3rem;
+  }
+
+  .choice-header p {
+    font-size: 0.9rem;
+    color: #555;
+    margin: 0;
+  }
+
+  .choice-footer {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 1rem;
+    background: #fafafa;
+    border-top: 1px solid #eee;
+  }
+
+  .choice-footer button {
+    flex: 1;
+    margin: 0 0.4rem;
+  }
+
+  .close-choice {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #b76e79;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    font-size: 1rem;
+    line-height: 1;
+  }
+
+  .no-preview {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: #777;
+    font-size: 0.9rem;
+  }
+
+  /* Refined Video Modal for Consistent Centered Look */
+  .video-modal-box {
+    background: #fff;
+    border-radius: 18px;
+    max-width: 480px;
+    width: 90%;
+    padding: 0;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    text-align: center;
+    animation: fadeIn 0.3s ease;
+    z-index: 100001;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Keeps the video centered without stretching */
+  .video-modal-box .video-preview {
+    width: 100%;
+    height: 260px;
+    /* fixed height for compact look */
+    border-radius: 18px 18px 0 0;
+    object-fit: cover;
+    /* ensures video fills box gracefully */
+    background: #000;
+    /* fallback if video is slow to load */
+    display: block;
+  }
+
+  .video-modal-box .close-video {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #b76e79;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    font-size: 1rem;
+    line-height: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s ease;
+  }
+
+  .video-modal-box .close-video:hover {
+    transform: scale(1.1);
+    background: var(--primary-dark);
+  }
+
+  /* Optional fade-in animation for smooth entry */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translate(-50%, -48%) scale(0.98);
+    }
+
+    to {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+  }
 
 }
 

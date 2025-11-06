@@ -12,6 +12,7 @@
         "id": "mint-mojito-virgin",
         "image": "images/Virgin_Mint_Mojito.jpg",
         "model": "assets/models/burger_low_poly.glb",
+        "video": "videos/burger video.mp4",
         "dietaryFlags": [
           "VEG",
           "ALCOHOL_FREE",
@@ -70,6 +71,7 @@
         "id": "cucumber-cooler",
         "image": "images/sandwich.jpg",
         "model": "assets/models/cup_of_cappuccino.glb",
+        "video": "videos/Sandwich.mp4",
         "dietaryFlags": [
           "VEG",
           "ALCOHOL_FREE",
@@ -99,6 +101,7 @@
         "id": "crispy-calamari",
         "image": "images/Virgin_Mint_Mojito.jpg",
         "model": "assets/models/burger_low_poly.glb",
+        "video": "videos/Sandwich.mp4",
         "dietaryFlags": [
           "NON_VEG",
           "NUTS_FREE"
@@ -157,6 +160,7 @@
         "id": "spicy-paneer-kebab",
         "image": "images/samosa.jpeg",
         "model": "assets/models/day_226_samosa.glb",
+        "video": "videos/Sandwich.mp4",
         "dietaryFlags": [
           "VEG",
           "GLUTEN_FREE"
@@ -214,6 +218,7 @@
         "id": "slow-cooked-short-ribs",
         "image": "images/samosa.jpeg",
         "model": "assets/models/day_226_samosa.glb",
+        "video": "videos/Sandwich.mp4",
         "dietaryFlags": [
           "NON_VEG"
         ],
@@ -272,6 +277,7 @@
         "id": "yakitori-skewers",
         "image": "images/samosa.jpeg",
         "model": "assets/models/day_226_samosa.glb",
+        "video": "videos/Sandwich.mp4",
         "dietaryFlags": [
           "NON_VEG"
         ],
@@ -998,6 +1004,7 @@
         "id": "chef-special-seafood",
         "image": "images/samosa.jpeg",
         "model": "assets/models/day_226_samosa.glb",
+        "video": "videos/burger video.mp4",
         "dietaryFlags": [
           "NON_VEG",
           "GLUTEN_FREE"
@@ -1051,6 +1058,7 @@
         "id": "chef-special-seafood",
         "image": "images/samosa.jpeg",
         "model": "assets/models/day_226_samosa.glb",
+        "video": "videos/burger video.mp4",
         "dietaryFlags": [
           "NON_VEG",
           "GLUTEN_FREE"
@@ -1104,6 +1112,7 @@
         "id": "chef-special-seafood",
         "image": "images/samosa.jpeg",
         "model": "assets/models/day_226_samosa.glb",
+        "video": "videos/burger video.mp4",
         "dietaryFlags": [
           "NON_VEG",
           "GLUTEN_FREE"
@@ -1157,6 +1166,7 @@
         "id": "chef-special-seafood",
         "image": "images/samosa.jpeg",
         "model": "assets/models/day_226_samosa.glb",
+        "video": "videos/burger video.mp4",
         "dietaryFlags": [
           "NON_VEG",
           "GLUTEN_FREE"
@@ -1210,6 +1220,7 @@
         "id": "vegetarian-thali-chef",
         "image": "images/samosa.jpeg",
         "model": "assets/models/day_226_samosa.glb",
+        "video": "videos/burger video.mp4",
         "dietaryFlags": [
           "VEG"
         ],

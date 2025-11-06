@@ -1,4 +1,4 @@
-// specials.js — Simplified version (only for Today's Specials)
+// specials.js — Enhanced: Separate View / 3D / Video
 document.addEventListener("DOMContentLoaded", async () => {
   const specialsGrid = document.getElementById("specialsGrid");
   const emptyState = document.getElementById("specialsEmpty");
@@ -20,37 +20,83 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   let currentItem = null;
 
+  // 🟢 Create Dietary Badges
   const createBadges = (item) => {
     const flags = item.dietaryFlags || [];
     let badges = "";
-    if (flags.includes("VEG") || item.dietaryColor === "green") badges += '<span class="badge veg">Veg</span>';
-    if (flags.includes("NON_VEG") || item.dietaryColor === "red") badges += '<span class="badge nonveg">Non-Veg</span>';
-    if (flags.includes("GLUTEN_FREE")) badges += '<span class="badge gluten-free">GF</span>';
+    if (flags.includes("VEG") || item.dietaryColor === "green")
+      badges += '<span class="badge veg">Veg</span>';
+    if (flags.includes("NON_VEG") || item.dietaryColor === "red")
+      badges += '<span class="badge nonveg">Non-Veg</span>';
+    if (flags.includes("GLUTEN_FREE"))
+      badges += '<span class="badge gluten-free">GF</span>';
     return badges;
   };
 
-  const createCard = (item) => {
-    const t = item.translations?.en || {};
-    return `
-      <div class="menu-card" data-id="${item.id}">
-        <div class="card-media">
-          <img src="${item.image}" alt="${t.name}" class="card-img" />
-          <div class="card-badges">${createBadges(item)}</div>
-        </div>
-        <div class="card-body">
-          <div class="card-header">
-            <h3>${t.name}</h3>
-            <span>${t.price}</span>
-          </div>
-          <p>${t.desc}</p>
-          <div class="card-footer">
-            <button class="btn btn-secondary view-btn">View</button>
-            ${item.model ? `<button class="btn btn-primary ar-btn">AR</button>` : ""}
-          </div>
-        </div>
-      </div>`;
-  };
+  // 🟢 Create Menu Card with View, 3D, and Video Buttons — Fixed Layout
+const createCard = (item) => {
+  const t = item.translations?.en || {};
 
+  const mediaContent = item.model
+    ? `<img src="${item.image}" alt="${t.name}" class="card-img" loading="lazy">`
+    : item.video
+      ? `<video class="card-video" autoplay muted loop playsinline>
+          <source src="${item.video}" type="video/mp4">
+          <img src="${item.image}" alt="${t.name}" class="card-img" />
+        </video>`
+      : `<img src="${item.image}" alt="${t.name}" class="card-img" loading="lazy">`;
+
+  return `
+    <div class="menu-card" data-id="${item.id}">
+      <div class="card-media">
+        ${mediaContent}
+        <div class="card-badges">${createBadges(item)}</div>
+      </div>
+
+      <div class="card-body">
+        <div class="card-header">
+          <h3 class="card-title">${t.name}</h3>
+          <div class="card-price">${t.price}</div>
+        </div>
+
+        <p class="card-desc">${t.desc}</p>
+
+        ${
+          t.ingredients
+            ? `<div class="card-ingredients">
+                <small>${t.ingredients}</small>
+              </div>`
+            : ""
+        }
+
+        <div class="card-footer">
+          <div class="card-actions">
+            <button class="btn btn-secondary view-btn">
+              <i class="fas fa-eye"></i> View
+            </button>
+            ${
+              item.model
+                ? `<button class="btn btn-primary ar-btn">
+                    <i class="fas fa-cube"></i> 3D
+                  </button>`
+                : ""
+            }
+            ${
+              item.video
+                ? `<button class="btn btn-secondary video-btn">
+                    <i class="fas fa-play"></i> Video
+                  </button>`
+                : ""
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+};
+
+
+  // 🟢 Modal Handling
   const openModal = (item) => {
     const t = item.translations?.en || {};
     modalImg.src = item.image;
@@ -70,16 +116,20 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.body.style.overflow = "";
   };
 
-  modalAR.addEventListener("click", () => {
-    if (!currentItem?.model) return;
-    mv.setAttribute("src", currentItem.model);
+  // 🧊 Open AR (3D)
+  const openAR = (item) => {
+    if (!item.model) return;
+    mv.setAttribute("src", item.model);
     modelModal.setAttribute("aria-hidden", "false");
-  });
+    modelModal.style.zIndex = "99999";
+    document.body.style.overflow = "hidden";
+  };
 
+  // ❌ Close Modals
   closeImageModal.addEventListener("click", () => closeModal(imageModal));
   closeModelModal.addEventListener("click", () => closeModal(modelModal));
 
-  // Load JSON
+  // 🟢 Load JSON Data
   try {
     const res = await fetch("menu_data.json");
     const data = await res.json();
@@ -90,17 +140,29 @@ document.addEventListener("DOMContentLoaded", async () => {
       return;
     }
 
+    // ✅ Render all special cards
     specialsGrid.innerHTML = specials.map(createCard).join("");
 
+    // ✅ Attach event listeners
     specialsGrid.querySelectorAll(".menu-card").forEach((card) => {
       const id = card.dataset.id;
       const item = specials.find((i) => i.id === id);
-      card.querySelector(".view-btn").addEventListener("click", () => openModal(item));
+
+      // View button
+      const viewBtn = card.querySelector(".view-btn");
+      if (viewBtn) viewBtn.addEventListener("click", () => openModal(item));
+
+      // 3D button
       const arBtn = card.querySelector(".ar-btn");
-      if (arBtn) arBtn.addEventListener("click", () => {
-        mv.setAttribute("src", item.model);
-        modelModal.setAttribute("aria-hidden", "false");
-      });
+      if (arBtn) arBtn.addEventListener("click", () => openAR(item));
+
+      // Video button (open new tab)
+      const videoBtn = card.querySelector(".video-btn");
+      if (videoBtn && item.video) {
+        videoBtn.addEventListener("click", () => {
+          window.open(item.video, "_blank"); // Opens video in new page
+        });
+      }
     });
   } catch (err) {
     console.error("Failed to load specials:", err);
