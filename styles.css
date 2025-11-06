@@ -1150,7 +1150,7 @@ body {
    ============================================================ */
 #videoModal .modal-container {
   width: 70%;
-  max-width: 900px;
+  max-width: 530px;
   height: auto;
   background: transparent;
   border-radius: var(--border-radius-xl);
