@@ -103,6 +103,11 @@ class PremiumMenu {
         this.modelModal = document.getElementById('modelModal');
         this.mv = document.getElementById('mv');
         this.closeModelModal = document.getElementById('closeModelModal');
+        // 🎬 Video Modal
+        this.videoModal = document.getElementById('videoModal');
+        this.videoPlayer = document.getElementById('videoPlayer');
+        this.closeVideoModalBtn = document.getElementById('closeVideoModal');
+
 
         // Loading
         this.loadingScreen = document.getElementById('loadingScreen');
@@ -177,6 +182,17 @@ class PremiumMenu {
         if (this.closeModelModal) {
             this.closeModelModal.addEventListener('click', () => this.closeModal(this.modelModal));
         }
+        // 🎬 Video Modal Close + Back Handling
+        if (this.closeVideoModalBtn) {
+            this.closeVideoModalBtn.addEventListener('click', () => this.closeVideoModal());
+        }
+
+        window.addEventListener("popstate", (e) => {
+            if (this.videoModal && this.videoModal.getAttribute("aria-hidden") === "false") {
+                e.preventDefault();
+                this.closeVideoModal();
+            }
+        });
 
         document.querySelectorAll('.modal-backdrop').forEach(backdrop => {
             backdrop.addEventListener('click', (e) => {
@@ -439,12 +455,12 @@ class PremiumMenu {
         this.attachItemEventListeners();
     }
 
-    // ✅ Updated version with 3 buttons (View / 3D / Video)
-    createMenuItemHTML(item) {
-        const t = item.translations?.[this.currentLang] || item.translations?.en || {};
-        const badges = this.createDietaryBadges(item);
+   // ✅ Updated version with View / 3D / Video buttons (fixed label)
+createMenuItemHTML(item) {
+    const t = item.translations?.[this.currentLang] || item.translations?.en || {};
+    const badges = this.createDietaryBadges(item);
 
-        return `
+    return `
         <div class="menu-card" data-item-id="${item.id}">
             <div class="card-media">
                 <img src="${item.image}" alt="${t.name}" class="card-img" loading="lazy">
@@ -457,18 +473,26 @@ class PremiumMenu {
                 </div>
                 <p class="card-desc">${t.desc}</p>
                 ${t.ingredients ? `<div class="card-ingredients"><small>${t.ingredients}</small></div>` : ''}
+                
                 <div class="card-footer">
                     <div class="card-actions">
-                        <button class="btn btn-secondary" onclick="premiumMenu.openItemModal(${JSON.stringify(item).replace(/"/g, '&quot;')})">
+                        <!-- 👁️ View Button -->
+                        <button class="btn btn-secondary"
+                            onclick="premiumMenu.openItemModal(${JSON.stringify(item).replace(/"/g, '&quot;')})">
                             <i class="fas fa-eye"></i> View
                         </button>
+
+                        <!-- 🧊 3D Button -->
                         ${item.model ? `
-                            <button class="btn btn-3d" onclick="premiumMenu.handle3DClick(this, ${JSON.stringify(item).replace(/"/g, '&quot;')})">
-  <i class="fas fa-cube"></i> 3D
-</button>
-` : ''}
+                            <button class="btn btn-3d"
+                                onclick="premiumMenu.handle3DClick(this, ${JSON.stringify(item).replace(/"/g, '&quot;')})">
+                                <i class="fas fa-cube"></i> 3D
+                            </button>` : ''}
+
+                        <!-- 🎬 Video Button -->
                         ${item.video ? `
-                            <button class="btn btn-secondary" onclick="premiumMenu.openVideo(${JSON.stringify(item).replace(/"/g, '&quot;')})">
+                            <button class="btn btn-secondary"
+                                onclick="premiumMenu.openVideoModal(${JSON.stringify(item).replace(/"/g, '&quot;')})">
                                 <i class="fas fa-play"></i> Video
                             </button>` : ''}
                     </div>
@@ -476,7 +500,8 @@ class PremiumMenu {
             </div>
         </div>
     `;
-    }
+}
+
     // 🎥 Open video in new tab
     openVideo(item) {
         if (!item || !item.video) {
@@ -582,8 +607,13 @@ class PremiumMenu {
         }
         try {
             this.mv.setAttribute('src', item.model);
-            this.mv.setAttribute('alt', `3D model of ${item.translations?.[this.currentLang]?.name || item.translations?.en?.name}`);
-            navigator.mediaDevices.getUserMedia({ video: true })
+            this.mv.setAttribute(
+                'alt',
+                `3D model of ${item.translations?.[this.currentLang]?.name || item.translations?.en?.name}`
+            );
+
+            navigator.mediaDevices
+                .getUserMedia({ video: true })
                 .then(() => {
                     this.openModal(this.modelModal);
                     setTimeout(() => {
@@ -597,6 +627,47 @@ class PremiumMenu {
             this.showToast('AR feature not supported on this device');
         }
     }
+
+    // 🎬 VIDEO MODAL — inline version (portrait aware)
+    openVideoModal(item) {
+        if (!item || !item.video) {
+            this.showToast('Video not available for this item');
+            return;
+        }
+
+        const source = this.videoPlayer.querySelector("source");
+        source.src = item.video;
+        this.videoPlayer.load();
+
+        // ✅ Detect portrait orientation dynamically
+        this.videoPlayer.addEventListener("loadedmetadata", () => {
+            const isPortrait = this.videoPlayer.videoHeight > this.videoPlayer.videoWidth;
+            if (isPortrait) {
+                this.videoPlayer.setAttribute("portrait", "");
+            } else {
+                this.videoPlayer.removeAttribute("portrait");
+            }
+        });
+
+        this.videoPlayer.play().catch(() => console.log("User interaction required"));
+        this.videoModal.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+
+        // Push a new state so back button closes modal, not site
+        history.pushState({ videoOpen: true }, "");
+    }
+
+    closeVideoModal() {
+        if (!this.videoModal || !this.videoPlayer) return;
+
+        this.videoPlayer.pause();
+        this.videoPlayer.currentTime = 0;
+        this.videoModal.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+    }
+
+
+
 
     // 🧊 Handle 3D button click effect + open model viewer
     handle3DClick(button, item) {

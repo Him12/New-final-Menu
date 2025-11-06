@@ -42,6 +42,7 @@
         "id": "tropical-sunrise",
         "image": "https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?auto=format&fit=crop&w=900&q=80",
         "model": "assets/models/cup_of_cappuccino.glb",
+        "video": "videos/Hamburger.mp4",
         "dietaryFlags": [
           "VEG",
           "ALCOHOL_FREE",
@@ -1004,7 +1005,7 @@
         "id": "chef-special-seafood",
         "image": "images/samosa.jpeg",
         "model": "assets/models/day_226_samosa.glb",
-        "video": "videos/burger video.mp4",
+        "video": "videos/Hamburger.mp4",
         "dietaryFlags": [
           "NON_VEG",
           "GLUTEN_FREE"

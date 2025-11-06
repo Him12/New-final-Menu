@@ -1139,6 +1139,103 @@ body {
   margin-bottom: 2rem;
 }
 
+/* ============================================================
+   VIDEO MODAL — SLIMMER WIDTH + TALLER FOR PORTRAIT VIDEOS
+   ============================================================ */
+#videoModal .modal-container {
+  max-width: 42vw; /* ✅ reduced width */
+  width: 70%;
+  height: 42vh; /* tall view like AR modal */
+  background: var(--bg);
+  border-radius: var(--border-radius-xl);
+  box-shadow: var(--shadow-xl);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+/* Inner centering */
+#videoModal .modal-content {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border-radius: var(--border-radius-xl);
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+}
+
+/* Landscape video (default) */
+#videoModal video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: var(--border-radius-xl);
+  background: #000;
+  display: block;
+}
+
+/* 🧩 Portrait video layout */
+#videoModal video[portrait] {
+  width: 45%;         /* ✅ reduce width to center slim video */
+  height: 85vh;       /* keep tall vertical frame */
+  object-fit: cover;
+  border-radius: var(--border-radius-xl);
+  background: #000;
+  display: block;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease;
+}
+
+/* Close button (same as before) */
+#videoModal .modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--text);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: var(--transition);
+  backdrop-filter: blur(10px);
+}
+
+#videoModal .modal-close:hover {
+  background: var(--primary);
+  color: white;
+  transform: rotate(90deg);
+}
+
+/* Mobile optimization */
+@media (max-width: 768px) {
+  #videoModal .modal-container {
+    width: 90%;
+    height: 85vh;
+  }
+
+  #videoModal video {
+    max-height: 80vh;
+  }
+
+  #videoModal video[portrait] {
+    width: 80%;
+    height: 80vh;
+  }
+}
+
+
 .detail-group h4 {
   font-size: 1rem;
   font-weight: 600;
