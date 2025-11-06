@@ -4,9 +4,13 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>The Leela — Specials</title>
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <title>The Leela — Today's Specials</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="styles.css" />
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 </head>
 
 <body>
@@ -14,21 +18,31 @@
   <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
     <i class="fas fa-moon"></i>
   </button>
-
   <!-- Header -->
   <header class="header" id="mainHeader">
     <div class="container">
       <div class="header-content">
+        <!-- Mobile Menu Button -->
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <!-- Brand (Clickable Logo + Text) -->
         <div class="brand">
-          <div class="logo">L</div>
-          <div class="brand-text">
-            <h1>The Leela</h1>
-            <p>Premium Dining</p>
-          </div>
+          <a href="index.html" class="brand-link">
+            <div class="logo">L</div>
+            <div class="brand-text">
+              <h1>The Leela</h1>
+              <p>Premium Dining</p>
+            </div>
+          </a>
         </div>
 
-        <!-- Navigation -->
-        <nav class="desktop-nav">
+
+        <!-- Desktop Navigation -->
+        <nav class="desktop-nav" id="desktopNav">
           <div class="nav-group">
             <a href="index.html" class="nav-btn">Menu</a>
             <a href="specials.html" class="nav-btn active">Specials</a>
@@ -36,37 +50,89 @@
             <a href="story.html" class="nav-btn">Our Story</a>
           </div>
         </nav>
+
       </div>
-    </div>
   </header>
 
-  <main class="section active">
-    <div class="container">
-      <h2 class="section-title">Today's Specials</h2>
-      <div class="specials-grid">
-        <div class="special-card">
-          <img src="assets/images/chocolate cake.jpeg" alt="Chocolate Cake" class="special-img">
-          <h3>Chocolate Truffle Cake</h3>
-          <p>Rich, moist, and indulgent — a perfect dessert to finish your meal.</p>
-          <span class="price">₹350</span>
-        </div>
+  <!-- Specials Section -->
+  <main>
+    <section id="specialsSection" class="section active">
+      <div class="container">
+        <h2 class="section-title">🌟 Today's Specials</h2>
+        <div class="menu-grid" id="specialsGrid"></div>
 
-        <div class="special-card">
-          <img src="assets/images/samosa.jpeg" alt="Samosa" class="special-img">
-          <h3>Golden Crisp Samosas</h3>
-          <p>Stuffed with spiced potatoes, served with mint & tamarind chutney.</p>
-          <span class="price">₹180</span>
+        <div class="empty-state" id="specialsEmpty" style="display:none;">
+          <i class="fas fa-utensils"></i>
+          <h3>No specials available</h3>
+          <p>Check back later for new dishes!</p>
         </div>
+      </div>
+    </section>
+  </main>
 
-        <div class="special-card">
-          <img src="assets/images/coffee.jpg" alt="Cappuccino" class="special-img">
-          <h3>Signature Cappuccino</h3>
-          <p>Aromatic coffee topped with creamy froth and cocoa dust.</p>
-          <span class="price">₹220</span>
+  <!-- Image Modal -->
+  <div id="imageModal" class="modal" aria-hidden="true">
+    <div class="modal-backdrop"></div>
+    <div class="modal-container">
+      <div class="modal-content">
+        <button class="modal-close" id="closeImageModal"><i class="fas fa-times"></i></button>
+        <div class="modal-media">
+          <img id="modalImg" src="" alt="" loading="lazy" />
+        </div>
+        <div class="modal-body">
+          <div class="modal-header">
+            <div class="dietary-badges" id="modalBadges"></div>
+            <h2 id="modalName"></h2>
+            <div class="modal-price" id="modalPrice"></div>
+          </div>
+          <p class="modal-desc" id="modalDesc"></p>
+          <div class="modal-details">
+            <h4>Ingredients</h4>
+            <p id="modalIngredients"></p>
+          </div>
+          <div class="modal-actions">
+            <button class="btn btn-primary" id="modalAR">
+              <i class="fas fa-cube"></i> View in AR
+            </button>
+          </div>
         </div>
       </div>
     </div>
-  </main>
+  </div>
+
+  <!-- AR Modal -->
+  <div id="modelModal" class="modal" aria-hidden="true">
+    <div class="modal-backdrop"></div>
+    <div class="modal-container ar-modal">
+      <div class="modal-content">
+        <button class="modal-close" id="closeModelModal"><i class="fas fa-times"></i></button>
+        <model-viewer id="mv" src="" alt="3D model" camera-controls auto-rotate ar
+          ar-modes="webxr scene-viewer quick-look" ar-scale="auto" shadow-intensity="1"
+          style="width:100%;height:70vh;border-radius:10px;">
+          <button slot="ar-button" class="ar-button" id="manualARButton">👓 View in your space</button>
+        </model-viewer>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Navigation -->
+  <nav class="mobile-nav" id="mobileNav">
+    <div class="mobile-nav-content">
+      <a href="index.html" class="nav-item">
+        <i class="fas fa-utensils"></i><span>Menu</span>
+      </a>
+      <a href="specials.html" class="nav-item active">
+        <i class="fas fa-star"></i><span>Specials</span>
+      </a>
+      <a href="ambience.html" class="nav-item">
+        <i class="fas fa-camera"></i><span>Ambience</span>
+      </a>
+      <a href="story.html" class="nav-item">
+        <i class="fas fa-book"></i><span>Our Story</span>
+      </a>
+    </div>
+  </nav>
+
 
   <!-- Footer -->
   <footer class="footer">
@@ -78,6 +144,34 @@
     </div>
   </footer>
 
-  <script src="main.js"></script>
+
+  <script src="specials.js"></script>
+  <script>
+    // 🌙 Simple Theme Toggle (same behavior as main page)
+    const themeToggle = document.getElementById('themeToggle');
+
+    // Load saved theme preference
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+    }
+
+    // Toggle between dark/light mode
+    themeToggle.addEventListener('click', () => {
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      if (isDark) {
+        document.documentElement.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'light');
+        themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+      } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+        themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+      }
+    });
+  </script>
+
 </body>
+
 </html>

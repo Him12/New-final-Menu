@@ -1,4 +1,4 @@
-// main.js - Premium Restaurant Menu (Favorites Removed Version)
+// main.js - Premium Restaurant Menu (Favorites Removed Version, Universal Enhanced)
 class PremiumMenu {
     constructor() {
         this.MENU = {};
@@ -19,9 +19,16 @@ class PremiumMenu {
     async init() {
         this.cacheDOM();
         this.bindEvents();
-        await this.loadMenuData();
+
+        // ✅ Load user preferences everywhere
         this.loadUserPreferences();
-        this.hideLoadingScreen();
+
+        // ✅ Only load menu data if on menu page
+        if (document.getElementById('menuArea')) {
+            await this.loadMenuData();
+        }
+
+        if (this.loadingScreen) this.hideLoadingScreen();
     }
 
     debounce(func, wait) {
@@ -42,7 +49,7 @@ class PremiumMenu {
             if (!inThrottle) {
                 func.apply(this, args);
                 inThrottle = true;
-                setTimeout(() => inThrottle = false, limit);
+                setTimeout(() => (inThrottle = false), limit);
             }
         };
     }
@@ -105,24 +112,39 @@ class PremiumMenu {
     }
 
     bindEvents() {
-        this.mobileMenuBtn.addEventListener('click', () => this.toggleMobileMenu());
+        // Safe event bindings (works even if some elements are missing)
+        if (this.mobileMenuBtn) {
+            this.mobileMenuBtn.addEventListener('click', () => this.toggleMobileMenu());
+        }
+
         document.querySelectorAll('.nav-btn, .nav-item').forEach(btn => {
-            btn.addEventListener('click', (e) => this.switchSection(e.currentTarget.dataset.section));
+            btn.addEventListener('click', (e) => {
+                if (e.currentTarget.dataset.section)
+                    this.switchSection(e.currentTarget.dataset.section);
+            });
         });
 
-        this.searchToggle.addEventListener('click', () => this.toggleSearch());
-        this.searchClose.addEventListener('click', () => this.toggleSearch(false));
-        this.searchInput.addEventListener('input', this.debounce((e) => {
-            this.handleSearch(e.target.value);
-        }, 300));
+        if (this.searchToggle && this.searchClose && this.searchInput) {
+            this.searchToggle.addEventListener('click', () => this.toggleSearch());
+            this.searchClose.addEventListener('click', () => this.toggleSearch(false));
+            this.searchInput.addEventListener('input', this.debounce((e) => {
+                this.handleSearch(e.target.value);
+            }, 300));
+        }
 
-        this.themeToggle.addEventListener('click', () => this.toggleTheme());
-        this.langSelect.addEventListener('change', (e) => {
-            this.currentLang = e.target.value;
-            this.updateContent();
-        });
+        // ✅ Theme toggle always available
+        if (this.themeToggle) {
+            this.themeToggle.addEventListener('click', () => this.toggleTheme());
+        }
 
-        // ❌ Favorites event bindings removed
+        if (this.langSelect) {
+            this.langSelect.addEventListener('change', (e) => {
+                this.currentLang = e.target.value;
+                this.updateContent();
+            });
+        }
+
+        // ❌ Favorites event bindings removed (kept commented intentionally)
 
         document.querySelectorAll('.filter-tag').forEach(tag => {
             tag.addEventListener('click', (e) => this.toggleFilter(e.currentTarget.dataset.filter));
@@ -132,19 +154,29 @@ class PremiumMenu {
             btn.addEventListener('click', (e) => this.toggleSpiceFilter(e.currentTarget.dataset.spice));
         });
 
-        this.priceRange.addEventListener('input', (e) => {
-            this.updatePriceFilter(parseInt(e.target.value));
-        });
+        if (this.priceRange) {
+            this.priceRange.addEventListener('input', (e) => {
+                this.updatePriceFilter(parseInt(e.target.value));
+            });
+        }
 
-        this.clearFilters.addEventListener('click', () => this.clearAllFilters());
+        if (this.clearFilters) {
+            this.clearFilters.addEventListener('click', () => this.clearAllFilters());
+        }
 
         window.addEventListener('scroll', this.throttle(() => this.handleScroll(), 100));
 
-        this.closeImageModal.addEventListener('click', () => this.closeModal(this.imageModal));
-        // this.modalFavorite.addEventListener('click', () => this.toggleFavorite(this.currentModalItem)); // ❌
-        // this.modalAddFavorite.addEventListener('click', () => this.toggleFavorite(this.currentModalItem)); // ❌
-        this.modalAR.addEventListener('click', () => this.openARModal(this.currentModalItem));
-        this.closeModelModal.addEventListener('click', () => this.closeModal(this.modelModal));
+        if (this.closeImageModal) {
+            this.closeImageModal.addEventListener('click', () => this.closeModal(this.imageModal));
+        }
+
+        if (this.modalAR) {
+            this.modalAR.addEventListener('click', () => this.openARModal(this.currentModalItem));
+        }
+
+        if (this.closeModelModal) {
+            this.closeModelModal.addEventListener('click', () => this.closeModal(this.modelModal));
+        }
 
         document.querySelectorAll('.modal-backdrop').forEach(backdrop => {
             backdrop.addEventListener('click', (e) => {
@@ -163,14 +195,28 @@ class PremiumMenu {
             if (!response.ok) throw new Error('Failed to load menu data');
             const data = await response.json();
 
-            // 🧩 Create “All” category dynamically from all categories
+            // 🧩 Create “All” category dynamically — skip any specials
             const allItems = [];
             Object.keys(data).forEach(category => {
+                const key = category.toLowerCase();
+                // 🧠 Skip “Today's Specials” or similar variants
+                // 🧠 Skip any specials category (works for "daily-specials", "today_specials", etc.)
+                if (
+                    key.includes('today_special') ||
+                    key.includes('todayspecial') ||
+                    key.includes('specials_today') ||
+                    key.includes('daily-special') ||
+                    key.includes('daily_special') ||
+                    key.includes('special')
+                ) return;
+
+
                 if (data[category].items && Array.isArray(data[category].items)) {
                     allItems.push(...data[category].items);
                 }
             });
 
+            // ✅ Create menu object without specials
             this.MENU = {
                 all: {
                     label: {
@@ -181,14 +227,31 @@ class PremiumMenu {
                         jp: "すべて"
                     },
                     items: allItems
-                },
-                ...data
+                }
             };
 
-            // Build categories and render default
+            // ✅ Copy over only non-special categories
+            for (const [key, value] of Object.entries(data)) {
+                const lowerKey = key.toLowerCase();
+                if (
+                    lowerKey.includes('today_special') ||
+                    lowerKey.includes('todayspecial') ||
+                    lowerKey.includes('specials_today') ||
+                    lowerKey.includes('daily-special') ||
+                    lowerKey.includes('daily_special') ||
+                    lowerKey.includes('special')
+                ) {
+                    continue; // skip specials completely
+                }
+
+                this.MENU[key] = value;
+            }
+
+            // ✅ Now build and render
             this.buildCategoryNav();
             this.openCategory = "all";
             this.renderMenu();
+
         } catch (error) {
             console.error('Error loading menu:', error);
             this.showError('Failed to load menu. Please refresh the page.');
@@ -199,17 +262,19 @@ class PremiumMenu {
     loadUserPreferences() {
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme === 'dark') this.toggleTheme(true);
+        else this.toggleTheme(false);
 
         // ❌ Favorites loading removed
 
         const savedLang = localStorage.getItem('language');
-        if (savedLang) {
+        if (savedLang && this.langSelect) {
             this.currentLang = savedLang;
             this.langSelect.value = savedLang;
         }
     }
 
     toggleMobileMenu() {
+        if (!this.mobileMenuBtn || !this.mobileNav) return;
         this.mobileMenuBtn.classList.toggle('active');
         this.mobileNav.classList.toggle('active');
     }
@@ -223,36 +288,39 @@ class PremiumMenu {
         if (targetSection) targetSection.classList.add('active');
 
         this.currentSection = section;
-        this.mobileMenuBtn.classList.remove('active');
-        this.mobileNav.classList.remove('active');
+        if (this.mobileMenuBtn) this.mobileMenuBtn.classList.remove('active');
+        if (this.mobileNav) this.mobileNav.classList.remove('active');
     }
 
     toggleSearch(show = null) {
+        if (!this.searchExpandable) return;
         const shouldShow = show !== null ? show : !this.searchExpandable.classList.contains('active');
         if (shouldShow) {
             this.searchExpandable.classList.add('active');
-            this.searchInput.focus();
+            if (this.searchInput) this.searchInput.focus();
         } else {
             this.searchExpandable.classList.remove('active');
-            this.searchInput.value = '';
-            this.handleSearch('');
+            if (this.searchInput) {
+                this.searchInput.value = '';
+                this.handleSearch('');
+            }
         }
     }
 
     handleSearch(query) {
         this.currentSearchQuery = query.trim().toLowerCase();
-        this.renderMenu();
+        if (this.menuArea) this.renderMenu();
     }
 
     toggleTheme(forceDark = null) {
         this.isDarkTheme = forceDark !== null ? forceDark : !this.isDarkTheme;
         if (this.isDarkTheme) {
             document.documentElement.setAttribute('data-theme', 'dark');
-            this.themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            if (this.themeToggle) this.themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
             localStorage.setItem('theme', 'dark');
         } else {
             document.documentElement.removeAttribute('data-theme');
-            this.themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            if (this.themeToggle) this.themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
             localStorage.setItem('theme', 'light');
         }
     }
@@ -275,7 +343,7 @@ class PremiumMenu {
             this.activeFilters.push(filter);
         }
         this.updateFilterUI();
-        this.renderMenu();
+        if (this.menuArea) this.renderMenu();
     }
 
     toggleSpiceFilter(spiceLevel) {
@@ -283,25 +351,25 @@ class PremiumMenu {
         if (index > -1) this.activeSpiceFilters.splice(index, 1);
         else this.activeSpiceFilters.push(spiceLevel);
         this.updateFilterUI();
-        this.renderMenu();
+        if (this.menuArea) this.renderMenu();
     }
 
     updatePriceFilter(price) {
         this.maxPrice = price;
-        this.priceDisplay.textContent = `Up to ₹${price}`;
-        this.renderMenu();
+        if (this.priceDisplay) this.priceDisplay.textContent = `Up to ₹${price}`;
+        if (this.menuArea) this.renderMenu();
     }
 
     clearAllFilters() {
         this.activeFilters = [];
         this.activeSpiceFilters = [];
         this.maxPrice = 2000;
-        this.priceRange.value = 2000;
-        this.priceDisplay.textContent = 'Up to ₹2000';
+        if (this.priceRange) this.priceRange.value = 2000;
+        if (this.priceDisplay) this.priceDisplay.textContent = 'Up to ₹2000';
         this.currentSearchQuery = '';
-        this.searchInput.value = '';
+        if (this.searchInput) this.searchInput.value = '';
         this.updateFilterUI();
-        this.renderMenu();
+        if (this.menuArea) this.renderMenu();
     }
 
     updateFilterUI() {
@@ -331,13 +399,12 @@ class PremiumMenu {
             });
         });
 
-        // Default to “All”
         this.openCategory = "all";
         this.updateCategoryNav();
     }
 
-
     updateCategoryNav() {
+        if (!this.categoryNav) return;
         this.categoryNav.querySelectorAll('.category-btn').forEach(btn => {
             btn.classList.toggle('active', btn.dataset.category === this.openCategory);
         });
@@ -416,6 +483,7 @@ class PremiumMenu {
     }
 
     attachItemEventListeners() {
+        if (!this.menuArea) return;
         this.menuArea.querySelectorAll('.menu-card').forEach(card => {
             card.addEventListener('click', (e) => {
                 if (e.target.closest('button')) return;
@@ -474,6 +542,7 @@ class PremiumMenu {
     }
 
     openItemModal(item) {
+        if (!this.imageModal) return;
         this.currentModalItem = item;
         const t = item.translations?.[this.currentLang] || item.translations?.en || {};
         this.modalImg.src = item.image;
@@ -487,6 +556,7 @@ class PremiumMenu {
     }
 
     openARModal(item) {
+        if (!item || !this.mv) return;
         if (!item.model) {
             this.showToast('AR model not available for this item');
             return;
@@ -510,18 +580,20 @@ class PremiumMenu {
     }
 
     openModal(modal) {
+        if (!modal) return;
         modal.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
     }
 
     closeModal(modal) {
+        if (!modal) return;
         modal.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = '';
     }
 
     closeAllModals() {
-        this.closeModal(this.imageModal);
-        this.closeModal(this.modelModal);
+        if (this.imageModal) this.closeModal(this.imageModal);
+        if (this.modelModal) this.closeModal(this.modelModal);
     }
 
     findItemById(itemId) {
@@ -540,8 +612,10 @@ class PremiumMenu {
     }
 
     handleScroll() {
-        const scrolled = window.scrollY > 50;
-        this.header.classList.toggle('scrolled', scrolled);
+        if (this.header) {
+            const scrolled = window.scrollY > 50;
+            this.header.classList.toggle('scrolled', scrolled);
+        }
     }
 
     handleKeyboard(e) {
@@ -553,23 +627,29 @@ class PremiumMenu {
     }
 
     showEmptyState() {
-        this.menuArea.style.display = 'none';
-        this.emptyState.style.display = 'block';
+        if (this.menuArea && this.emptyState) {
+            this.menuArea.style.display = 'none';
+            this.emptyState.style.display = 'block';
+        }
     }
 
     hideEmptyState() {
-        this.menuArea.style.display = 'block';
-        this.emptyState.style.display = 'none';
+        if (this.menuArea && this.emptyState) {
+            this.menuArea.style.display = 'block';
+            this.emptyState.style.display = 'none';
+        }
     }
 
     hideLoadingScreen() {
+        if (!this.loadingScreen) return;
         setTimeout(() => {
             this.loadingScreen.style.opacity = '0';
-            setTimeout(() => this.loadingScreen.style.display = 'none', 500);
+            setTimeout(() => (this.loadingScreen.style.display = 'none'), 500);
         }, 1000);
     }
 
     showToast(message, duration = 3000) {
+        if (!this.toast) return;
         this.toast.textContent = message;
         this.toast.classList.add('active');
         setTimeout(() => this.toast.classList.remove('active'), duration);

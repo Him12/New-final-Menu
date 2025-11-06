@@ -5,11 +5,23 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>The Leela — Our Story</title>
+
+  <!-- 🧠 Apply saved theme instantly before CSS loads -->
+  <script>
+    (function () {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
+
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>
+  <!-- Theme Toggle -->
   <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
     <i class="fas fa-moon"></i>
   </button>
@@ -18,13 +30,17 @@
   <header class="header" id="mainHeader">
     <div class="container">
       <div class="header-content">
+        <!-- Brand (Clickable Logo + Text) -->
         <div class="brand">
-          <div class="logo">L</div>
-          <div class="brand-text">
-            <h1>The Leela</h1>
-            <p>Premium Dining</p>
-          </div>
+          <a href="index.html" class="brand-link">
+            <div class="logo">L</div>
+            <div class="brand-text">
+              <h1>The Leela</h1>
+              <p>Premium Dining</p>
+            </div>
+          </a>
         </div>
+
 
         <!-- Navigation -->
         <nav class="desktop-nav">
@@ -39,26 +55,53 @@
     </div>
   </header>
 
+  <!-- Story Section -->
   <main class="section active">
     <div class="container story-content">
       <h2 class="section-title">Our Story</h2>
       <p>
-        Founded in 1995, <strong>The Leela</strong> has been redefining the art of fine dining for over two decades.
-        Our chefs craft dishes that bring together authentic flavors, global techniques, and timeless presentation.
+        Founded in 1986, <strong>The Leela</strong> was built on the vision of bringing world-class hospitality and
+        culinary artistry to India.
+        Each restaurant reflects our passion for craftsmanship, attention to detail, and a commitment to providing
+        exceptional dining experiences.
       </p>
+
       <p>
-        Inspired by India's rich culinary traditions and modern innovations, we’ve created a dining experience that
-        delights the senses — from our handcrafted menus to our elegant ambience.
+        Over the years, The Leela has evolved into a symbol of luxury dining, blending traditional flavors with modern
+        innovation.
+        Our chefs curate every dish with the finest ingredients, while our ambience creates the perfect backdrop for
+        memorable moments.
       </p>
-      <p>
-        Whether you're savoring a classic mocktail or exploring our new fusion selections, every visit to The Leela is
-        designed to be unforgettable.
-      </p>
-      <blockquote class="quote">
-        “Good food is the foundation of genuine happiness.” — Auguste Escoffier
+
+      <blockquote>
+        “At The Leela, dining is not just a meal — it’s an experience crafted with love, luxury, and legacy.”
       </blockquote>
+
+      <img src="assets/images/story-banner.jpg" alt="The Leela Heritage" class="story-image">
     </div>
   </main>
+
+
+  <!-- Mobile Navigation -->
+  <nav class="mobile-nav" id="mobileNav">
+    <div class="mobile-nav-content">
+      <a href="index.html" class="nav-item">
+        <i class="fas fa-utensils"></i><span>Menu</span>
+      </a>
+      <a href="specials.html" class="nav-item">
+        <i class="fas fa-star"></i><span>Specials</span>
+      </a>
+      <a href="ambience.html" class="nav-item">
+        <i class="fas fa-camera"></i><span>Ambience</span>
+      </a>
+      <a href="story.html" class="nav-item active">
+        <i class="fas fa-book"></i><span>Our Story</span>
+      </a>
+    </div>
+  </nav>
+
+
+
 
   <!-- Footer -->
   <footer class="footer">
@@ -72,4 +115,5 @@
 
   <script src="main.js"></script>
 </body>
+
 </html>

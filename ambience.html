@@ -5,11 +5,23 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>The Leela — Ambience</title>
+
+  <!-- 🧠 Apply saved theme instantly before CSS loads -->
+  <script>
+    (function () {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
+
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>
+  <!-- Theme Toggle -->
   <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
     <i class="fas fa-moon"></i>
   </button>
@@ -18,13 +30,17 @@
   <header class="header" id="mainHeader">
     <div class="container">
       <div class="header-content">
+        <!-- Brand (Clickable Logo + Text) -->
         <div class="brand">
-          <div class="logo">L</div>
-          <div class="brand-text">
-            <h1>The Leela</h1>
-            <p>Premium Dining</p>
-          </div>
+          <a href="index.html" class="brand-link">
+            <div class="logo">L</div>
+            <div class="brand-text">
+              <h1>The Leela</h1>
+              <p>Premium Dining</p>
+            </div>
+          </a>
         </div>
+
 
         <!-- Navigation -->
         <nav class="desktop-nav">
@@ -39,19 +55,53 @@
     </div>
   </header>
 
+  <!-- Ambience Section -->
   <main class="section active">
     <div class="container">
-      <h2 class="section-title">Our Ambience</h2>
-      <p class="section-subtitle">Step into an atmosphere of elegance, luxury, and comfort — where every corner tells a story.</p>
-      <div class="gallery-grid">
-        <img src="assets/images/sandwich.jpg" alt="Dining Hall">
-        <img src="assets/images/coffee.jpg" alt="Coffee Lounge">
-        <img src="assets/images/chocolate cake.jpeg" alt="Dessert Table">
-        <img src="assets/images/samosa.jpeg" alt="Chef’s Corner">
-        <img src="assets/images/Virgin_Mint_Mojito.jpg" alt="Mocktail Bar">
+      <h2 class="section-title">Experience The Leela Ambience</h2>
+      <p class="section-subtitle">
+        Step into a luxurious atmosphere designed to delight all your senses.
+      </p>
+
+      <div class="ambience-gallery">
+        <div class="ambience-card">
+          <img src="assets/images/ambience1.jpg" alt="Restaurant Interior">
+          <p>Elegant dining spaces with warm lighting</p>
+        </div>
+
+        <div class="ambience-card">
+          <img src="assets/images/ambience2.jpg" alt="Private Dining">
+          <p>Private lounges for intimate gatherings</p>
+        </div>
+
+        <div class="ambience-card">
+          <img src="assets/images/ambience3.jpg" alt="Outdoor Seating">
+          <p>Outdoor garden seating under the stars</p>
+        </div>
       </div>
     </div>
   </main>
+
+  <!-- Mobile Navigation -->
+  <nav class="mobile-nav" id="mobileNav">
+    <div class="mobile-nav-content">
+      <a href="index.html" class="nav-item">
+        <i class="fas fa-utensils"></i><span>Menu</span>
+      </a>
+      <a href="specials.html" class="nav-item">
+        <i class="fas fa-star"></i><span>Specials</span>
+      </a>
+      <a href="ambience.html" class="nav-item active">
+        <i class="fas fa-camera"></i><span>Ambience</span>
+      </a>
+      <a href="story.html" class="nav-item">
+        <i class="fas fa-book"></i><span>Our Story</span>
+      </a>
+    </div>
+  </nav>
+
+
+
 
   <!-- Footer -->
   <footer class="footer">
@@ -65,4 +115,5 @@
 
   <script src="main.js"></script>
 </body>
+
 </html>

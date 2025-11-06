@@ -1048,6 +1048,165 @@
         }
       },
       {
+        "id": "chef-special-seafood",
+        "image": "images/samosa.jpeg",
+        "model": "assets/models/day_226_samosa.glb",
+        "dietaryFlags": [
+          "NON_VEG",
+          "GLUTEN_FREE"
+        ],
+        "dietaryColor": "red",
+        "spiceLevel": 1,
+        "isChefPick": true,
+        "isDailySpecial": true,
+        "prepTime": 25,
+        "nutrition": {
+          "calories": 380,
+          "protein": "35g",
+          "carbs": "8g",
+          "fat": "22g"
+        },
+        "allergyInfo": "Contains seafood, dairy",
+        "translations": {
+          "en": {
+            "name": "Chef Special Seafood",
+            "desc": "Grilled catch, herbed butter, seasonal sides. **🌟 Today's highlight**",
+            "price": "₹1380",
+            "ingredients": "Fish, prawns, butter, herbs, lemon"
+          },
+          "fr": {
+            "name": "Spécialité Fruits de Mer",
+            "desc": "Poisson grillé, beurre aux herbes. **🌟 Point fort du jour**",
+            "price": "₹1380",
+            "ingredients": "Poisson, crevettes, beurre, herbes, citron"
+          },
+          "es": {
+            "name": "Especial Mariscos Chef",
+            "desc": "Pescado a la parrilla con mantequilla de hierbas. **🌟 Destacado del día**",
+            "price": "₹1380",
+            "ingredients": "Pescado, camarones, mantequilla, hierbas, limón"
+          },
+          "it": {
+            "name": "Specialità di Mare dello Chef",
+            "desc": "Pesce alla griglia con burro alle erbe. **🌟 Punto saliente della giornata**",
+            "price": "₹1380",
+            "ingredients": "Pesce, gamberi, burro, erbe, limone"
+          },
+          "jp": {
+            "name": "シェフ特製シーフード",
+            "desc": "グリルシーフードとハーブバター。**🌟 本日のハイライト**",
+            "price": "₹1380",
+            "ingredients": "魚、海老、バター、ハーブ、レモン"
+          }
+        }
+      },
+      {
+        "id": "chef-special-seafood",
+        "image": "images/samosa.jpeg",
+        "model": "assets/models/day_226_samosa.glb",
+        "dietaryFlags": [
+          "NON_VEG",
+          "GLUTEN_FREE"
+        ],
+        "dietaryColor": "red",
+        "spiceLevel": 1,
+        "isChefPick": true,
+        "isDailySpecial": true,
+        "prepTime": 25,
+        "nutrition": {
+          "calories": 380,
+          "protein": "35g",
+          "carbs": "8g",
+          "fat": "22g"
+        },
+        "allergyInfo": "Contains seafood, dairy",
+        "translations": {
+          "en": {
+            "name": "Chef Special Seafood",
+            "desc": "Grilled catch, herbed butter, seasonal sides. **🌟 Today's highlight**",
+            "price": "₹1380",
+            "ingredients": "Fish, prawns, butter, herbs, lemon"
+          },
+          "fr": {
+            "name": "Spécialité Fruits de Mer",
+            "desc": "Poisson grillé, beurre aux herbes. **🌟 Point fort du jour**",
+            "price": "₹1380",
+            "ingredients": "Poisson, crevettes, beurre, herbes, citron"
+          },
+          "es": {
+            "name": "Especial Mariscos Chef",
+            "desc": "Pescado a la parrilla con mantequilla de hierbas. **🌟 Destacado del día**",
+            "price": "₹1380",
+            "ingredients": "Pescado, camarones, mantequilla, hierbas, limón"
+          },
+          "it": {
+            "name": "Specialità di Mare dello Chef",
+            "desc": "Pesce alla griglia con burro alle erbe. **🌟 Punto saliente della giornata**",
+            "price": "₹1380",
+            "ingredients": "Pesce, gamberi, burro, erbe, limone"
+          },
+          "jp": {
+            "name": "シェフ特製シーフード",
+            "desc": "グリルシーフードとハーブバター。**🌟 本日のハイライト**",
+            "price": "₹1380",
+            "ingredients": "魚、海老、バター、ハーブ、レモン"
+          }
+        }
+      },
+      {
+        "id": "chef-special-seafood",
+        "image": "images/samosa.jpeg",
+        "model": "assets/models/day_226_samosa.glb",
+        "dietaryFlags": [
+          "NON_VEG",
+          "GLUTEN_FREE"
+        ],
+        "dietaryColor": "red",
+        "spiceLevel": 1,
+        "isChefPick": true,
+        "isDailySpecial": true,
+        "prepTime": 25,
+        "nutrition": {
+          "calories": 380,
+          "protein": "35g",
+          "carbs": "8g",
+          "fat": "22g"
+        },
+        "allergyInfo": "Contains seafood, dairy",
+        "translations": {
+          "en": {
+            "name": "Chef Special Seafood",
+            "desc": "Grilled catch, herbed butter, seasonal sides. **🌟 Today's highlight**",
+            "price": "₹1380",
+            "ingredients": "Fish, prawns, butter, herbs, lemon"
+          },
+          "fr": {
+            "name": "Spécialité Fruits de Mer",
+            "desc": "Poisson grillé, beurre aux herbes. **🌟 Point fort du jour**",
+            "price": "₹1380",
+            "ingredients": "Poisson, crevettes, beurre, herbes, citron"
+          },
+          "es": {
+            "name": "Especial Mariscos Chef",
+            "desc": "Pescado a la parrilla con mantequilla de hierbas. **🌟 Destacado del día**",
+            "price": "₹1380",
+            "ingredients": "Pescado, camarones, mantequilla, hierbas, limón"
+          },
+          "it": {
+            "name": "Specialità di Mare dello Chef",
+            "desc": "Pesce alla griglia con burro alle erbe. **🌟 Punto saliente della giornata**",
+            "price": "₹1380",
+            "ingredients": "Pesce, gamberi, burro, erbe, limone"
+          },
+          "jp": {
+            "name": "シェフ特製シーフード",
+            "desc": "グリルシーフードとハーブバター。**🌟 本日のハイライト**",
+            "price": "₹1380",
+            "ingredients": "魚、海老、バター、ハーブ、レモン"
+          }
+        }
+      },
+      {
         "id": "vegetarian-thali-chef",
         "image": "images/samosa.jpeg",
         "model": "assets/models/day_226_samosa.glb",

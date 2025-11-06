@@ -48,14 +48,17 @@
           <span></span>
         </button>
 
-        <!-- Brand -->
+        <!-- Brand (Clickable Logo + Text) -->
         <div class="brand">
-          <div class="logo">L</div>
-          <div class="brand-text">
-            <h1>The Leela</h1>
-            <p>Premium Dining</p>
-          </div>
+          <a href="index.html" class="brand-link">
+            <div class="logo">L</div>
+            <div class="brand-text">
+              <h1>The Leela</h1>
+              <p>Premium Dining</p>
+            </div>
+          </a>
         </div>
+
 
         <!-- Desktop Navigation -->
         <nav class="desktop-nav" id="desktopNav">
@@ -166,6 +169,16 @@
             <!-- Categories injected dynamically -->
           </div>
         </nav>
+        <!-- Mobile Search (Visible only on small screens) -->
+        <div class="mobile-search-container">
+          <div class="mobile-search">
+            <input type="text" id="mobileSearchInput" placeholder="Search dishes, ingredients..." />
+            <button id="mobileSearchBtn" aria-label="Search">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </div>
+
 
         <div class="menu-grid" id="menuArea"></div>
 
