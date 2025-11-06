@@ -60,10 +60,10 @@
         <!-- Desktop Navigation -->
         <nav class="desktop-nav" id="desktopNav">
           <div class="nav-group">
-            <button class="nav-btn active" data-section="menu">Menu</button>
-            <button class="nav-btn" data-section="specials">Specials</button>
-            <button class="nav-btn" data-section="ambience">Ambience</button>
-            <button class="nav-btn" data-section="story">Our Story</button>
+            <a href="index.html" class="nav-btn active">Menu</a>
+            <a href="specials.html" class="nav-btn">Specials</a>
+            <a href="ambience.html" class="nav-btn">Ambience</a>
+            <a href="story.html" class="nav-btn">Our Story</a>
           </div>
         </nav>
 
@@ -90,12 +90,6 @@
             <option value="it">IT</option>
             <option value="jp">JP</option>
           </select>
-
-          <!-- Favorites -->
-          <button class="favorites-btn" id="favoritesToggle" aria-label="View favorites">
-            <i class="far fa-heart"></i>
-            <span class="favorites-count">0</span>
-          </button>
         </div>
       </div>
 
@@ -147,26 +141,18 @@
   <!-- Mobile Navigation -->
   <nav class="mobile-nav" id="mobileNav">
     <div class="mobile-nav-content">
-      <button class="nav-item active" data-section="menu">
-        <i class="fas fa-utensils"></i>
-        <span>Menu</span>
-      </button>
-      <button class="nav-item" data-section="specials">
-        <i class="fas fa-star"></i>
-        <span>Specials</span>
-      </button>
-      <button class="nav-item" data-section="ambience">
-        <i class="fas fa-camera"></i>
-        <span>Ambience</span>
-      </button>
-      <button class="nav-item" data-section="story">
-        <i class="fas fa-book"></i>
-        <span>Our Story</span>
-      </button>
-      <button class="nav-item" data-section="reviews">
-        <i class="fas fa-comment"></i>
-        <span>Reviews</span>
-      </button>
+      <a href="index.html" class="nav-item active">
+        <i class="fas fa-utensils"></i><span>Menu</span>
+      </a>
+      <a href="specials.html" class="nav-item">
+        <i class="fas fa-star"></i><span>Specials</span>
+      </a>
+      <a href="ambience.html" class="nav-item">
+        <i class="fas fa-camera"></i><span>Ambience</span>
+      </a>
+      <a href="story.html" class="nav-item">
+        <i class="fas fa-book"></i><span>Our Story</span>
+      </a>
     </div>
   </nav>
 
@@ -175,19 +161,14 @@
     <!-- Menu Section -->
     <section id="menuSection" class="section active">
       <div class="container">
-        <!-- Category Navigation -->
         <nav class="category-nav" id="categoryNav">
           <div class="category-scroll">
-            <!-- Categories will be injected here -->
+            <!-- Categories injected dynamically -->
           </div>
         </nav>
 
-        <!-- Menu Grid -->
-        <div class="menu-grid" id="menuArea">
-          <!-- Menu items will be injected here -->
-        </div>
+        <div class="menu-grid" id="menuArea"></div>
 
-        <!-- Empty State -->
         <div class="empty-state" id="emptyState" style="display: none;">
           <i class="fas fa-search"></i>
           <h3>No items found</h3>
@@ -195,34 +176,8 @@
         </div>
       </div>
     </section>
-
-    <!-- Specials Section -->
-    <section id="specialsSection" class="section">
-      <div class="container">
-        <h2 class="section-title">Today's Specials</h2>
-        <div class="specials-grid" id="specialsGrid">
-          <!-- Specials will be injected here -->
-        </div>
-      </div>
-    </section>
-
-    <!-- Other sections will be added similarly -->
   </main>
 
-  <!-- Favorites Sidebar -->
-  <aside class="favorites-sidebar" id="favoritesSidebar">
-    <div class="sidebar-header">
-      <h3>Your Favorites</h3>
-      <button class="sidebar-close" id="favoritesClose">
-        <i class="fas fa-times"></i>
-      </button>
-    </div>
-    <div class="favorites-list" id="favoritesList">
-      <!-- Favorites will be injected here -->
-    </div>
-  </aside>
-
-  <!-- Modals -->
   <!-- Image Modal -->
   <div id="imageModal" class="modal" aria-hidden="true">
     <div class="modal-backdrop"></div>
@@ -234,9 +189,6 @@
 
         <div class="modal-media">
           <img id="modalImg" src="" alt="" loading="lazy">
-          <button class="modal-favorite" id="modalFavorite">
-            <i class="far fa-heart"></i>
-          </button>
         </div>
 
         <div class="modal-body">
@@ -253,24 +205,11 @@
               <h4>Ingredients</h4>
               <p id="modalIngredients"></p>
             </div>
-            <div class="detail-group">
-              <h4>Allergy Info</h4>
-              <p id="modalAllergy"></p>
-            </div>
-            <div class="detail-group">
-              <h4>Nutrition</h4>
-              <div class="nutrition-facts" id="modalNutrition">
-                <!-- Nutrition facts will be injected -->
-              </div>
-            </div>
           </div>
 
           <div class="modal-actions">
             <button class="btn btn-secondary" id="modalAR">
               <i class="fas fa-cube"></i>View in AR
-            </button>
-            <button class="btn btn-primary" id="modalAddFavorite">
-              <i class="far fa-heart"></i>Add to Favorites
             </button>
           </div>
         </div>
@@ -283,12 +222,10 @@
     <div class="modal-backdrop"></div>
     <div class="modal-container ar-modal">
       <div class="modal-content">
-        <!-- Close Button -->
         <button class="modal-close" id="closeModelModal">
           <i class="fas fa-times"></i>
         </button>
 
-        <!-- Model Viewer for AR -->
         <model-viewer id="mv" src="" alt="3D model" camera-controls auto-rotate ar
           ar-modes="webxr scene-viewer quick-look" ar-scale="auto" shadow-intensity="1"
           style="width:100%;height:70vh;border-radius:10px;position:relative;">
@@ -296,21 +233,8 @@
             👓 View in your space
           </button>
         </model-viewer>
-
-
       </div>
     </div>
-  </div>
-
-
-
-  <div class="ar-controls">
-    <button class="btn btn-primary" id="arViewButton">
-      <i class="fas fa-vr-cardboard"></i>View in Your Space
-    </button>
-  </div>
-  </div>
-  </div>
   </div>
 
   <!-- Toast -->
@@ -324,9 +248,15 @@
           <h4>The Leela</h4>
           <p>Premium dining experience with innovative digital menu</p>
           <div class="social-links">
-            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/theleela" target="_blank" aria-label="Instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.facebook.com/theleela" target="_blank" aria-label="Facebook">
+              <i class="fab fa-facebook"></i>
+            </a>
+            <a href="https://twitter.com/theleela" target="_blank" aria-label="Twitter">
+              <i class="fab fa-twitter"></i>
+            </a>
           </div>
         </div>
         <div class="footer-section">
@@ -346,7 +276,6 @@
         <a href="https://wa.me/918377861214" target="_blank" class="visuplate">
           Visuplate by G&amp;H
         </a>
-
       </div>
     </div>
   </footer>
