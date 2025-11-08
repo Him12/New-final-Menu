@@ -10,8 +10,8 @@
     "items": [
       {
         "id": "mint-mojito-virgin",
-        "image": "images/Virgin_Mint_Mojito.jpg",
-        "model": "assets/models/burger_low_poly.glb",
+        "image": "images/virgin mojito.jpeg",
+        "model": "assets/models/Virgin Mint Mojito.glb",
         "video": "videos/burger video.mp4",
         "dietaryFlags": [
           "VEG",
@@ -40,8 +40,8 @@
       },
       {
         "id": "tropical-sunrise",
-        "image": "https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?auto=format&fit=crop&w=900&q=80",
-        "model": "assets/models/cup_of_cappuccino.glb",
+        "image": "images/Tropical Sunrise.jpeg",
+        "model": "assets/models/Tropical Sunrise.glb",
         "video": "videos/Hamburger.mp4",
         "dietaryFlags": [
           "VEG",
@@ -70,8 +70,8 @@
       },
       {
         "id": "cucumber-cooler",
-        "image": "images/sandwich.jpg",
-        "model": "assets/models/cup_of_cappuccino.glb",
+        "image": "images/Cucumber Cooler.jpg",
+        "model": "assets/models/Cucumber Cooler.glb",
         "video": "videos/Sandwich.mp4",
         "dietaryFlags": [
           "VEG",
@@ -100,8 +100,8 @@
       },
       {
         "id": "crispy-calamari",
-        "image": "images/Virgin_Mint_Mojito.jpg",
-        "model": "assets/models/burger_low_poly.glb",
+        "image": "images/Crispy Calamari.webp",
+        "model": "assets/models/Crispy Calamari.glb",
         "video": "videos/Sandwich.mp4",
         "dietaryFlags": [
           "NON_VEG",
@@ -130,8 +130,8 @@
       },
       {
         "id": "chicken-65",
-        "image": "images/samosa.jpeg",
-        "model": "assets/models/day_226_samosa.glb",
+        "image": "images/Chicken 65.jpg",
+        "model": "assets/models/chicken-65.glb",
         "dietaryFlags": [
           "NON_VEG",
           "GLUTEN_FREE"
@@ -159,8 +159,8 @@
       },
       {
         "id": "spicy-paneer-kebab",
-        "image": "images/samosa.jpeg",
-        "model": "assets/models/day_226_samosa.glb",
+        "image": "images/Spicy Paneer Kebab.jpg",
+        "model": "assets/models/Spicy Paneer Kebab.glb",
         "video": "videos/Sandwich.mp4",
         "dietaryFlags": [
           "VEG",
@@ -189,8 +189,8 @@
       },
       {
         "id": "signature-tandoori-platter",
-        "image": "images/samosa.jpeg",
-        "model": "assets/models/day_226_samosa.glb",
+        "image": "images/Signature Tandoori Platter.webp",
+        "model": "assets/models/Signature Tandoni Platter.glb",
         "dietaryFlags": [
           "NON_VEG"
         ],
@@ -217,8 +217,8 @@
       },
       {
         "id": "slow-cooked-short-ribs",
-        "image": "images/samosa.jpeg",
-        "model": "assets/models/day_226_samosa.glb",
+        "image": "images/Slow Cooked Short Ribs.jpeg",
+        "model": "assets/models/Slow Cooked Short Ribs.glb",
         "video": "videos/Sandwich.mp4",
         "dietaryFlags": [
           "NON_VEG"
@@ -246,8 +246,8 @@
       },
       {
         "id": "sushi-assortment",
-        "image": "images/samosa.jpeg",
-        "model": "assets/models/day_226_samosa.glb",
+        "image": "images/Sushi Assortment.webp",
+        "model": "assets/models/Sushi Assortment.glb",
         "dietaryFlags": [
           "NON_VEG",
           "GLUTEN_FREE",
@@ -276,8 +276,8 @@
       },
       {
         "id": "yakitori-skewers",
-        "image": "images/samosa.jpeg",
-        "model": "assets/models/day_226_samosa.glb",
+        "image": "images/Yakitori Skewers.jpg",
+        "model": "assets/models/Yakitori Skewers.glb",
         "video": "videos/Sandwich.mp4",
         "dietaryFlags": [
           "NON_VEG"
@@ -305,8 +305,8 @@
       },
       {
         "id": "chef-special-seafood",
-        "image": "images/samosa.jpeg",
-        "model": "assets/models/day_226_samosa.glb",
+        "image": "images/Chef Special Seafood.jpg",
+        "model": "assets/models/Chef Special Seafood.glb",
         "dietaryFlags": [
           "NON_VEG",
           "GLUTEN_FREE"
@@ -334,8 +334,8 @@
       },
       {
         "id": "vegetarian-thali-chef",
-        "image": "images/samosa.jpeg",
-        "model": "assets/models/day_226_samosa.glb",
+        "image": "images/Vegetarian Thali (Chef).webp",
+        "model": "assets/models/Vegetarian Thali (Chef).glb",
         "dietaryFlags": [
           "VEG"
         ],
@@ -362,37 +362,38 @@
       },
       {
         "id": "Samosa",
-        "image": "images/samosa.jpeg",
-        "model": "assets/models/day_226_samosa.glb",
+        "image": "images/Samosa new.jpeg",
+        "model": "assets/models/Samosa.glb",
         "dietaryFlags": [
           "VEG",
           "ALCOHOL_FREE",
           "NUTS_FREE"
         ],
         "dietaryColor": "green",
-        "spiceLevel": 0,
+        "spiceLevel": 1,
         "isChefPick": false,
         "isDailySpecial": true,
-        "prepTime": 5,
+        "prepTime": 10,
         "nutrition": {
-          "calories": 120,
-          "sugar": "18g",
-          "carbs": "22g"
+          "calories": 150,
+          "protein": "3g",
+          "carbs": "20g",
+          "fat": "6g"
         },
-        "allergyInfo": "Contains no common allergens",
+        "allergyInfo": "Contains gluten",
         "translations": {
           "en": {
-            "name": "Virgin Mint Mojito",
-            "desc": "Fresh mint, lime, soda, cane sugar. **Refreshing summer drink**",
-            "price": "₹220",
-            "ingredients": "Mint, lime, soda, sugar"
+            "name": "Samosa",
+            "desc": "Crispy pastry filled with spiced potatoes and peas. **✨ Popular snack**",
+            "price": "₹120",
+            "ingredients": "Flour, potatoes, peas, spices, oil"
           }
         }
       },
       {
         "id": "Sandwich",
-        "image": "images/sandwich.jpg",
-        "model": "assets/models/sandwich.glb",
+        "image": "images/Vegetable Sandwich.jpg",
+        "model": "assets/models/Vegetable Sandwich.glb",
         "dietaryFlags": [
           "VEG",
           "ALCOHOL_FREE",
@@ -402,19 +403,20 @@
         "spiceLevel": 0,
         "isChefPick": false,
         "isDailySpecial": true,
-        "prepTime": 4,
+        "prepTime": 8,
         "nutrition": {
-          "calories": 80,
-          "sugar": "8g",
-          "carbs": "12g"
+          "calories": 280,
+          "protein": "12g",
+          "carbs": "35g",
+          "fat": "10g"
         },
-        "allergyInfo": "Contains no common allergens",
+        "allergyInfo": "Contains gluten, dairy",
         "translations": {
           "en": {
-            "name": "Sandwich",
-            "desc": "Cucumber, mint, lime, tonic. **Low-calorie refreshment**",
-            "price": "₹210",
-            "ingredients": "Cucumber, mint, lime, tonic"
+            "name": "Vegetable Sandwich",
+            "desc": "Fresh vegetables with herb mayo on multigrain bread. **🥪 Healthy choice**",
+            "price": "₹180",
+            "ingredients": "Bread, cucumber, tomato, lettuce, mayo, cheese"
           }
         }
       }
@@ -431,8 +433,8 @@
     "items": [
       {
         "id": "mint-mojito-virgin",
-        "image": "images/Virgin_Mint_Mojito.jpg",
-        "model": "assets/models/burger_low_poly.glb",
+        "image": "images/virgin mojito.jpeg",
+        "model": "assets/models/Virgin Mint Mojito.glb",
         "dietaryFlags": [
           "VEG",
           "ALCOHOL_FREE",
@@ -484,8 +486,8 @@
       },
       {
         "id": "tropical-sunrise",
-        "image": "https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?auto=format&fit=crop&w=900&q=80",
-        "model": "assets/models/cup_of_cappuccino.glb",
+        "image": "images/Tropical Sunrise.jpeg",
+        "model": "assets/models/Tropical Sunrise.glb",
         "dietaryFlags": [
           "VEG",
           "ALCOHOL_FREE",
@@ -537,8 +539,8 @@
       },
       {
         "id": "cucumber-cooler",
-        "image": "images/sandwich.jpg",
-        "model": "assets/models/cup_of_cappuccino.glb",
+        "image": "images/Cucumber Cooler.jpg",
+        "model": "assets/models/Cucumber Cooler.glb",
         "dietaryFlags": [
           "VEG",
           "ALCOHOL_FREE",
@@ -601,8 +603,8 @@
     "items": [
       {
         "id": "crispy-calamari",
-        "image": "images/Virgin_Mint_Mojito.jpg",
-        "model": "assets/models/burger_low_poly.glb",
+        "image": "images/Crispy Calamari.webp",
+        "model": "assets/models/Crispy Calamari.glb",
         "dietaryFlags": [
           "NON_VEG",
           "NUTS_FREE"
@@ -654,8 +656,8 @@
       },
       {
         "id": "chicken-65",
-        "image": "images/samosa.jpeg",
-        "model": "assets/models/day_226_samosa.glb",
+        "image": "images/Chicken 65.jpg",
+        "model": "assets/models/chicken-65.glb",
         "dietaryFlags": [
           "NON_VEG",
           "GLUTEN_FREE"
@@ -707,8 +709,8 @@
       },
       {
         "id": "spicy-paneer-kebab",
-        "image": "images/samosa.jpeg",
-        "model": "assets/models/day_226_samosa.glb",
+        "image": "images/Spicy Paneer Kebab.jpg",
+        "model": "assets/models/Spicy Paneer Kebab.glb",
         "dietaryFlags": [
           "VEG",
           "GLUTEN_FREE"
@@ -771,8 +773,8 @@
     "items": [
       {
         "id": "signature-tandoori-platter",
-        "image": "images/samosa.jpeg",
-        "model": "assets/models/day_226_samosa.glb",
+        "image": "images/Signature Tandoori Platter.webp",
+        "model": "assets/models/Signature Tandoni Platter.glb",
         "dietaryFlags": [
           "NON_VEG"
         ],
@@ -803,7 +805,7 @@
           },
           "es": {
             "name": "Plato Tandoori Firma",
-            "desc": "Surtido de carnes tandoori y kebabs. **🏆 Obra maestra del chef**",
+            "desc": "Surtido de carnes tandoori et kebabs. **🏆 Obra maestra del chef**",
             "price": "₹1290",
             "ingredients": "Pollo, cordero, especias, yogur, hierbas"
           },
@@ -823,8 +825,8 @@
       },
       {
         "id": "slow-cooked-short-ribs",
-        "image": "images/samosa.jpeg",
-        "model": "assets/models/day_226_samosa.glb",
+        "image": "images/Slow Cooked Short Ribs.jpeg",
+        "model": "assets/models/Slow Cooked Short Ribs.glb",
         "dietaryFlags": [
           "NON_VEG"
         ],
@@ -886,8 +888,8 @@
     "items": [
       {
         "id": "sushi-assortment",
-        "image": "images/samosa.jpeg",
-        "model": "assets/models/day_226_samosa.glb",
+        "image": "images/Sushi Assortment.webp",
+        "model": "assets/models/Sushi Assortment.glb",
         "dietaryFlags": [
           "NON_VEG",
           "GLUTEN_FREE",
@@ -920,7 +922,7 @@
           },
           "es": {
             "name": "Surtido de Sushi",
-            "desc": "Nigiri y rolls variados. **🎌 Japonés auténtico**",
+            "desc": "Nigiri et rolls variados. **🎌 Japonés auténtico**",
             "price": "₹850",
             "ingredients": "Arroz, pescado, alga, soja, wasabi"
           },
@@ -940,8 +942,8 @@
       },
       {
         "id": "yakitori-skewers",
-        "image": "images/samosa.jpeg",
-        "model": "assets/models/day_226_samosa.glb",
+        "image": "images/Yakitori Skewers.jpg",
+        "model": "assets/models/Yakitori Skewers.glb",
         "dietaryFlags": [
           "NON_VEG"
         ],
@@ -1003,8 +1005,8 @@
     "items": [
       {
         "id": "chef-special-seafood",
-        "image": "images/samosa.jpeg",
-        "model": "assets/models/day_226_samosa.glb",
+        "image": "images/Chef Special Seafood.jpg",
+        "model": "assets/models/Chef Special Seafood.glb",
         "video": "videos/Hamburger.mp4",
         "dietaryFlags": [
           "NON_VEG",
@@ -1043,169 +1045,7 @@
           },
           "it": {
             "name": "Specialità di Mare dello Chef",
-            "desc": "Pesce alla griglia con burro alle erbe. **🌟 Punto saliente della giornata**",
-            "price": "₹1380",
-            "ingredients": "Pesce, gamberi, burro, erbe, limone"
-          },
-          "jp": {
-            "name": "シェフ特製シーフード",
-            "desc": "グリルシーフードとハーブバター。**🌟 本日のハイライト**",
-            "price": "₹1380",
-            "ingredients": "魚、海老、バター、ハーブ、レモン"
-          }
-        }
-      },
-      {
-        "id": "chef-special-seafood",
-        "image": "images/samosa.jpeg",
-        "model": "assets/models/day_226_samosa.glb",
-        "video": "videos/burger video.mp4",
-        "dietaryFlags": [
-          "NON_VEG",
-          "GLUTEN_FREE"
-        ],
-        "dietaryColor": "red",
-        "spiceLevel": 1,
-        "isChefPick": true,
-        "isDailySpecial": true,
-        "prepTime": 25,
-        "nutrition": {
-          "calories": 380,
-          "protein": "35g",
-          "carbs": "8g",
-          "fat": "22g"
-        },
-        "allergyInfo": "Contains seafood, dairy",
-        "translations": {
-          "en": {
-            "name": "Chef Special Seafood",
-            "desc": "Grilled catch, herbed butter, seasonal sides. **🌟 Today's highlight**",
-            "price": "₹1380",
-            "ingredients": "Fish, prawns, butter, herbs, lemon"
-          },
-          "fr": {
-            "name": "Spécialité Fruits de Mer",
-            "desc": "Poisson grillé, beurre aux herbes. **🌟 Point fort du jour**",
-            "price": "₹1380",
-            "ingredients": "Poisson, crevettes, beurre, herbes, citron"
-          },
-          "es": {
-            "name": "Especial Mariscos Chef",
-            "desc": "Pescado a la parrilla con mantequilla de hierbas. **🌟 Destacado del día**",
-            "price": "₹1380",
-            "ingredients": "Pescado, camarones, mantequilla, hierbas, limón"
-          },
-          "it": {
-            "name": "Specialità di Mare dello Chef",
-            "desc": "Pesce alla griglia con burro alle erbe. **🌟 Punto saliente della giornata**",
-            "price": "₹1380",
-            "ingredients": "Pesce, gamberi, burro, erbe, limone"
-          },
-          "jp": {
-            "name": "シェフ特製シーフード",
-            "desc": "グリルシーフードとハーブバター。**🌟 本日のハイライト**",
-            "price": "₹1380",
-            "ingredients": "魚、海老、バター、ハーブ、レモン"
-          }
-        }
-      },
-      {
-        "id": "chef-special-seafood",
-        "image": "images/samosa.jpeg",
-        "model": "assets/models/day_226_samosa.glb",
-        "video": "videos/burger video.mp4",
-        "dietaryFlags": [
-          "NON_VEG",
-          "GLUTEN_FREE"
-        ],
-        "dietaryColor": "red",
-        "spiceLevel": 1,
-        "isChefPick": true,
-        "isDailySpecial": true,
-        "prepTime": 25,
-        "nutrition": {
-          "calories": 380,
-          "protein": "35g",
-          "carbs": "8g",
-          "fat": "22g"
-        },
-        "allergyInfo": "Contains seafood, dairy",
-        "translations": {
-          "en": {
-            "name": "Chef Special Seafood",
-            "desc": "Grilled catch, herbed butter, seasonal sides. **🌟 Today's highlight**",
-            "price": "₹1380",
-            "ingredients": "Fish, prawns, butter, herbs, lemon"
-          },
-          "fr": {
-            "name": "Spécialité Fruits de Mer",
-            "desc": "Poisson grillé, beurre aux herbes. **🌟 Point fort du jour**",
-            "price": "₹1380",
-            "ingredients": "Poisson, crevettes, beurre, herbes, citron"
-          },
-          "es": {
-            "name": "Especial Mariscos Chef",
-            "desc": "Pescado a la parrilla con mantequilla de hierbas. **🌟 Destacado del día**",
-            "price": "₹1380",
-            "ingredients": "Pescado, camarones, mantequilla, hierbas, limón"
-          },
-          "it": {
-            "name": "Specialità di Mare dello Chef",
-            "desc": "Pesce alla griglia con burro alle erbe. **🌟 Punto saliente della giornata**",
-            "price": "₹1380",
-            "ingredients": "Pesce, gamberi, burro, erbe, limone"
-          },
-          "jp": {
-            "name": "シェフ特製シーフード",
-            "desc": "グリルシーフードとハーブバター。**🌟 本日のハイライト**",
-            "price": "₹1380",
-            "ingredients": "魚、海老、バター、ハーブ、レモン"
-          }
-        }
-      },
-      {
-        "id": "chef-special-seafood",
-        "image": "images/samosa.jpeg",
-        "model": "assets/models/day_226_samosa.glb",
-        "video": "videos/burger video.mp4",
-        "dietaryFlags": [
-          "NON_VEG",
-          "GLUTEN_FREE"
-        ],
-        "dietaryColor": "red",
-        "spiceLevel": 1,
-        "isChefPick": true,
-        "isDailySpecial": true,
-        "prepTime": 25,
-        "nutrition": {
-          "calories": 380,
-          "protein": "35g",
-          "carbs": "8g",
-          "fat": "22g"
-        },
-        "allergyInfo": "Contains seafood, dairy",
-        "translations": {
-          "en": {
-            "name": "Chef Special Seafood",
-            "desc": "Grilled catch, herbed butter, seasonal sides. **🌟 Today's highlight**",
-            "price": "₹1380",
-            "ingredients": "Fish, prawns, butter, herbs, lemon"
-          },
-          "fr": {
-            "name": "Spécialité Fruits de Mer",
-            "desc": "Poisson grillé, beurre aux herbes. **🌟 Point fort du jour**",
-            "price": "₹1380",
-            "ingredients": "Poisson, crevettes, beurre, herbes, citron"
-          },
-          "es": {
-            "name": "Especial Mariscos Chef",
-            "desc": "Pescado a la parrilla con mantequilla de hierbas. **🌟 Destacado del día**",
-            "price": "₹1380",
-            "ingredients": "Pescado, camarones, mantequilla, hierbas, limón"
-          },
-          "it": {
-            "name": "Specialità di Mare dello Chef",
-            "desc": "Pesce alla griglia con burro alle erbe. **🌟 Punto saliente della giornata**",
+            "desc": "Pesce alla griglia con burro alle erbes. **🌟 Punto saliente della giornata**",
             "price": "₹1380",
             "ingredients": "Pesce, gamberi, burro, erbe, limone"
           },
@@ -1219,8 +1059,8 @@
       },
       {
         "id": "vegetarian-thali-chef",
-        "image": "images/samosa.jpeg",
-        "model": "assets/models/day_226_samosa.glb",
+        "image": "images/Vegetarian Thali (Chef).webp",
+        "model": "assets/models/Vegetarian Thali (Chef).glb",
         "video": "videos/burger video.mp4",
         "dietaryFlags": [
           "VEG"
@@ -1275,69 +1115,70 @@
   "Naya maal": {
     "label": {
       "en": "New Launched Menu",
-      "fr": "naya maal",
-      "es": "naya maal",
-      "it": "naya maal",
-      "jp": "モクテル"
+      "fr": "Nouveau Menu Lancé",
+      "es": "Nuevo Menú Lanzado",
+      "it": "Nuovo Menu Lanciato",
+      "jp": "新発売メニュー"
     },
     "items": [
       {
         "id": "Samosa",
-        "image": "images/samosa.jpeg",
-        "model": "assets/models/day_226_samosa.glb",
+        "image": "images/Samosa new.jpeg",
+        "model": "assets/models/Samosa.glb",
         "dietaryFlags": [
           "VEG",
           "ALCOHOL_FREE",
           "NUTS_FREE"
         ],
         "dietaryColor": "green",
-        "spiceLevel": 0,
+        "spiceLevel": 1,
         "isChefPick": false,
         "isDailySpecial": true,
-        "prepTime": 5,
+        "prepTime": 10,
         "nutrition": {
-          "calories": 120,
-          "sugar": "18g",
-          "carbs": "22g"
+          "calories": 150,
+          "protein": "3g",
+          "carbs": "20g",
+          "fat": "6g"
         },
-        "allergyInfo": "Contains no common allergens",
+        "allergyInfo": "Contains gluten",
         "translations": {
           "en": {
-            "name": "Virgin Mint Mojito",
-            "desc": "Fresh mint, lime, soda, cane sugar. **Refreshing summer drink**",
-            "price": "₹220",
-            "ingredients": "Mint, lime, soda, sugar"
+            "name": "Samosa",
+            "desc": "Crispy pastry filled with spiced potatoes and peas. **✨ Popular snack**",
+            "price": "₹120",
+            "ingredients": "Flour, potatoes, peas, spices, oil"
           },
           "fr": {
-            "name": "Mojito Menthe Sans Alcool",
-            "desc": "Menthe fraîche, citron vert, soda. **Boisson estivale rafraîchissante**",
-            "price": "₹220",
-            "ingredients": "Menthe, citron vert, soda, sucre"
+            "name": "Samosa",
+            "desc": "Pâte croustillante farcie de pommes de terre épicées et de pois. **✨ Snack populaire**",
+            "price": "₹120",
+            "ingredients": "Farine, pommes de terre, pois, épices, huile"
           },
           "es": {
-            "name": "Mojito de Menta Sin Alcohol",
-            "desc": "Menta fresca, lima, soda. **Bebida refrescante de verano**",
-            "price": "₹220",
-            "ingredients": "Menta, lima, soda, azúcar"
+            "name": "Samosa",
+            "desc": "Masa crujiente rellena de patatas especiadas et guisantes. **✨ Aperitivo popular**",
+            "price": "₹120",
+            "ingredients": "Harina, patatas, guisantes, especias, aceite"
           },
           "it": {
-            "name": "Virgin Mojito alla Menta",
-            "desc": "Menta fresca, lime, soda. **Bevanda rinfrescante estiva**",
-            "price": "₹220",
-            "ingredients": "Menta, lime, soda, zucchero"
+            "name": "Samosa",
+            "desc": "Pasta croccante ripiena di patate speziate e piselli. **✨ Spuntino popolare**",
+            "price": "₹120",
+            "ingredients": "Farina, patate, piselli, spezie, olio"
           },
           "jp": {
-            "name": "バージンミントモヒート",
-            "desc": "フレッシュミントとライムの爽やかソーダ。**さわやかな夏のドリンク**",
-            "price": "₹220",
-            "ingredients": "ミント、ライム、ソーダ、砂糖"
+            "name": "サモサ",
+            "desc": "スパイス効かせたポテトと豆のカリカリパイ。**✨ 人気のスナック**",
+            "price": "₹120",
+            "ingredients": "小麦粉、じゃがいも、豆、スパイス、油"
           }
         }
       },
       {
         "id": "Sandwich",
-        "image": "images/sandwich.jpg",
-        "model": "assets/models/sandwich.glb",
+        "image": "images/Vegetable Sandwich.jpg",
+        "model": "assets/models/Vegetable Sandwich.glb",
         "dietaryFlags": [
           "VEG",
           "ALCOHOL_FREE",
@@ -1347,43 +1188,44 @@
         "spiceLevel": 0,
         "isChefPick": false,
         "isDailySpecial": true,
-        "prepTime": 4,
+        "prepTime": 8,
         "nutrition": {
-          "calories": 80,
-          "sugar": "8g",
-          "carbs": "12g"
+          "calories": 280,
+          "protein": "12g",
+          "carbs": "35g",
+          "fat": "10g"
         },
-        "allergyInfo": "Contains no common allergens",
+        "allergyInfo": "Contains gluten, dairy",
         "translations": {
           "en": {
-            "name": "Sandwich",
-            "desc": "Cucumber, mint, lime, tonic. **Low-calorie refreshment**",
-            "price": "₹210",
-            "ingredients": "Cucumber, mint, lime, tonic"
+            "name": "Vegetable Sandwich",
+            "desc": "Fresh vegetables with herb mayo on multigrain bread. **🥪 Healthy choice**",
+            "price": "₹180",
+            "ingredients": "Bread, cucumber, tomato, lettuce, mayo, cheese"
           },
           "fr": {
-            "name": "Refroidisseur Concombre",
-            "desc": "Concombre, menthe, citron vert, tonic. **Rafraîchissement faible en calories**",
-            "price": "₹210",
-            "ingredients": "Concombre, menthe, lime, tonic"
+            "name": "Sandwich aux Légumes",
+            "desc": "Légumes frais avec mayo aux herbes sur pain multigrains. **🥪 Choix santé**",
+            "price": "₹180",
+            "ingredients": "Pain, concombre, tomate, laitue, mayo, fromage"
           },
           "es": {
-            "name": "Refrescante de Pepino",
-            "desc": "Pepino, menta, lima, tónica. **Refresco bajo en calorías**",
-            "price": "₹210",
-            "ingredients": "Pepino, menta, lima, tónica"
+            "name": "Sándwich de Verduras",
+            "desc": "Verduras frescas con mayonesa de hierbas en pan multicereal. **🥪 Opción saludable**",
+            "price": "₹180",
+            "ingredients": "Pan, pepino, tomate, lechuga, mayonesa, queso"
           },
           "it": {
-            "name": "Cucumber Cooler",
-            "desc": "Cetriolo, menta, lime, tonica. **Rinfrescante a basso contenuto calorico**",
-            "price": "₹210",
-            "ingredients": "Cetriolo, menta, lime, tonica"
+            "name": "Panino Vegetariano",
+            "desc": "Verdure fresche con maionese alle erbe su pane multicereale. **🥪 Scelta salutare**",
+            "price": "₹180",
+            "ingredients": "Pane, cetriolo, pomodoro, lattuga, maionese, formaggio"
           },
           "jp": {
-            "name": "キュウリクーラー",
-            "desc": "キュウリとミント、ライムのトニック。**低カロリーリフレッシュ**",
-            "price": "₹210",
-            "ingredients": "きゅうり、ミント、ライム、トニック"
+            "name": "ベジタブルサンドイッチ",
+            "desc": "ハーブマヨネーズと新鮮野菜のマルチグレインパン。**🥪 ヘルシーチョイス**",
+            "price": "₹180",
+            "ingredients": "パン、きゅうり、トマト、レタス、マヨネーズ、チーズ"
           }
         }
       }
