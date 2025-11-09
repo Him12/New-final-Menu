@@ -155,18 +155,23 @@ body {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border);
-  transition: var(--transition);
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  transition: background 0.4s ease, box-shadow 0.4s ease;
 }
 
 [data-theme="dark"] .header {
-  background: rgba(26, 32, 44, 0.95);
+  background: rgba(26, 26, 26, 0.7);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .header.scrolled {
-  box-shadow: var(--shadow);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.95);
+}
+[data-theme="dark"] .header.scrolled {
+  background: rgba(24, 24, 24, 0.95);
 }
 
 .header-content {
@@ -181,35 +186,46 @@ body {
 .brand {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.8rem;
 }
 
 .logo {
-  width: 40px;
-  height: 40px;
-  background: var(--gradient-primary);
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+  color: white;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
   font-family: var(--font-serif);
-  font-weight: bold;
-  font-size: 1.25rem;
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 10px rgba(183, 110, 121, 0.35);
+  transition: transform 0.3s ease;
+}
+.logo:hover {
+  transform: rotate(8deg) scale(1.05);
 }
 
 .brand-text h1 {
   font-family: var(--font-serif);
-  font-size: 1.5rem;
+  font-size: 1.6rem;
+  font-weight: 700;
   color: var(--text);
-  margin-bottom: 0.125rem;
+  transition: color 0.3s ease;
+}
+
+.brand-text h1:hover {
+  color: var(--primary);
 }
 
 .brand-text p {
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   color: var(--text-light);
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.6px;
 }
 
 /* Desktop Navigation */
@@ -222,31 +238,36 @@ body {
 .nav-group {
   display: flex;
   gap: 0.5rem;
-  background: var(--bg-secondary);
-  padding: 0.5rem;
-  border-radius: var(--border-radius);
+  background: rgba(246, 246, 246, 0.6);
+  padding: 0.4rem;
+  border-radius: 14px;
+  backdrop-filter: blur(10px);
+}
+[data-theme="dark"] .nav-group {
+  background: rgba(40, 40, 40, 0.6);
 }
 
 .nav-btn {
-  padding: 0.75rem 1.5rem;
+  position: relative;
+  padding: 0.75rem 1.4rem;
   border: none;
   background: transparent;
   color: var(--text-light);
-  border-radius: 8px;
   font-weight: 500;
-  transition: var(--transition);
+  border-radius: 10px;
   cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .nav-btn:hover {
   color: var(--text);
-  background: var(--bg);
+  background: rgba(255, 255, 255, 0.5);
 }
 
 .nav-btn.active {
-  background: var(--primary);
-  color: white;
-  box-shadow: var(--shadow-sm);
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: #fff;
+  box-shadow: 0 4px 10px rgba(183, 110, 121, 0.25);
 }
 
 /* Header Actions */
@@ -261,23 +282,26 @@ body {
   position: relative;
 }
 
-.search-btn {
-  width: 40px;
-  height: 40px;
-  border: none;
-  background: var(--bg-secondary);
+.search-btn, .favorites-btn {
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
+  background: rgba(255, 255, 255, 0.6);
+  color: var(--text-light);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--text-light);
-  cursor: pointer;
-  transition: var(--transition);
+  border: none;
+  transition: all 0.3s ease;
 }
 
 .search-btn:hover {
   background: var(--primary);
-  color: white;
+  color: #fff;
+}
+[data-theme="dark"] .search-btn
+ {
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .search-expandable {
@@ -720,10 +744,12 @@ body {
   overflow: hidden;
 }
 
+
 .card-img {
   width: 100%;
-  height: 100%;
+  height: 180px;
   object-fit: cover;
+  object-position: center; /* Focus on center of image */
   transition: var(--transition-slow);
 }
 
@@ -1027,6 +1053,32 @@ body {
   visibility: hidden;
   transition: var(--transition-slow);
 }
+/* === MICRO MOTION WHEN OPENING ITEM === */
+.menu-card {
+  transform-origin: center;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.menu-card:active {
+  transform: scale(0.97);
+}
+
+.menu-card.clicked {
+  animation: cardTap 0.4s ease forwards;
+}
+
+@keyframes cardTap {
+  0% {
+    transform: scale(0.97) rotate(0deg);
+  }
+  50% {
+    transform: scale(1.03) rotate(0.3deg);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 
 .modal[aria-hidden="false"] {
   opacity: 1;
@@ -1196,6 +1248,64 @@ body {
   gap: 1rem;
 }
 
+/* === ULTRA-PREMIUM MODAL ANIMATION === */
+
+.modal {
+  transition: background 0.6s ease, opacity 0.4s ease;
+}
+
+/* Backdrop behaves like ambient dimming */
+.modal-backdrop {
+  opacity: 0;
+  background: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(2px);
+  transition: all 0.6s ease;
+}
+
+.modal[aria-hidden="false"] .modal-backdrop {
+  opacity: 1;
+  backdrop-filter: blur(6px);
+}
+
+/* Modal box itself — elegant entrance */
+.modal-container {
+  opacity: 0;
+  transform: translateY(30px) scale(0.985);
+  filter: drop-shadow(0 10px 20px rgba(0,0,0,0.2));
+  transition:
+    opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.modal[aria-hidden="false"] .modal-container {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: drop-shadow(0 20px 40px rgba(0,0,0,0.25));
+}
+
+/* Add a soft highlight halo for luxe feel */
+.modal-content {
+  animation: softGlow 1.2s ease forwards;
+}
+
+@keyframes softGlow {
+  0% {
+    box-shadow: 0 0 0 rgba(183, 110, 121, 0);
+  }
+  100% {
+    box-shadow: 0 8px 40px rgba(183, 110, 121, 0.2);
+  }
+}
+
+/* Button feedback - subtle press */
+.btn:active {
+  transform: scale(0.97);
+  filter: brightness(0.95);
+  transition: transform 0.1s ease, filter 0.1s ease;
+}
+
+
 /* ========== VIDEO MODAL SPECIFIC STYLES ========== */
 #videoModal .modal-container {
   width: 70%;
@@ -1282,27 +1392,122 @@ body {
 }
 
 /* ========== FOOTER ========== */
+/* ========== PREMIUM RESPONSIVE FOOTER (LIGHT + DARK) ========== */
 .footer {
-  margin-bottom: 4rem;
+  background: var(--footer-bg);
+  color: var(--footer-text);
+  padding: 3rem 1rem 2rem;
+  border-top: 1px solid var(--footer-border);
+  transition: background 0.4s ease, color 0.4s ease;
 }
 
 .footer-content {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-  margin-bottom: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2.5rem;
+  margin-bottom: 2.5rem;
 }
 
 .footer-section h4 {
   font-family: var(--font-serif);
-  font-size: 1.25rem;
+  font-size: 1.2rem;
+  font-weight: 600;
   margin-bottom: 1rem;
-  color: var(--text);
+  color: var(--footer-heading);
 }
 
-.footer-section p {
-  color: var(--text-light);
-  margin-bottom: 0.5rem;
+.footer-section p,
+.footer-section a {
+  color: var(--footer-text-light);
+  font-size: 0.95rem;
+  margin-bottom: 0.6rem;
+  line-height: 1.6;
+  display: block;
+  transition: color 0.3s ease;
+}
+
+.footer-section a:hover {
+  color: var(--primary);
+}
+
+/* Social icons */
+.footer .social-links {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.footer .social-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--footer-icon-bg);
+  color: var(--footer-icon-color);
+  transition: all 0.3s ease;
+}
+
+.footer .social-links a:hover {
+  background: var(--primary);
+  color: #fff;
+}
+
+/* Footer bottom */
+.footer-bottom {
+  border-top: 1px solid var(--footer-border);
+  padding-top: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-size: 0.9rem;
+  color: var(--footer-text-light);
+}
+
+.visuplate {
+  color: var(--primary);
+  font-weight: 600;
+  font-family: var(--font-serif);
+}
+
+/* Theme variables */
+:root {
+  --footer-bg: linear-gradient(135deg, #fff8f9, #fff3f5);
+  --footer-border: rgba(183, 110, 121, 0.2);
+  --footer-text: #2c2c2c;
+  --footer-text-light: #666;
+  --footer-heading: #b76e79;
+  --footer-icon-bg: #f3dfe1;
+  --footer-icon-color: #b76e79;
+}
+
+[data-theme="dark"] {
+  --footer-bg: linear-gradient(135deg, #1b1b1b, #2b2b2b);
+  --footer-border: rgba(255, 255, 255, 0.08);
+  --footer-text: #eaeaea;
+  --footer-text-light: #aaa;
+  --footer-heading: #f0c0c6;
+  --footer-icon-bg: #3a3a3a;
+  --footer-icon-color: #f0c0c6;
+}
+
+/* Mobile layout improvements */
+@media (max-width: 768px) {
+  .footer-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .footer .social-links {
+    justify-content: center;
+  }
+
+  .footer-bottom {
+    justify-content: center;
+    text-align: center;
+  }
 }
 
 .social-links {
@@ -2979,6 +3184,122 @@ body {
   box-shadow: 0 0 8px rgba(183, 110, 121, 0.4);
 }
 
+/* === FIX MENU IMAGE CROPPING & MOBILE RESPONSIVENESS === */
 
+/* Make images fully visible inside cards */
+.menu-card .card-img {
+  width: 100%;
+  height: 250px; /* Taller frame for drinks */
+  object-fit: contain; /* No cropping */
+  background-color: #fff; /* So transparent edges look clean */
+  border-bottom: 1px solid var(--border);
+}
 
-/* ========== MERGED FILE END ========== */
+/* Slight hover zoom without distortion */
+.menu-card:hover .card-img {
+  transform: scale(1.03);
+}
+
+/* Ensure modal images scale properly */
+.modal-media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg);
+  height: auto;
+  max-height: 80vh;
+  overflow: hidden;
+  padding: 1rem;
+}
+
+.modal-media img {
+  width: 100%;
+  height: auto;
+  max-height: 70vh;
+  object-fit: contain;
+  border-radius: var(--border-radius-lg);
+}
+
+/* Fix modal body spacing below image */
+.modal-body {
+  padding: 1.5rem 2rem;
+}
+
+/* === RESPONSIVE FIX FOR PHONES === */
+@media (max-width: 768px) {
+  .menu-card .card-img {
+    height: auto;
+    max-height: 220px;
+  }
+
+  .modal-media {
+    padding: 0.5rem;
+    max-height: 75vh;
+  }
+
+  .modal-media img {
+    max-height: 65vh;
+  }
+
+  /* Prevent modal text from getting squished */
+  .modal-body {
+    padding: 1rem;
+    font-size: 0.95rem;
+  }
+}
+/* === FIX: MODAL CONTENT SCROLLING === */
+.modal-container {
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh;
+  overflow: hidden;
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh;
+  overflow: hidden;
+}
+
+/* The entire modal scrolls properly */
+.modal-body {
+  overflow-y: auto;
+  flex: 1;
+  padding: 1.5rem;
+  background: var(--bg);
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary) var(--bg-secondary);
+  max-height: 85vh; /* ensures full scroll area */
+}
+
+/* Scrollbar */
+.modal-body::-webkit-scrollbar {
+  width: 6px;
+}
+.modal-body::-webkit-scrollbar-thumb {
+  background-color: var(--primary);
+  border-radius: 3px;
+}
+
+/* Image behaves normally */
+.modal-media img {
+  width: 100%;
+  height: auto;
+  max-height: 70vh;
+  object-fit: contain;
+  border-radius: var(--border-radius-lg);
+}
+
+/* Description cleanup */
+.modal-desc {
+  white-space: pre-line;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Fix for "View in AR" button visibility */
+.modal-actions {
+  margin-top: 1.5rem;
+  padding-bottom: 1rem; /* ensures it's fully visible */
+}

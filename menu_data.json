@@ -10,9 +10,9 @@
     "items": [
       {
         "id": "mint-mojito-virgin",
-        "image": "images/virgin mojito.jpeg",
+        "image": "images/food/Virgin Mint Mojito.png",
         "model": "assets/models/Virgin Mint Mojito.glb",
-        "video": "videos/burger video.mp4",
+        "video": "videos/Virgin Mint Mojito.mp4",
         "dietaryFlags": [
           "VEG",
           "ALCOHOL_FREE",
@@ -40,9 +40,9 @@
       },
       {
         "id": "tropical-sunrise",
-        "image": "images/Tropical Sunrise.jpeg",
+        "image": "images/food/Tropical Sunrise.png",
         "model": "assets/models/Tropical Sunrise.glb",
-        "video": "videos/Hamburger.mp4",
+        "video": "videos/Tropical Sunrise.mp4",
         "dietaryFlags": [
           "VEG",
           "ALCOHOL_FREE",
@@ -70,9 +70,9 @@
       },
       {
         "id": "cucumber-cooler",
-        "image": "images/Cucumber Cooler.jpg",
+        "image": "images/food/Cucumber Cooler.png",
         "model": "assets/models/Cucumber Cooler.glb",
-        "video": "videos/Sandwich.mp4",
+        "video": "videos/Cucumber Cooler.mp4",
         "dietaryFlags": [
           "VEG",
           "ALCOHOL_FREE",
@@ -100,9 +100,9 @@
       },
       {
         "id": "crispy-calamari",
-        "image": "images/Crispy Calamari.webp",
+        "image": "images/food/Crispy Calamari.png",
         "model": "assets/models/Crispy Calamari.glb",
-        "video": "videos/Sandwich.mp4",
+        "video": "videos/Crispy Calamari.mp4",
         "dietaryFlags": [
           "NON_VEG",
           "NUTS_FREE"
@@ -130,8 +130,9 @@
       },
       {
         "id": "chicken-65",
-        "image": "images/Chicken 65.jpg",
-        "model": "assets/models/chicken-65.glb",
+      "image": "images/food/Chicken 65.png",
+        "model": "assets/models/Chicken 65.glb",
+        "video": "videos/Chicken 65.mp4",
         "dietaryFlags": [
           "NON_VEG",
           "GLUTEN_FREE"
@@ -159,9 +160,9 @@
       },
       {
         "id": "spicy-paneer-kebab",
-        "image": "images/Spicy Paneer Kebab.jpg",
+        "image": "images/food/Spicy Paneer Kebab.png",
         "model": "assets/models/Spicy Paneer Kebab.glb",
-        "video": "videos/Sandwich.mp4",
+        "video": "videos/Spicy Paneer Kebab.mp4",
         "dietaryFlags": [
           "VEG",
           "GLUTEN_FREE"
@@ -189,8 +190,9 @@
       },
       {
         "id": "signature-tandoori-platter",
-        "image": "images/Signature Tandoori Platter.webp",
-        "model": "assets/models/Signature Tandoni Platter.glb",
+        "image": "images/food/Signature Tandoori Platter.png",
+        "model": "assets/models/Signature Tandoori Platter.glb",
+        "video": "videos/Signature Tandoori Platter.mp4",
         "dietaryFlags": [
           "NON_VEG"
         ],
@@ -217,9 +219,9 @@
       },
       {
         "id": "slow-cooked-short-ribs",
-        "image": "images/Slow Cooked Short Ribs.jpeg",
+        "image": "images/food/Slow Cooked Short Ribs.png",
         "model": "assets/models/Slow Cooked Short Ribs.glb",
-        "video": "videos/Sandwich.mp4",
+        "video": "videos/Slow Cooked Short Ribs.mp4",
         "dietaryFlags": [
           "NON_VEG"
         ],
@@ -246,8 +248,9 @@
       },
       {
         "id": "sushi-assortment",
-        "image": "images/Sushi Assortment.webp",
+        "image": "images/food/Sushi Assortment.png",
         "model": "assets/models/Sushi Assortment.glb",
+        "video": "videos/Sushi Assortment.mp4",
         "dietaryFlags": [
           "NON_VEG",
           "GLUTEN_FREE",
@@ -276,9 +279,9 @@
       },
       {
         "id": "yakitori-skewers",
-        "image": "images/Yakitori Skewers.jpg",
+         "image": "images/food/Yakitori Skewers.png",
         "model": "assets/models/Yakitori Skewers.glb",
-        "video": "videos/Sandwich.mp4",
+        "video": "videos/Yakitori Skewers.mp4",
         "dietaryFlags": [
           "NON_VEG"
         ],
@@ -305,8 +308,9 @@
       },
       {
         "id": "chef-special-seafood",
-        "image": "images/Chef Special Seafood.jpg",
+        "image": "images/food/Chef Special Seafood.png",
         "model": "assets/models/Chef Special Seafood.glb",
+        "video": "videos/Chef Special Seafood.mp4",
         "dietaryFlags": [
           "NON_VEG",
           "GLUTEN_FREE"
@@ -334,8 +338,9 @@
       },
       {
         "id": "vegetarian-thali-chef",
-        "image": "images/Vegetarian Thali (Chef).webp",
+        "image": "images/food/Vegetarian Thali (Chef).png",
         "model": "assets/models/Vegetarian Thali (Chef).glb",
+        "video": "videos/Vegetarian Thali (Chef).mp4",
         "dietaryFlags": [
           "VEG"
         ],
@@ -362,8 +367,9 @@
       },
       {
         "id": "Samosa",
-        "image": "images/Samosa new.jpeg",
+        "image": "images/food/Samosa.png",
         "model": "assets/models/Samosa.glb",
+        "video": "videos/Samosa.mp4",
         "dietaryFlags": [
           "VEG",
           "ALCOHOL_FREE",
@@ -392,8 +398,9 @@
       },
       {
         "id": "Sandwich",
-        "image": "images/Vegetable Sandwich.jpg",
+        "image": "images/food/Vegetable Sandwich.png",
         "model": "assets/models/Vegetable Sandwich.glb",
+        "video": "videos/Vegetable Sandwich.mp4",
         "dietaryFlags": [
           "VEG",
           "ALCOHOL_FREE",
@@ -433,7 +440,7 @@
     "items": [
       {
         "id": "mint-mojito-virgin",
-        "image": "images/virgin mojito.jpeg",
+        "image": "images/food/Virgin Mint Mojito.png",
         "model": "assets/models/Virgin Mint Mojito.glb",
         "dietaryFlags": [
           "VEG",
@@ -486,8 +493,9 @@
       },
       {
         "id": "tropical-sunrise",
-        "image": "images/Tropical Sunrise.jpeg",
+        "image": "images/food/Tropical Sunrise.png",
         "model": "assets/models/Tropical Sunrise.glb",
+        "video": "videos/Tropical Sunrise.mp4",
         "dietaryFlags": [
           "VEG",
           "ALCOHOL_FREE",
@@ -539,8 +547,9 @@
       },
       {
         "id": "cucumber-cooler",
-        "image": "images/Cucumber Cooler.jpg",
+        "image": "images/food/Cucumber Cooler.png",
         "model": "assets/models/Cucumber Cooler.glb",
+        "video": "videos/Cucumber Cooler.mp4",
         "dietaryFlags": [
           "VEG",
           "ALCOHOL_FREE",
@@ -603,7 +612,7 @@
     "items": [
       {
         "id": "crispy-calamari",
-        "image": "images/Crispy Calamari.webp",
+        "image": "images/food/Crispy Calamari.png",
         "model": "assets/models/Crispy Calamari.glb",
         "dietaryFlags": [
           "NON_VEG",
@@ -656,8 +665,8 @@
       },
       {
         "id": "chicken-65",
-        "image": "images/Chicken 65.jpg",
-        "model": "assets/models/chicken-65.glb",
+        "image": "images/food/Chicken 65.png",
+        "model": "assets/models/Chicken 65.glb",
         "dietaryFlags": [
           "NON_VEG",
           "GLUTEN_FREE"
@@ -709,7 +718,7 @@
       },
       {
         "id": "spicy-paneer-kebab",
-        "image": "images/Spicy Paneer Kebab.jpg",
+        "image": "images/food/Spicy Paneer Kebab.png",
         "model": "assets/models/Spicy Paneer Kebab.glb",
         "dietaryFlags": [
           "VEG",
@@ -773,8 +782,8 @@
     "items": [
       {
         "id": "signature-tandoori-platter",
-        "image": "images/Signature Tandoori Platter.webp",
-        "model": "assets/models/Signature Tandoni Platter.glb",
+        "image": "images/food/Signature Tandoori Platter.png",
+        "model": "assets/models/Signature Tandoori Platter.glb",
         "dietaryFlags": [
           "NON_VEG"
         ],
@@ -825,7 +834,7 @@
       },
       {
         "id": "slow-cooked-short-ribs",
-        "image": "images/Slow Cooked Short Ribs.jpeg",
+       "image": "images/food/Slow Cooked Short Ribs.png",
         "model": "assets/models/Slow Cooked Short Ribs.glb",
         "dietaryFlags": [
           "NON_VEG"
@@ -888,7 +897,7 @@
     "items": [
       {
         "id": "sushi-assortment",
-        "image": "images/Sushi Assortment.webp",
+        "image": "images/food/Sushi Assortment.png",
         "model": "assets/models/Sushi Assortment.glb",
         "dietaryFlags": [
           "NON_VEG",
@@ -942,7 +951,7 @@
       },
       {
         "id": "yakitori-skewers",
-        "image": "images/Yakitori Skewers.jpg",
+        "image": "images/food/Yakitori Skewers.png",
         "model": "assets/models/Yakitori Skewers.glb",
         "dietaryFlags": [
           "NON_VEG"
@@ -1005,9 +1014,9 @@
     "items": [
       {
         "id": "chef-special-seafood",
-        "image": "images/Chef Special Seafood.jpg",
+         "image": "images/food/Chef Special Seafood.png",
         "model": "assets/models/Chef Special Seafood.glb",
-        "video": "videos/Hamburger.mp4",
+        "video": "videos/Chef Special Seafood.mp4",
         "dietaryFlags": [
           "NON_VEG",
           "GLUTEN_FREE"
@@ -1059,9 +1068,9 @@
       },
       {
         "id": "vegetarian-thali-chef",
-        "image": "images/Vegetarian Thali (Chef).webp",
+        "image": "images/food/Vegetarian Thali (Chef).png",
         "model": "assets/models/Vegetarian Thali (Chef).glb",
-        "video": "videos/burger video.mp4",
+        "video": "videos/Vegetarian Thali (Chef).mp4",
         "dietaryFlags": [
           "VEG"
         ],
@@ -1123,7 +1132,7 @@
     "items": [
       {
         "id": "Samosa",
-        "image": "images/Samosa new.jpeg",
+        "image": "images/food/Samosa.png",
         "model": "assets/models/Samosa.glb",
         "dietaryFlags": [
           "VEG",

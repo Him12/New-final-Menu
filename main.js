@@ -471,7 +471,7 @@ createMenuItemHTML(item) {
                     <h3 class="card-title">${t.name}</h3>
                     <div class="card-price">${t.price}</div>
                 </div>
-                <p class="card-desc">${t.desc}</p>
+            <p class="card-desc">${t.desc ? t.desc.replace(/\*\*/g, "") : ""}</p>
                 ${t.ingredients ? `<div class="card-ingredients"><small>${t.ingredients}</small></div>` : ''}
                 
                 <div class="card-footer">
@@ -527,16 +527,24 @@ createMenuItemHTML(item) {
     }
 
     attachItemEventListeners() {
-        if (!this.menuArea) return;
-        this.menuArea.querySelectorAll('.menu-card').forEach(card => {
-            card.addEventListener('click', (e) => {
-                if (e.target.closest('button')) return;
-                const itemId = card.dataset.itemId;
-                const item = this.findItemById(itemId);
-                if (item) this.openItemModal(item);
-            });
+    if (!this.menuArea) return;
+    this.menuArea.querySelectorAll('.menu-card').forEach(card => {
+        card.addEventListener('click', (e) => {
+            // Ignore clicks on buttons inside cards
+            if (e.target.closest('button')) return;
+
+            // Trigger micro motion on card tap
+            card.classList.add('clicked');
+            setTimeout(() => card.classList.remove('clicked'), 400);
+
+            // Open item modal as usual
+            const itemId = card.dataset.itemId;
+            const item = this.findItemById(itemId);
+            if (item) this.openItemModal(item);
         });
-    }
+    });
+}
+
 
     filterMenu() {
         let filtered = { ...this.MENU };
@@ -591,7 +599,7 @@ createMenuItemHTML(item) {
         const t = item.translations?.[this.currentLang] || item.translations?.en || {};
         this.modalImg.src = item.image;
         this.modalName.textContent = t.name;
-        this.modalDesc.textContent = t.desc;
+        this.modalDesc.innerHTML = t.desc.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
         this.modalPrice.textContent = t.price;
         this.modalIngredients.textContent = t.ingredients;
         this.modalBadges.innerHTML = this.createDietaryBadges(item);
