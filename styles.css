@@ -3303,3 +3303,26 @@ body {
   margin-top: 1.5rem;
   padding-bottom: 1rem; /* ensures it's fully visible */
 }
+
+#modalOrder {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #b46a6a;  /* same as theme color */
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+#modalOrder:hover {
+  background-color: #a25a5a;
+}
+
+#modalOrder i {
+  font-size: 14px;
+}
+

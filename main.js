@@ -843,6 +843,8 @@ class PremiumMenu {
         this.searchExpandable = document.getElementById('searchExpandable');
         this.searchInput = document.getElementById('searchInput');
         this.searchClose = document.getElementById('searchClose');
+        this.modalOrder = document.getElementById('modalOrder');
+
 
         // Theme & Language
         this.themeToggle = document.getElementById('themeToggle');
@@ -959,6 +961,11 @@ class PremiumMenu {
             this.modalAR.addEventListener('click', () => this.openARModal(this.currentModalItem));
         }
 
+        if (this.modalOrder) {
+            this.modalOrder.addEventListener('click', () => this.placeOrderForCurrentItem());
+        }
+
+
         if (this.closeModelModal) {
             this.closeModelModal.addEventListener('click', () => this.closeModal(this.modelModal));
         }
@@ -981,6 +988,8 @@ class PremiumMenu {
                 }
             });
         });
+
+
 
         document.addEventListener('keydown', (e) => this.handleKeyboard(e));
     }
@@ -1512,6 +1521,61 @@ class PremiumMenu {
         this.modalAR.style.display = item.model ? 'inline-flex' : 'none';
         this.openModal(this.imageModal);
     }
+
+    // Build an order payload for the currentModalItem and call MenuAPI.placeOrder
+    async placeOrderForCurrentItem() {
+        if (!this.currentModalItem) {
+            this.showToast('No item selected to order');
+            return;
+        }
+
+        // Basic payload — extend as needed (qty, table, extras...)
+        const t = this.currentModalItem.translations?.[this.currentLang] || this.currentModalItem.translations?.en || {};
+        const payload = {
+            restaurant_number: (window.MenuAPI && window.MenuAPI.meta && window.MenuAPI.meta.RESTAURANT) || 'unknown',
+            table: (window.MenuAPI && window.MenuAPI.meta && window.MenuAPI.meta.TABLE) || '',
+            items: [
+                {
+                    id: String(this.currentModalItem.id),
+                    name: t.name || this.currentModalItem.name || '',
+                    price: parseInt(String(t.price || this.currentModalItem.price || '0').replace(/[^0-9]/g, '')) || 0,
+                    quantity: 1
+                }
+            ],
+            total: (parseInt(String(t.price || this.currentModalItem.price || '0').replace(/[^0-9]/g, '')) || 0),
+            placed_at: new Date().toISOString()
+        };
+
+        try {
+            // UI feedback
+            this.modalOrder.disabled = true;
+            this.modalOrder.textContent = 'Placing...';
+
+            // MenuAPI.placeOrder fallbacks to local fake response when API_BASE is empty
+            const res = await (window.MenuAPI && window.MenuAPI.placeOrder ? window.MenuAPI.placeOrder(payload) : Promise.resolve({ success: false, error: 'No MenuAPI' }));
+
+            // Restore button
+            this.modalOrder.disabled = false;
+            this.modalOrder.innerHTML = '<i class="fas fa-shopping-cart"></i> Order';
+
+            if (res && res.success) {
+                const id = res.orderId || res.id || (res.data && res.data[0] && res.data[0].id) || 'unknown';
+                this.showToast(`Order placed — id: ${id}`, 5000);
+                // optional: close modal after order
+                this.closeModal(this.imageModal);
+            } else {
+                const err = res && res.error ? res.error : 'Unknown error';
+                this.showToast(`Order failed: ${err}`, 6000);
+                console.error('placeOrder failure', res);
+            }
+        } catch (err) {
+            this.modalOrder.disabled = false;
+            this.modalOrder.innerHTML = '<i class="fas fa-shopping-cart"></i> Order';
+            this.showToast('Order failed. See console.');
+            console.error('placeOrder error', err);
+        }
+    }
+
 
     openARModal(item) {
         if (!item || !this.mv) return;
