@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Restaurant Orders - Portal</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    body{font-family:system-ui,Arial;margin:16px;background:#fff;color:#222}
+    h1{margin:6px 0 16px}
+    .orders{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:12px}
+    .card{border:1px solid #e0e0e0;border-radius:8px;padding:12px;background:#fafafa}
+    .meta{display:flex;justify-content:space-between;align-items:center}
+    .items{margin-top:8px;font-size:14px;color:#333}
+    button{margin-right:8px;padding:8px 10px;border-radius:6px;border:0;background:#6f6cff;color:#fff;cursor:pointer}
+    .btn-secondary{background:#6c757d}
+    .btn-danger{background:#d9534f}
+    .status{padding:6px 8px;border-radius:6px;background:#eee;font-weight:600}
+  </style>
+</head>
+<body>
+  <h1>Orders Portal</h1>
+  <div>
+    Restaurant: <strong id="restId">12345</strong> &nbsp;
+    <label><input id="autoPoll" type="checkbox" checked> Auto refresh</label>
+    <button id="refreshBtn" class="btn-secondary">Refresh</button>
+  </div>
+
+  <div id="ordersRoot" class="orders" style="margin-top:12px"></div>
+
+  <script src="./orders.js"></script>
+</body>
+</html>
