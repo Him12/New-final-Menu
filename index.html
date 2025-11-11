@@ -309,8 +309,17 @@
       </div>
     </div>
   </footer>
-  <script src="./config.js"></script>
-  <script src="./menu-api.js"></script>
+  <script>
+    // optional: set AppConfig from server or inline
+    window.AppConfig = {
+      API_BASE: 'https://web-ar-backend-83y8.onrender.com', // your backend
+      DEFAULT_RESTAURANT_NUMBER: '12345'
+    };
+  </script>
+
+  <script src="menu-api.js"></script>
+  <script src="main.js"></script>
+
   <script src="main.js"></script>
 </body>
 
