@@ -27,6 +27,15 @@
 
   <div id="ordersRoot" class="orders" style="margin-top:12px"></div>
 
+  <!-- ✅ Add this block -->
+  <script>
+    window.AppConfig = {
+      API_BASE: "https://web-ar-backend-83y8.onrender.com", // your Render backend URL
+      DEFAULT_RESTAURANT_NUMBER: "12345"
+    };
+  </script>
+
+  <!-- then load orders.js -->
   <script src="./orders.js"></script>
 </body>
 </html>
